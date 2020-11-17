@@ -1,0 +1,20 @@
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+  }
+
+p {
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+.card-body {
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.card-title {
+  text-align: center
+}

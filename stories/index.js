@@ -1,10 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-
-
+import MovieCard from "../src/components/movieCard";
+import MovieList from "../src/components/movieList";
+import React from "react";
+import { storiesOf } from "@storybook/react";
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
-import HomePage from "./pages/homePage";
 
 const sample = {
   adult: false,
@@ -87,14 +85,15 @@ const sample = {
   vote_count: 9692
 };
 
-const movies = [sample, sample, sample, sample, sample];
+storiesOf("Home Page/MovieList", module)
+  .add("default", () => {
+    const movies= [sample, sample, sample, sample, sample]
+    return <MovieList movies={movies} />
+});
 
-const App = () => {
-  return (
-    <div className="jumbotron">
-      <HomePage movies={movies} />
-    </div>
-  );
-};
-
-ReactDOM.render(<App />, document.getElementById("root"));
+storiesOf("Home Page/MovieCard", module)
+  .add("default", () => <MovieCard movie={sample} />)
+  .add("exception", () => {
+    const sampleNoPoster = { ...sample, poster_path: undefined };
+    return <MovieCard movie={sampleNoPoster} />;
+  });
