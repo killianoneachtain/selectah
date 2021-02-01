@@ -2,8 +2,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    image-rendering: optimizeSpeed;    
 }
 
 .label {
     padding: 100;
 }
+
+.logo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height:20%;
+    width:20%;
+}
+
