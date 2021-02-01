@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "analyzer_version": "4.0.0",
+    "platform": "Linux",
+    "detailed_status": "OK",
+    "status_code": 0,
+    "timestamp": 1573369230,
+    "analysis_time": 136.22638,
+    "input_process": "libvorbisfile L+R 44100->22050"
+  },
+  "track": {
+    "num_samples": 6986910,
+    "duration": 316.86667,
+    "sample_md5": "",
+    "offset_seconds": 0,
+    "window_seconds": 0,
+    "analysis_sample_rate": 22050,
+    "analysis_channels": 1,
+    "end_of_fade_in": 0.18567,
+    "start_of_fade_out": 300.39655,
+    "loudness": -14.9,
+    "tempo": 99.642,
+    "tempo_confidence": 0.305,
+    "time_signature": 4,
+    "time_signature_confidence": 0.921,
+    "key": 7,
+    "key_confidence": 0.316,
+    "mode": 1,
+    "mode_confidence": 0.265
+  }
+}
