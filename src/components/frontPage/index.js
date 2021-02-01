@@ -3,6 +3,7 @@ import "./frontPage.css";
 import discogsLogo from "../../../src/images/discogs_logo.png";
 
 export default function Welcome() {
+    
   return(
   
     <div className="welcome-wrapper">
@@ -12,11 +13,12 @@ export default function Welcome() {
         
             <h2>BPM your music collection.</h2>
         </div>     
-        <div>
-            <button className="button" type="submit">Login</button>
-       
+        <div>            
+            <button className="button">Login</button>     
+
             <a href='https://accounts.discogs.com/register'>
                 <button className="button" type="submit">Register</button>
+                
             </a>
         </div>      
     
@@ -24,8 +26,5 @@ export default function Welcome() {
         <img className='logo' src={discogsLogo} alt="Logo"/>
         </div>    
      </div>
-    
-    
-   
   )
 }
