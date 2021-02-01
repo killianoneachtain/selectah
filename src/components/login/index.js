@@ -1,10 +1,14 @@
 import React from "react";
 import "./login.css";
-const discogsLogo = require('public/discogs_logo_white.png');
+import discogsLogo from "../../../src/images/discogs_logo.png";
 
 export default function Login() {
   return(
+    <div>
     <div className="login-wrapper">
+      <div>
+    <img className='logo' src={discogsLogo} alt="Logo"/>
+    </div>
       <h1>Please Log In</h1>
       <form>
         <label>
@@ -19,8 +23,11 @@ export default function Login() {
         <div>
           <button type="submit">Submit</button>
         </div>
-      </form>
-      <img src={discogsLogo} alt="Hello"/>
+      </form>    
     </div>
+    
+    
+    </div>   
+   
   )
 }
