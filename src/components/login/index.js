@@ -24,8 +24,7 @@ export default function Login() {
           <button type="submit">Submit</button>
         </div>
       </form>    
-    </div>
-    
+    </div>    
     
     </div>   
    

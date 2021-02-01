@@ -2,7 +2,7 @@ import React, {useState, useEffect } from "react";
 //import Header from "../components/headerMovieList";
 //import MovieList from "../components/movieList";
 //import FilterControls from "../components/filterControls";
-import Login from "../components/login";
+import Welcome from "../components/frontPage";
 
 
 const SongListPage = () => {
@@ -27,7 +27,7 @@ const SongListPage = () => {
 
   return (
     <>  
-      <Login
+      <Welcome
         />  
     </>
   );
