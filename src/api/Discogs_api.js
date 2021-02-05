@@ -3,8 +3,14 @@ export const request_token = () => {
     var stamp = new Date().getTime();
     console.log('timestamp is : ',stamp);
 
+    //68c8d98e-f9ad-47ff-a803-a6c0cfc7bf05
+    var randoms=`${makeid(8)}-${makeid(4)}-${makeid(4)}-${makeid(12)}`;//makeid(5)
+    
+    console.log(`"OAuth oauth_consumer_key="rSlgSvPFNYXtkYClvjLs",oauth_signature_method="PLAINTEXT",oauth_timestamp="${stamp}",oauth_nonce="${randoms}",oauth_version="1.0",oauth_signature="QRabRHFedozJinKOvopMUCKeCepaCJLn&",oauth_callback="https://selectah.vercel.app""`);
+
+
 var myHeaders = new Headers();
-myHeaders.append("Authorization", `OAuth oauth_consumer_key="${process.env.DISCOGS_KEY}",oauth_signature_method="PLAINTEXT",oauth_timestamp="${stamp}",oauth_nonce="6d041e65-fbe4-45bd-8199-73f353cea590",oauth_version="1.0",oauth_signature="${process.env.DISCOGS_SECRET}", oauth_callback="https://selectah.vercel.app"`);
+myHeaders.append("Authorization", `"OAuth oauth_consumer_key="rSlgSvPFNYXtkYClvjLs",oauth_signature_method="PLAINTEXT",oauth_timestamp="${stamp}",oauth_nonce="${randoms}",oauth_version="1.0",oauth_signature="QRabRHFedozJinKOvopMUCKeCepaCJLn&",oauth_callback="https://selectah.vercel.app""`);
 myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 myHeaders.append("User-Agent", "PostmanDiscogs/1.0");
 
