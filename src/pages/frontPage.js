@@ -11,9 +11,9 @@ class Front extends React.Component {
         }
 
         componentDidMount() {
-        fetch('https://selectah-api.herokuapp.com/authorize')
+        fetch('/authorize')
         .then(res => res.json())
-        .then(logins => this.setState({logins}, () => console.log('Data fetched ....', logins.authorizeUrl)))    
+        .then(logins => this.setState({logins}, () => console.log('Data fetched ....', logins.authorizeUrl)))   
 
         }
 

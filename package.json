@@ -30,7 +30,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build"
   },
-  "proxy": "http://localhost:9000",
+  "proxy": "https://selectah-api.herokuapp.com",
   "eslintConfig": {
     "extends": [
       "react-app",
