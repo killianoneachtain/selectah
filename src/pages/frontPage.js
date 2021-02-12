@@ -13,7 +13,7 @@ class Front extends React.Component {
         componentDidMount() {
         fetch('/authorize')
         .then(res => res.json())
-        .then(logins => this.setState({logins}, () => console.log('Data fetched ....', logins)))    
+        .then(logins => this.setState({logins}, () => console.log('Data fetched ....', logins.authorizeUrl)))    
 
         }
 
