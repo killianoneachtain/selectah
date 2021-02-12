@@ -1,24 +1,25 @@
 .welcome-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    image-rendering: optimizeSpeed;   
-    background-image: url(../../images/recordspines\ copy.png); 
-}
-
-.button {
-    padding-left: 50px;
-    padding-right: 50px;
-    border: 40px solid;
-    border-color: #F5DF20;
-
-}
-
-.logo{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-left: 100px;
-    height:20%;
-    width:20%;
-}
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        image-rendering: optimizeSpeed;   
+        background-image: url(../../images/recordspines\ copy.png); 
+    }
+    
+    .button {
+        padding-left: 50px;
+        padding-right: 50px;
+        border: 40px solid;
+        border-color: #F5DF20;
+    
+    }
+    
+    .logo{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-left: 100px;
+        height:20%;
+        width:20%;
+    }
+    
