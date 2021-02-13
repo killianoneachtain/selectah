@@ -1,19 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import HeaderCollection from './components/headerCollection';
-import 'semantic-ui-css/semantic.min.css';
-import './index.css';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import HeaderCollection from './components/headerCollection'
+import 'semantic-ui-css/semantic.min.css'
+import './index.css'
 //import Front from './pages/frontPage';
-import Collection from './pages/collection';
-import reportWebVitals from './reportWebVitals';
+import Collection from './pages/collection'
+import reportWebVitals from './reportWebVitals'
+
 
 ReactDOM.render(
   <React.StrictMode>
      <div className="jumbotron">
       <HeaderCollection />      {/* New Header  */}
-          <div className="container-fluid">
-    <Collection />
-    </div>
+        <div className="container-fluid">
+          <Collection />
+        </div>
     </div>
   </React.StrictMode>,
   document.getElementById('root')
