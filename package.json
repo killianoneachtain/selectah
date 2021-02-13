@@ -22,15 +22,20 @@
     "react": "^16.8.0",
     "react-dom": "^16.0.0-rc",
     "react-hook-form": "^3.29.4",
+    "react-loader-spinner": "^4.0.0",
+    "react-loading": "^2.0.3",
+    "react-promise-tracker": "^2.1.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "4.0.0",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^2.0.3",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build"
   },
-  "proxy": "https://selectah-api.herokuapp.com",
+  "proxy": "http://localhost:9000",
   "eslintConfig": {
     "extends": [
       "react-app",
