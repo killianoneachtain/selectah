@@ -13,7 +13,7 @@ ReactDOM.render(
      <div className="jumbotron">
       <HeaderCollection />      {/* New Header  */}
         <div className="container-fluid">
-          <Collection />
+          <Collection />          
         </div>
     </div>
   </React.StrictMode>,
