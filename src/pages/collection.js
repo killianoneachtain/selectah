@@ -1,27 +1,24 @@
 import React from 'react'
 import discogsLogo from "../../src/images/discogs_logo.png"
 import '../components/frontPage/frontPage.css'
-import {  Table } from 'semantic-ui-react'
+import {  Table, Segment, Image, Dimmer } from 'semantic-ui-react'
 import { trackPromise, usePromiseTracker } from "react-promise-tracker";
 import Loader from 'react-loader-spinner';
-
+import ListingAccordion from '../../src/components/trackListing'
 
 const LoadingIndicator = props => {
     const { promiseInProgress } = usePromiseTracker();
             return (
                 promiseInProgress && 
-        <Table.Row textAlign='center'>                      
-                <Table.Cell><Loader type="ThreeDots" color="#F5DF2E" height="75" width="75" /></Table.Cell> 
-                <Table.Cell><Loader type="ThreeDots" color="#F5DF2E" height="75" width="75" /></Table.Cell> 
-                <Table.Cell><Loader type="ThreeDots" color="#F5DF2E" height="75" width="75" /></Table.Cell> 
-                <Table.Cell><Loader type="ThreeDots" color="#F5DF2E" height="75" width="75" /></Table.Cell> 
-                <Table.Cell><Loader type="ThreeDots" color="#F5DF2E" height="75" width="75" /></Table.Cell> 
-                <Table.Cell><Loader type="ThreeDots" color="#F5DF2E" height="75" width="75" /></Table.Cell> 
-                <Table.Cell><Loader type="ThreeDots" color="#F5DF2E" height="75" width="75" /></Table.Cell> 
-                <Table.Cell><Loader type="ThreeDots" color="#F5DF2E" height="75" width="75" /></Table.Cell>                        
-                <Table.Cell><Loader type="ThreeDots" color="#F5DF2E" height="75" width="50" /></Table.Cell> 
-        </Table.Row> 
-                          
+            <Table.Body>      
+                <Table.Row key='1' textAlign='center'>                      
+                        <Table.Cell colSpan='9'>
+                            <Dimmer active>
+                                <Loader type="ThreeDots" color="#F5DF2E" height="200" width="200" />
+                            </Dimmer>
+                        </Table.Cell>                 
+                </Table.Row>  
+            </Table.Body> 
            );  
           }
 
@@ -31,6 +28,7 @@ class Collection extends React.Component {
             this.state = {
                 collection :[],
                 isLoading: true
+                
             }
         }
         
@@ -42,23 +40,20 @@ class Collection extends React.Component {
                     
         }
 
-       
-       
-
         render()
         {           
             return (
-                            
+                <Segment>         
             <div className="welcome-wrapper">  
-            <div>
-                <h1>Selectah</h1>  
-                <h2>Killian's your music collection.</h2>
-            </div>   
-            <div>  
-          
-            <Table stackable>
-            <Table.Header>
-            <Table.Row textAlign='center'>               
+                <div>
+                    <h1>Selectah</h1>  
+                    <h2>Killian's Music Collection</h2>
+                </div>   
+                    <div>            
+            <Table stackable striped size='large'>
+            <Table.Header >
+            <Table.Row textAlign='center'>   
+                            
                     <Table.HeaderCell></Table.HeaderCell>
                     <Table.HeaderCell>Artwork</Table.HeaderCell>
                     <Table.HeaderCell>Artist</Table.HeaderCell>
@@ -70,12 +65,13 @@ class Collection extends React.Component {
                     <Table.HeaderCell>ID</Table.HeaderCell>                
             </Table.Row>
         </Table.Header> 
-            <Table.Body>        
+                 
                   <LoadingIndicator/>  
                 {this.state.collection.map((item, index) =>                   
-                      <Table.Row key={index} textAlign='center'>                      
-                            <Table.Cell>{index+1}</Table.Cell> 
-                            <Table.Cell><img alt="" src={item?.basic_information?.thumb}></img></Table.Cell> 
+                   <Table.Body key={index}>   
+                        <Table.Row key={index} textAlign='center'>                                              
+                            <Table.Cell>{index+1}</Table.Cell>                            
+                            <Table.Cell><Image alt="" src={item?.basic_information?.thumb} size='tiny' /></Table.Cell> 
                             <Table.Cell>{item?.basic_information?.artists[0]?.name}</Table.Cell> 
                             <Table.Cell>{item?.basic_information?.title}</Table.Cell> 
                             <Table.Cell>{item?.basic_information?.formats[0]?.name}</Table.Cell> 
@@ -83,24 +79,23 @@ class Collection extends React.Component {
                             <Table.Cell>{item.basic_information?.formats[0]?.descriptions?.join(', ')}</Table.Cell> 
                             <Table.Cell>{item?.basic_information?.genres?.join(",")}</Table.Cell>                        
                             <Table.Cell>{item?.id}</Table.Cell> 
-                    </Table.Row>             
+                        </Table.Row>  
+                          
+                        <Table.Row key={item.id} textAlign='center'>
+                            <Table.HeaderCell colSpan='9'>
+                                <ListingAccordion release={item.id}/>
+                            </Table.HeaderCell>  
+                        </Table.Row>        
+                    </Table.Body>  
                 )}
-            
-            
-            </Table.Body> 
-
-            
+               
             </Table>   
-                
-            
-        
-            </div>      
-        
+            </div>  
             <div>
             <img className='logo' src={discogsLogo} alt="Logo"/>
             </div>    
         </div>  
-        
+        </Segment>   
         );
         }
 }
