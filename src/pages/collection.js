@@ -28,6 +28,7 @@ class Collection extends React.Component {
             this.state = {
                 collection :[],
                 isLoading: true
+                
             }
         }
         
@@ -44,12 +45,11 @@ class Collection extends React.Component {
             return (
                 <Segment>         
             <div className="welcome-wrapper">  
-            <div>
-                <h1>Selectah</h1>  
-                <h2>Killian's Music Collection</h2>
-            </div>   
-            <div>  
-          
+                <div>
+                    <h1>Selectah</h1>  
+                    <h2>Killian's Music Collection</h2>
+                </div>   
+                    <div>            
             <Table stackable striped size='large'>
             <Table.Header >
             <Table.Row textAlign='center'>   

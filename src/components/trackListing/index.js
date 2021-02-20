@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { Accordion, Icon } from 'semantic-ui-react'
+import {  Accordion, Icon } from 'semantic-ui-react'
 import TracklistTable from '../../components/tracklistTable'
 
 export default class ListingAccordion extends Component {
-  state = { activeIndex: 0 }    
+  state = { activeIndex: 0, tracklisting: []}    
+
+ 
 
   handleClick = (e, titleProps) => {
     const { index } = titleProps
@@ -12,14 +14,15 @@ export default class ListingAccordion extends Component {
 
     fetch(`/user/release/${this.props.release}`)
         .then(res => res.json())   
-        .then(tracklisting => this.setState({tracklisting}, () => console.log('Tracklisting fetched ....', tracklisting)))                 
+        .then(tracklisting => this.setState({tracklisting}, () => console.log('Tracklisting fetched ....', tracklisting)))
+                       
     
     this.setState({ activeIndex: newIndex })
   }
 
   render() {
    
-    console.log(this.props);
+    //console.log("trackListing state in return props :",this.state.tracklisting);
     const { activeIndex } = this.state
 
     return (
@@ -32,10 +35,10 @@ export default class ListingAccordion extends Component {
           <Icon name='dropdown' />
           Tracklisting 
         </Accordion.Title>
-        <Accordion.Content active={activeIndex === 1}>
-          <p>
-            <TracklistTable release = {this.props.release}/>
-          </p>
+        <Accordion.Content active={activeIndex === 1}>       
+
+            <TracklistTable tracklisting = {[this.state.tracklisting]}/>
+          
         </Accordion.Content>
       </Accordion>
     )
