@@ -7,15 +7,15 @@ constructor(props) {
         super(props);
         this.state = {            
             tracklisting : [this.props.tracklisting],
-            artistName : false
+            
         }
     }  
 
 
 
 render() {
-    console.log("TRACK LISTING PROPS",this.props.tracklisting);
-    //console.log("tracklisting in tracklistTable is :", this.state.tracklisting);
+    //console.log("TRACK LISTING PROPS",this.props.tracklisting);
+    console.log("record artist is:", this.props.artist);
     
     return (
     
@@ -28,9 +28,7 @@ render() {
                     <Table.HeaderCell>Length</Table.HeaderCell>
                     <Table.HeaderCell>BPM / Tempo</Table.HeaderCell>                     
                 </Table.Row>
-                </Table.Header>
-
-                    
+                </Table.Header>                    
                 {this.props.tracklisting[0].map((song, index) => {
                     return (
                    <Table.Body key={index} >
@@ -38,12 +36,16 @@ render() {
                         <Table.Cell>{song?.position}</Table.Cell> 
                         <Table.Cell>
                             <List>
-                                {song?.artists?.map((artiste,i) => (
-                                    <List.Item>
-                                        <List.Icon key={i} name='group' size='large' color='green'/>
-                                        <List.Content>{artiste?.name}</List.Content>
+                               { Array.isArray(song?.artists) ?  song?.artists?.map((artiste,i) => (
+                                    <List.Item key={i}>
+                                        <List.Icon  name='group' size='large' color='green'/>
+                                        <List.Content>{artiste?.name} {artiste?.join}</List.Content>
                                     </List.Item>
-                                    ))}
+                                    )) :   <List.Item key={index+1}>
+                                    <List.Icon  name='group' size='large' color='green'/>
+                                    <List.Content>{this.props.artist}</List.Content>
+                                </List.Item>
+                                } 
                             </List>
                         </Table.Cell>
                         
@@ -62,3 +64,17 @@ render() {
 }
 
 export default TrackListTable;
+
+/*
+<Table.Cell>
+                            <List>
+                                {song?.artists?.map((artiste,i) => (
+                                    <List.Item key={i}>
+                                        <List.Icon  name='group' size='large' color='green'/>
+                                        <List.Content>{artiste?.name}</List.Content>
+                                    </List.Item>
+                                    ))}
+                            </List>
+                        </Table.Cell>
+
+*/

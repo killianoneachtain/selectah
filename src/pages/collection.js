@@ -62,6 +62,7 @@ class Collection extends React.Component {
                     <Table.HeaderCell>Number of Discs</Table.HeaderCell>
                     <Table.HeaderCell>Description</Table.HeaderCell>
                     <Table.HeaderCell>Genre</Table.HeaderCell>
+                    <Table.HeaderCell>Styles</Table.HeaderCell>
                     <Table.HeaderCell>ID</Table.HeaderCell>                
             </Table.Row>
         </Table.Header> 
@@ -77,13 +78,14 @@ class Collection extends React.Component {
                             <Table.Cell>{item?.basic_information?.formats[0]?.name}</Table.Cell> 
                             <Table.Cell>{item?.basic_information?.formats[0]?.qty}</Table.Cell> 
                             <Table.Cell>{item.basic_information?.formats[0]?.descriptions?.join(', ')}</Table.Cell> 
-                            <Table.Cell>{item?.basic_information?.genres?.join(",")}</Table.Cell>                        
+                            <Table.Cell>{item?.basic_information?.genres?.join(",")}</Table.Cell>  
+                            <Table.Cell>{item?.basic_information?.styles?.join(",")}</Table.Cell>                        
                             <Table.Cell>{item?.id}</Table.Cell> 
                         </Table.Row>  
                           
                         <Table.Row key={item.id} textAlign='center'>
-                            <Table.HeaderCell colSpan='9'>
-                                <ListingAccordion release={item.id}/>
+                            <Table.HeaderCell colSpan='10'>
+                                <ListingAccordion release={item.id} artist={item?.basic_information?.artists[0]?.name}/>
                             </Table.HeaderCell>  
                         </Table.Row>        
                     </Table.Body>  
