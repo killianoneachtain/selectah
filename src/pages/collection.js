@@ -75,7 +75,9 @@ class Collection extends React.Component {
                             <Table.Cell><Image alt="" src={item?.basic_information?.thumb} size='tiny' /></Table.Cell> 
                             <Table.Cell>{item?.basic_information?.artists[0]?.name}</Table.Cell> 
                             <Table.Cell>{item?.basic_information?.title}</Table.Cell> 
+
                             <Table.Cell>{item?.basic_information?.formats[0]?.name}</Table.Cell> 
+                            
                             <Table.Cell>{item?.basic_information?.formats[0]?.qty}</Table.Cell> 
                             <Table.Cell>{item.basic_information?.formats[0]?.descriptions?.join(', ')}</Table.Cell> 
                             <Table.Cell>{item?.basic_information?.genres?.join(",")}</Table.Cell>  
