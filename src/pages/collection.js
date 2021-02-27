@@ -6,6 +6,7 @@ import { trackPromise, usePromiseTracker } from "react-promise-tracker";
 import Loader from 'react-loader-spinner';
 import ListingAccordion from '../../src/components/trackListing'
 
+
 const LoadingIndicator = props => {
     const { promiseInProgress } = usePromiseTracker();
             return (
@@ -39,9 +40,9 @@ class Collection extends React.Component {
             .then(collection => this.setState({collection, isLoading:false}, () => console.log('Data fetched ....', collection))) )
                     
         }
-
+     
         render()
-        {           
+        {   
             return (
                 <Segment>         
             <div className="welcome-wrapper">  
@@ -49,7 +50,7 @@ class Collection extends React.Component {
                     <h1>Selectah</h1>  
                     <h2>Killian's Music Collection</h2>
                 </div>   
-                    <div>            
+                    <div> 
             <Table stackable striped size='large'>
             <Table.Header >
             <Table.Row textAlign='center'>   
@@ -75,11 +76,13 @@ class Collection extends React.Component {
                             <Table.Cell><Image alt="" src={item?.basic_information?.thumb} size='tiny' /></Table.Cell> 
                             <Table.Cell>{item?.basic_information?.artists[0]?.name}</Table.Cell> 
                             <Table.Cell>{item?.basic_information?.title}</Table.Cell> 
+
                             <Table.Cell>{item?.basic_information?.formats[0]?.name}</Table.Cell> 
+                            
                             <Table.Cell>{item?.basic_information?.formats[0]?.qty}</Table.Cell> 
                             <Table.Cell>{item.basic_information?.formats[0]?.descriptions?.join(', ')}</Table.Cell> 
-                            <Table.Cell>{item?.basic_information?.genres?.join(",")}</Table.Cell>  
-                            <Table.Cell>{item?.basic_information?.styles?.join(",")}</Table.Cell>                        
+                            <Table.Cell>{item?.basic_information?.genres?.join(", ")}</Table.Cell>  
+                            <Table.Cell>{item?.basic_information?.styles?.join(", ")}</Table.Cell>                        
                             <Table.Cell>{item?.id}</Table.Cell> 
                         </Table.Row>  
                           

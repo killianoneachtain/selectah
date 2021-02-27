@@ -1,9 +1,29 @@
 import React, { Component } from 'react'
-import {  Accordion, Icon } from 'semantic-ui-react'
+import {  Table, Segment, Accordion, Icon, Dimmer } from 'semantic-ui-react'
 import TracklistTable from '../../components/tracklistTable'
+import { trackPromise, usePromiseTracker } from "react-promise-tracker";
+import Loader from 'react-loader-spinner';
+
+const LoadingTracklistingIndicator = props => {
+  const { promiseInProgress } = usePromiseTracker();
+          return (
+              promiseInProgress && 
+          <Segment>
+            <Table.Body>      
+              <Table.Row key='1' textAlign='center'>                      
+                      <Table.Cell colSpan='1'>
+                      <Dimmer active blurring>
+                              <Loader type="ThreeDots" color="#F5DF2E" height="150" width="150" />
+                          </Dimmer>
+                      </Table.Cell>                 
+              </Table.Row>  
+            </Table.Body> 
+          </Segment>
+         );  
+        }
 
 export default class ListingAccordion extends Component {
-  state = { activeIndex: 0, tracklisting: []}    
+  state = { activeIndex: 0, tracklisting: [],  isLoading:true  }    
 
  
 
@@ -12,9 +32,9 @@ export default class ListingAccordion extends Component {
     const { activeIndex } = this.state
     const newIndex = activeIndex === index ? -1 : index
 
-    fetch(`/user/release/${this.props.release}`)
+    trackPromise(fetch(`/user/release/${this.props.release}`)
         .then(res => res.json())   
-        .then(tracklisting => this.setState({tracklisting}, () => console.log('Tracklisting fetched ....', tracklisting)))
+        .then(tracklisting => this.setState({tracklisting, isLoading:false}, () => console.log('Tracklisting fetched ....', tracklisting))))
                        
     
     this.setState({ activeIndex: newIndex })
@@ -36,8 +56,8 @@ export default class ListingAccordion extends Component {
           Tracklisting 
         </Accordion.Title>
         <Accordion.Content active={activeIndex === 1}>       
-
-            <TracklistTable tracklisting = {[this.state.tracklisting]} artist={this.props.artist}/>
+<LoadingTracklistingIndicator />
+            <TracklistTable tracklisting = {[this.state.tracklisting]} artist={this.props.artist} />
           
         </Accordion.Content>
       </Accordion>
