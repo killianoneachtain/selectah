@@ -2,7 +2,7 @@ import React from 'react'
 import { Icon, Menu, Table } from 'semantic-ui-react'
 
 const CollectionTable = ({collection}) => (
-  <Table celled>
+  <Table celled stackable>
     <Table.Header>
       <Table.Row>
         <Table.HeaderCell>Artist</Table.HeaderCell>
