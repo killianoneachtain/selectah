@@ -8,12 +8,11 @@ import CollectionPage from './pages/homePage'
 import GenresContextProvider from './contexts/genresContext'
 import CollectionContextProvider from './contexts/collectionContext'
 
-
 const App = () => {
   return (  
     <BrowserRouter>
         
-          <Segment>
+          <Segment>   
             <CollectionContextProvider>
                 <GenresContextProvider> 
                 <Switch>                    

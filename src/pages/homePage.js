@@ -1,23 +1,30 @@
 import React, { useContext } from "react";
 import PageTemplate from '../components/templateCollectionPage'
 import {CollectionContext} from '../contexts/collectionContext'
+import { Header,Segment } from 'semantic-ui-react'
+import Footer from '../components/footer'
+
 //import AddToFavoritesButton from '../components/buttons/addToFavorites'
 
 const CollectionListPage = () => {
   const context = useContext(CollectionContext);
 
   return (
-    <html>
-    <head>
-      <title>Home : Welcome to Selectah</title>
-    </head>
-    <body>
+    <Segment>
+    <Header as='h1'>Bo' Selectah</Header>      
+    
       <PageTemplate 
-        title='All Collection'
+        title='My Collection'
         collection={context.collection}
        // action={movie => <AddToFavoritesButton movie={movie} /> } // Render prop => Add To Favourites Button Displayed
-      /></body>
-  </html>
+      /> 
+   
+    
+    <Footer/>
+    
+      </Segment> 
+  
+  
   );
 };
 

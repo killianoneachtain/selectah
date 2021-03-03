@@ -39,14 +39,14 @@ const FilterControls = props => {
         
         <Grid.Column color='grey' inverted='true'>   
           <Dropdown     
-              id='genre'      
-              placeholder="Filter by Genre"
+              id="genre"      
+              placeholder="Select a Genre"
               fluid                  
               selection
               search            
               options={genreOptions}
               onChange={handleGenreChange}         
-            />
+            />         
         </Grid.Column>
       </Grid>
     </Segment>

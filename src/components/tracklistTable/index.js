@@ -48,9 +48,13 @@ constructor(props) {
                             
                             <Table.Cell>{song?.title}</Table.Cell> 
                             <Table.Cell>{song?.duration}</Table.Cell>  
-                            <Table.Cell><Button basic color='orange'>
-                                Get BPM
-                                </Button></Table.Cell> 
+                            <Table.Cell>
+                                <Button 
+                                basic color='orange'
+                                content='Get BPM'
+                                />
+                               
+                                </Table.Cell> 
                         </Table.Row>
                     </Table.Body>)
                     }   )}          

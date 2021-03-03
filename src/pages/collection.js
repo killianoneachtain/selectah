@@ -1,7 +1,7 @@
 import React from 'react'
 import discogsLogo from "../../src/images/discogs_logo.png"
 import '../components/frontPage/frontPage.css'
-import {  Table, Segment, Image, Dimmer } from 'semantic-ui-react'
+import {  Table, Segment, Image, Header, Dimmer } from 'semantic-ui-react'
 import {  usePromiseTracker } from "react-promise-tracker";
 import Loader from 'react-loader-spinner';
 import ListingAccordion from '../components/trackListing'
@@ -35,17 +35,13 @@ class CollectionListPage extends React.Component {
         render()
         {   
             return (
-                <Segment>         
-            <div className="welcome-wrapper">  
-                <div>
-                    <h1>Selectah</h1>  
-                    <h2>Killian's Music Collection</h2>
-                </div>   
-                    <div> 
+                <Segment   >
+                    <Header as='h1'>Selectah</Header>  
+                    <Header as='h2'>Killian's Music Collection</Header>
+             
             <Table stackable striped size='large'>
             <Table.Header >
-            <Table.Row textAlign='center'>   
-                            
+            <Table.Row textAlign='center'>                               
                     <Table.HeaderCell></Table.HeaderCell>
                     <Table.HeaderCell>Artwork</Table.HeaderCell>
                     <Table.HeaderCell>Artist</Table.HeaderCell>
@@ -83,14 +79,8 @@ class CollectionListPage extends React.Component {
                             </Table.HeaderCell>  
                         </Table.Row>        
                     </Table.Body>  
-                )}
-               
-            </Table>   
-            </div>  
-            <div>
-            <img className='logo' src={discogsLogo} alt="Logo"/>
-            </div>    
-        </div>  
+                )}               
+            </Table>           
         </Segment>   
         );
         }

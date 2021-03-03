@@ -1,24 +1,25 @@
 import React from 'react'
-import discogsLogo from "../../../src/images/discogs_logo.png"
-import {  Table, Segment, Image } from 'semantic-ui-react'
+import records from "../../../src/images/recordspines_copy.png"
+import {  Table, Segment, Header,Image, Grid } from 'semantic-ui-react'
 import ListingAccordion from '../trackListing'
+import '../collectionList'
 
-const CollectionListPage = ({collection, action}) => {     
-        
-            return (
-                <Segment>         
-            <div className="welcome-wrapper">  
-                <div>
-                    <h1>Selectah</h1>  
-                    <h2>Killian's Music Collection</h2>
-                </div>   
-                    <div> 
-            <Table stackable striped size='large'>
+const CollectionListPage = ({collection, action}) => {   
+    
+        return (
+                <Segment  
+                style={{                        
+                    backgroundImage: `url("${records}")`}}  >    
+                    <Header as='h1'>Selectah</Header>  
+                    <Header as='h2'>Killian's Music Collection</Header>
+        <Table 
+        stackable              
+        striped 
+        fixed
+        size='large'>
             <Table.Header >
-            <Table.Row textAlign='center'>   
-                            
+            <Table.Row textAlign='center'> 
                     <Table.HeaderCell></Table.HeaderCell>
-                    <Table.HeaderCell>Artwork</Table.HeaderCell>
                     <Table.HeaderCell>Artist</Table.HeaderCell>
                     <Table.HeaderCell>Title</Table.HeaderCell>
                     <Table.HeaderCell>Format</Table.HeaderCell>
@@ -29,13 +30,16 @@ const CollectionListPage = ({collection, action}) => {
                     <Table.HeaderCell>ID</Table.HeaderCell>                
             </Table.Row>
         </Table.Header> 
-                 
-                  
                 {collection.map((item, index) =>                   
                    <Table.Body key={index}>   
-                        <Table.Row key={index} textAlign='center'>                                              
-                            <Table.Cell>{index+1}</Table.Cell>                            
-                            <Table.Cell><Image alt="" src={item?.basic_information?.thumb} size='tiny' /></Table.Cell> 
+                        <Table.Row textAlign='center' style={{background:'#F0EEEC'}}>                                             
+                            <Table.Cell>
+                                <Image alt="" src={item?.basic_information?.thumb} 
+                                size='small'
+                                floated='left'
+                                padding-left='10'
+                                />
+                            </Table.Cell> 
                             <Table.Cell>{item?.basic_information?.artists[0]?.name}</Table.Cell> 
                             <Table.Cell>{item?.basic_information?.title}</Table.Cell> 
 
@@ -46,22 +50,17 @@ const CollectionListPage = ({collection, action}) => {
                             <Table.Cell>{item?.basic_information?.genres?.join(", ")}</Table.Cell>  
                             <Table.Cell>{item?.basic_information?.styles?.join(", ")}</Table.Cell>                        
                             <Table.Cell>{item?.id}</Table.Cell> 
-                        </Table.Row>  
-                          
-                        <Table.Row key={item.id} textAlign='center'>
-                            <Table.HeaderCell colSpan='10'>
+                        </Table.Row>                            
+                        <Table.Row                        
+                         key={item.id} 
+                         textAlign='center'>
+                            <Table.HeaderCell colSpan='9'>
                                 <ListingAccordion release={item.id} artist={item?.basic_information?.artists[0]?.name}/>
                             </Table.HeaderCell>  
                         </Table.Row>        
                     </Table.Body>  
-                )}
-               
-            </Table>   
-            </div>  
-            <div>
-            <img className='logo' src={discogsLogo} alt="Logo"/>
-            </div>    
-        </div>  
+                )}              
+            </Table>  
         </Segment>   
         );
         }
