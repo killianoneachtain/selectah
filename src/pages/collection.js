@@ -1,11 +1,10 @@
 import React from 'react'
 import discogsLogo from "../../src/images/discogs_logo.png"
 import '../components/frontPage/frontPage.css'
-import {  Table, Segment, Image, Dimmer } from 'semantic-ui-react'
-import { trackPromise, usePromiseTracker } from "react-promise-tracker";
+import {  Table, Segment, Image, Header, Dimmer } from 'semantic-ui-react'
+import {  usePromiseTracker } from "react-promise-tracker";
 import Loader from 'react-loader-spinner';
-import ListingAccordion from '../../src/components/trackListing'
-
+import ListingAccordion from '../components/trackListing'
 
 const LoadingIndicator = props => {
     const { promiseInProgress } = usePromiseTracker();
@@ -23,7 +22,7 @@ const LoadingIndicator = props => {
            );  
           }
 
-class Collection extends React.Component {
+class CollectionListPage extends React.Component {
         constructor(props) {
             super(props);
             this.state = {
@@ -32,29 +31,17 @@ class Collection extends React.Component {
                 
             }
         }
-        
-        componentDidMount() {
-            trackPromise(
-            fetch('/user/collection')
-            .then(res => res.json())   
-            .then(collection => this.setState({collection, isLoading:false}, () => console.log('Data fetched ....', collection))) )
-                    
-        }
      
         render()
         {   
             return (
-                <Segment>         
-            <div className="welcome-wrapper">  
-                <div>
-                    <h1>Selectah</h1>  
-                    <h2>Killian's Music Collection</h2>
-                </div>   
-                    <div> 
+                <Segment   >
+                    <Header as='h1'>Selectah</Header>  
+                    <Header as='h2'>Killian's Music Collection</Header>
+             
             <Table stackable striped size='large'>
             <Table.Header >
-            <Table.Row textAlign='center'>   
-                            
+            <Table.Row textAlign='center'>                               
                     <Table.HeaderCell></Table.HeaderCell>
                     <Table.HeaderCell>Artwork</Table.HeaderCell>
                     <Table.HeaderCell>Artist</Table.HeaderCell>
@@ -92,17 +79,12 @@ class Collection extends React.Component {
                             </Table.HeaderCell>  
                         </Table.Row>        
                     </Table.Body>  
-                )}
-               
-            </Table>   
-            </div>  
-            <div>
-            <img className='logo' src={discogsLogo} alt="Logo"/>
-            </div>    
-        </div>  
+                )}               
+            </Table>           
         </Segment>   
         );
         }
 }
 
-export default Collection;
+export default CollectionListPage;
+
