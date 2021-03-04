@@ -12,7 +12,7 @@ const LoadingTracklistingIndicator = props => {
             <Table.Body>      
               <Table.Row key='1' textAlign='center'>                      
                       <Table.Cell colSpan='1'>
-                      <Dimmer active blurring>
+                      <Dimmer active>
                               <Loader type="ThreeDots" color="#F5DF2E" height="150" width="150" />
                           </Dimmer>
                       </Table.Cell>                 
@@ -23,9 +23,7 @@ const LoadingTracklistingIndicator = props => {
         }
 
 export default class ListingAccordion extends Component {
-  state = { activeIndex: 0, tracklisting: [],  isLoading:true  }    
-
- 
+  state = { activeIndex: 0, tracklisting: [],  isLoading:true  }   
 
   handleClick = (e, titleProps) => {
     const { index } = titleProps

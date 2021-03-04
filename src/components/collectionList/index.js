@@ -1,6 +1,6 @@
 import React from 'react'
 import records from "../../../src/images/recordspines_copy.png"
-import {  Table, Segment, Header,Image, Grid } from 'semantic-ui-react'
+import {  Table, Segment, Header,Image } from 'semantic-ui-react'
 import ListingAccordion from '../trackListing'
 import '../collectionList'
 

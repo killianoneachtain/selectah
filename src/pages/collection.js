@@ -1,6 +1,4 @@
 import React from 'react'
-import discogsLogo from "../../src/images/discogs_logo.png"
-import '../components/frontPage/frontPage.css'
 import {  Table, Segment, Image, Header, Dimmer } from 'semantic-ui-react'
 import {  usePromiseTracker } from "react-promise-tracker";
 import Loader from 'react-loader-spinner';
