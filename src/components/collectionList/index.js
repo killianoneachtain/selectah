@@ -51,9 +51,7 @@ const CollectionListPage = ({collection, action}) => {
                             <Table.Cell>{item?.basic_information?.styles?.join(", ")}</Table.Cell>                        
                             <Table.Cell>{item?.id}</Table.Cell> 
                         </Table.Row>                            
-                        <Table.Row                        
-                         key={item.id} 
-                         textAlign='center'>
+                        <Table.Row key={index+1} textAlign='center'>
                             <Table.HeaderCell colSpan='9'>
                                 <ListingAccordion release={item.id} artist={item?.basic_information?.artists[0]?.name}/>
                             </Table.HeaderCell>  

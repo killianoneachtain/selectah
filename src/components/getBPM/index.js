@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table, Button } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 //import { trackPromise } from "react-promise-tracker";
 
 class GetBPM extends Component {   
@@ -32,13 +32,13 @@ constructor(props) {
         //console.log("Artist : ", this.props.artistName);
         
         return (  
-                    <Table.Cell>
+                  
                         <Button 
                         basic color='orange'
                         content='Get BPM'    
                         onClick={this.handleClick}                   
                         />                        
-                        </Table.Cell> 
+                    
         );
     }
     }
