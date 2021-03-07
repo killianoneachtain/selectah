@@ -7,18 +7,20 @@ const CollectionPageTemplate = ({collection, title, action}) => {
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   //const genre = genreFilter
-  console.log("GenreFilter : ", genreFilter)
+  console.log("GenreFilter in TemplateCollection: ", genreFilter)
   let displayedCollection = collection
     .filter(c => {      //var res=[];
 //search in both artist and artists in complitaiton and join 2 arrays and return that
       return c.basic_information.artists[0].name.toLowerCase().search(nameFilter.toLowerCase()) !== -1;
     }) 
     .filter(c => {
-      return c.basic_information.genres.join(",").search(genreFilter) !== -1;        
+      console.log("genres : ", c.basic_information.genres.join(","));
+      console.log("genrefilter : ", genreFilter);
+      return c.basic_information.genres.join(",").includes(genreFilter)  !== -1;        
     });
 
   const handleChange = (type, value) => {
-    if (type === "name") setNameFilter(value);
+    if (type === 'name') setNameFilter(value);
     else setGenreFilter(value);
   };
 

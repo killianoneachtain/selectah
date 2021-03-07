@@ -12,10 +12,13 @@ const FilterControls = props => {
     props.onUserInput(type, value);
   };
   const handleTextChange = e => {
+    console.log("e in TextChange : ",e);
     handleChange(e, 'name', e.target.value);
   };
   const handleGenreChange = e => {
-    handleChange(e, 'genre', e.target.value);
+    console.log("HERE HANDLING GENRECHANGE");    
+    console.log("e.target.value : ", e.target.value);
+    handleChange(e, 'genre', e.target.value);    
   };
 
   const genreOptions = context.genres.map(genre => {
@@ -39,11 +42,11 @@ const FilterControls = props => {
         
         <Grid.Column color='grey' inverted='true'>   
           <Dropdown     
-              id="genre"      
-              placeholder="Select a Genre"
-              fluid                  
-              selection
-              search            
+              id='genre'  
+              placeholder="Select a Genre"    
+              fluid={true}               
+              clearable             
+              selection                          
               options={genreOptions}
               onChange={handleGenreChange}         
             />         
