@@ -1,6 +1,6 @@
 import React from 'react'
 import records from "../../../src/images/recordspines_copy.png"
-import {  Table, Segment, Header,Image, Grid } from 'semantic-ui-react'
+import {  Table, Segment, Header,Image } from 'semantic-ui-react'
 import ListingAccordion from '../trackListing'
 import '../collectionList'
 
@@ -51,9 +51,7 @@ const CollectionListPage = ({collection, action}) => {
                             <Table.Cell>{item?.basic_information?.styles?.join(", ")}</Table.Cell>                        
                             <Table.Cell>{item?.id}</Table.Cell> 
                         </Table.Row>                            
-                        <Table.Row                        
-                         key={item.id} 
-                         textAlign='center'>
+                        <Table.Row key={index+1} textAlign='center'>
                             <Table.HeaderCell colSpan='9'>
                                 <ListingAccordion release={item.id} artist={item?.basic_information?.artists[0]?.name}/>
                             </Table.HeaderCell>  

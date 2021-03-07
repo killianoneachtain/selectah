@@ -11,7 +11,7 @@ const CollectionListPage = () => {
 
   return (
     <Segment>
-    <Header as='h1'>Bo' Selectah</Header>      
+    <Header as='h1'>Selectah</Header>      
     
       <PageTemplate 
         title='My Collection'
