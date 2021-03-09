@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Button } from 'semantic-ui-react'
+
 //import { trackPromise } from "react-promise-tracker";
 
 class GetBPM extends Component {   
@@ -38,6 +39,7 @@ constructor(props) {
                         content='Get BPM'    
                         onClick={this.handleClick}                   
                         />                        
+                                                                     
                     
         );
     }

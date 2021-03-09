@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Table, List } from 'semantic-ui-react'
 import GetBPM from '../getBPM'
+import SongSelection from '../songSelection'
 
 class TrackListTable extends Component {   
 constructor(props) {
@@ -24,9 +25,9 @@ constructor(props) {
                     <Table.HeaderCell>Side / Track Number </Table.HeaderCell>    
                     <Table.HeaderCell>Artist</Table.HeaderCell>                  
                     <Table.HeaderCell>Title</Table.HeaderCell>
-                    <Table.HeaderCell>Length</Table.HeaderCell>   
-                   
-                    <Table.HeaderCell>BPM / Tempo</Table.HeaderCell>                     
+                    <Table.HeaderCell>Length</Table.HeaderCell>
+                    <Table.HeaderCell>BPM / Tempo</Table.HeaderCell>     
+                    <Table.HeaderCell>Modal Button</Table.HeaderCell>                
                 </Table.Row>
             </Table.Header>     
                  
@@ -77,6 +78,9 @@ constructor(props) {
                                         </List>    
                                     </Table.Cell>  
                                 } 
+                                <Table.Cell>
+                                    <SongSelection/>
+                                </Table.Cell>
                                 
                         </Table.Row>    
                     </Table.Body>            
