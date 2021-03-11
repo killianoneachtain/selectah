@@ -7,7 +7,7 @@ class GetBPM extends Component {
 constructor(props) {
         super(props);
         this.state = {
-            BPM: "",                                           
+            songs: [],                                           
         }
     }  
 
@@ -16,12 +16,12 @@ constructor(props) {
         const { activeIndex } = this.state
         const newIndex = activeIndex === index ? -1 : index
 
-        console.log("Song:", this.props.song);
-        console.log("Artist : ", this.props.artistName);
+        //console.log("Song:", this.props.song);
+        //console.log("Artist : ", this.props.artistName);
     
         fetch(`/song/${this.props.artistName}/${this.props.song}`)
             .then(res => res.json())   
-            .then(BPM => this.setState({BPM, isLoading:false}, () => console.log('BPM fetched ....', BPM)))
+            .then(songs => this.setState({songs, isLoading:false}, () => console.log('BPM fetched ....', songs)))
                            
         
         this.setState({ activeIndex: newIndex })

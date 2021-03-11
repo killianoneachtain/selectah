@@ -1,21 +1,18 @@
 import React, { Component } from 'react'
 import { Table, List } from 'semantic-ui-react'
-import GetBPM from '../getBPM'
+//import GetBPM from '../getBPM'
 import SongSelection from '../songSelection'
 
 class TrackListTable extends Component {   
 constructor(props) {
         super(props);
         this.state = {            
-            tracklisting : [this.props.tracklisting], 
-            artistName: "" ,
-            song: "",
-            value: ""                                  
+            tracklisting : [this.props.tracklisting]
         }
     }      
 
     render() {
-        console.log("record artist is:", this.props.artist);
+        //console.log("record artist is:", this.props.artist);
         //console.log("Tracklisting Prop artist is:", this.props.tracklisting);
             
         return (        
@@ -26,8 +23,7 @@ constructor(props) {
                     <Table.HeaderCell>Artist</Table.HeaderCell>                  
                     <Table.HeaderCell>Title</Table.HeaderCell>
                     <Table.HeaderCell>Length</Table.HeaderCell>
-                    <Table.HeaderCell>BPM / Tempo</Table.HeaderCell>     
-                    <Table.HeaderCell>Modal Button</Table.HeaderCell>                
+                    <Table.HeaderCell>BPM / Tempo</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>     
                  
@@ -63,7 +59,7 @@ constructor(props) {
                                 <Table.Cell>
                                     <List>
                                         <List.Item key={i}>
-                                            <GetBPM song={song?.title} artistName={artiste?.name}/> 
+                                            <SongSelection song={song?.title} artistName={artiste?.name}/>                                           
                                         </List.Item>
                                     </List>
                                 </Table.Cell> : <p></p>
@@ -72,16 +68,12 @@ constructor(props) {
                                         <List key={index+1}> 
                                             <List.Item>
                                             <List.Content>
-                                                <GetBPM song={song?.title} artistName={this.props.artist}/>
+                                                <SongSelection song={song?.title} artistName={this.props.artist}/>                                                
                                             </List.Content>
                                             </List.Item>  
                                         </List>    
                                     </Table.Cell>  
-                                } 
-                                <Table.Cell>
-                                    <SongSelection/>
-                                </Table.Cell>
-                                
+                                }                                 
                         </Table.Row>    
                     </Table.Body>            
                 )}
