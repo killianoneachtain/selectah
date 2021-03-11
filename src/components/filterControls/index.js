@@ -12,12 +12,12 @@ const FilterControls = props => {
     props.onUserInput(type, value);
   };
   const handleTextChange = e => {
-    console.log("e in TextChange : ",e);
+    //console.log("e in TextChange : ",e);
     handleChange(e, 'name', e.target.value);
   };
   const handleGenreChange = e => {
-    console.log("HERE HANDLING GENRECHANGE");    
-    console.log("e.target.value : ", e.target.value);
+    //console.log("HERE HANDLING GENRECHANGE");    
+   // console.log("e.target.value : ", e.target.value);
     handleChange(e, 'genre', e.target.value);    
   };
 
