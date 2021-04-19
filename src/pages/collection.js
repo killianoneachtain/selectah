@@ -54,7 +54,7 @@ class CollectionListPage extends React.Component {
                 </Table.Header> 
                  
                   <LoadingIndicator/>  
-                {this.state.collection.map((item, index) =>                   
+                {this.state.collection.releases.map((item, index) =>                   
                    <Table.Body>   
                         <Table.Row key={index} textAlign='center'>                                              
                             <Table.Cell>{index+1}</Table.Cell>                            

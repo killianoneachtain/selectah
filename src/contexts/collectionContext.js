@@ -12,11 +12,11 @@ const reducer = (state, action) => {
       };
 
     case "load-collection":
-      return { collection: [...action.payload.collection], favorites: [] }; 
+      return { collection: [...action.payload.collection.releases], favorites: [] }; 
     
     case "add-review":
         return {
-          collection: [...state.collection],
+          collection: [...state.collection.releases],
           favorites: [
             ...state.favorites.filter((c) => c.id !== action.payload.item.id),
             { ...action.payload.item, review: action.payload.review },
