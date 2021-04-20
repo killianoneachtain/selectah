@@ -3,7 +3,7 @@ import PageTemplate from '../components/templateCollectionPage'
 import {CollectionContext} from '../contexts/collectionContext'
 import { Header,Segment } from 'semantic-ui-react'
 import Footer from '../components/footer'
-import Logout from '../components/Logout'
+
 
 //import AddToFavoritesButton from '../components/buttons/addToFavorites'
 

@@ -3,7 +3,7 @@ import { Header,Segment } from 'semantic-ui-react'
 import "../headerCollection/headerCollection.css"
 import discogsLogo from "../../../src/images/discogs_logo.png"
 import { useAuth0 } from '../../../node_modules/@auth0/auth0-react'
-
+import Logout from '../Logout'
 
 const HeaderCollection = ({ title, numCollection }) => {
   
@@ -21,7 +21,8 @@ const HeaderCollection = ({ title, numCollection }) => {
         </Header>
         <Header as='h2' floated='right'>
         Your <img className='logo' src={discogsLogo} alt="Logo"/> Collection,  {`${title}  `}
-        </Header>   
+        </Header> 
+        <Logout />  
       </Segment>
   );
 };
