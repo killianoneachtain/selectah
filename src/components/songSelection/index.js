@@ -62,13 +62,11 @@ render(){
     var tracktotal = this.state.songs.total;
     console.log("tracktotal", tracktotal);
     
-    var href=this.state.songs;
-    console.log("href", href);
+    //var href=this.state.songs;
+    //console.log("href", href);
     //var first = href.indexOf("offset=");
     //var firstTrack=href.substring(first,10);
-    //console.log("firstTrack :", firstTrack);
-
-      
+    //console.log("firstTrack :", firstTrack);      
 
     return (
       <Modal 
@@ -87,7 +85,7 @@ render(){
            />}
       >
         <LoadingSongSelectionIndicator />
-          <Modal.Header>Select the Spotify track to BPM : </Modal.Header>
+          <Modal.Header>Select the Spotify track to BPM </Modal.Header>
           <Modal.Content image scrolling>
             <Image size='small' src={SpotifyLogo} wrapped />
             <Modal.Description>
