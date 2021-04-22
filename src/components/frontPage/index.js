@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import discogsLogo from "../../images/discogs_logo.png"
 import {  Button,  Header,  Segment, Grid, Divider} from 'semantic-ui-react'
 import LoginButton from '../Auth0Login'
-import LogoutButton from '../Logout'
-import {Link} from 'react-router-dom'
 
 class Welcome extends Component {
   render() {    
@@ -31,9 +29,8 @@ class Welcome extends Component {
                 color='yellow'
                 content='Sign Up'
                 href='/sign-up'
-                alt="dLogo"
-                floated='center'
-                verticalAlign='middle'                            
+                alt='dLogo'                
+                                         
                 />
       </Grid.Column>
          

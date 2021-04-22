@@ -8,8 +8,17 @@ import Logout from '../Logout'
 const HeaderCollection = ({ title, numCollection }) => {
   
   const { user, isAuthenticated } = useAuth0();
+  var {spotify_user_id }="";
   console.log("User",user);
-
+  if(user!=null)
+  {    
+    var spotify_id =user.sub;
+    if(spotify_id.includes("spotify"))
+    {
+      var res =spotify_id?.split(":")[2];
+      spotify_user_id = res;
+    }
+  }
   return (
     isAuthenticated &&
       <Segment clearing>
@@ -20,10 +29,16 @@ const HeaderCollection = ({ title, numCollection }) => {
           Welcome {user.nickname} to Selectah
         </Header>
         <Header as='h2' floated='right'>
-        Your <img className='logo' src={discogsLogo} alt="Logo"/> Collection,  {`${title}  `}
+        Your <img className='logo' src={discogsLogo} alt="Logo"/> Collection,  {`${user.name}  `}
         </Header> 
         <Logout />  
-      </Segment>
+      
+     
+      <Header as='h2' floated='right'>
+      Your Spotify ID : {`${spotify_user_id}`}
+      </Header> 
+      
+    </Segment>
   );
 };
 

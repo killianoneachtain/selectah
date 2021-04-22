@@ -26,8 +26,7 @@ class CollectionListPage extends React.Component {
             super(props);
             this.state = {
                 collection :[],
-                isLoading: true
-                
+                isLoading: true                              
             }
         }
       
