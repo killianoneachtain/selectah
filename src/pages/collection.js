@@ -1,8 +1,9 @@
 import React from 'react'
 import {  Table, Segment, Image, Header, Dimmer } from 'semantic-ui-react'
-import {  usePromiseTracker } from "react-promise-tracker";
-import Loader from 'react-loader-spinner';
+import {  usePromiseTracker } from "react-promise-tracker"
+import Loader from 'react-loader-spinner'
 import ListingAccordion from '../components/trackListing'
+//import { useAuth0 } from "@auth0/auth0-react"
 
 const LoadingIndicator = props => {
     const { promiseInProgress } = usePromiseTracker();
@@ -25,13 +26,12 @@ class CollectionListPage extends React.Component {
             super(props);
             this.state = {
                 collection :[],
-                isLoading: true
-                
+                isLoading: true                              
             }
         }
-     
-        render()
-        {   
+      
+        render()        
+        {          
             return (
                 <Segment   >
                     <Header as='h1'>Selectah</Header>  
