@@ -8,7 +8,7 @@ import Logout from '../Logout'
 const HeaderCollection = ({ title, numCollection }) => {
   
   const { user, isAuthenticated } = useAuth0();
-  var {spotify_user_id }="";
+  var {spotify_user_id}="";
   console.log("User",user);
   if(user!=null)
   {    
@@ -18,7 +18,12 @@ const HeaderCollection = ({ title, numCollection }) => {
       var res =spotify_id?.split(":")[2];
       spotify_user_id = res;
     }
+
+    fetch(`/adduser/${spotify_user_id}"`);
   }
+
+
+
   return (
     isAuthenticated &&
       <Segment clearing>

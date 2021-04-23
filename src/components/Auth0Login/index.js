@@ -9,8 +9,10 @@ const LoginButton = () => {
             onClick={() => loginWithRedirect()}
             content='Login' 
             icon='sign in'
-            size='large'
-            color='green'
+            size='big'
+            color='olive'
+            fluid
+            style={{verticalAlign: 'middle'}}
             />;
 };
 
