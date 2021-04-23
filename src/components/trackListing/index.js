@@ -32,7 +32,7 @@ export default class ListingAccordion extends Component {
 
     trackPromise(fetch(`/user/release/${this.props.release}`)
         .then(res => res.json())   
-        .then(tracklisting => this.setState({tracklisting, isLoading:false}, () => console.log('Tracklisting fetched ....', tracklisting))))
+        .then(tracklisting => this.setState({tracklisting, isLoading:false}, /*() => console.log('Tracklisting fetched ....', tracklisting)*/)))
                        
     
     this.setState({ activeIndex: newIndex })

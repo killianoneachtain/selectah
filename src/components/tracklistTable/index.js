@@ -32,41 +32,39 @@ constructor(props) {
                 return (                       
                     <Table.Body>     
                         <Table.Row key={index} textAlign='center'>                        
-                            <Table.Cell color='yellow'>{song?.position}</Table.Cell> 
-                        
+                            <Table.Cell color='yellow'>{song?.position}</Table.Cell>                         
                             <Table.Cell>
                                 { Array.isArray(song?.artists) ?  song?.artists?.map((artiste,i) => (
                                     <List>
-                                        <List.Item key={i}>
+                                        <List.Item key={artiste?.id}>
                                             <List.Icon  name='group' size='large' color='green'/>
                                             <List.Content>{artiste?.name} {artiste?.join}</List.Content>
                                         </List.Item> 
                                     </List>  
                                     )) :                                  
-                                    <List key={index+1}> 
-                                        <List.Item>
+                                    <List> 
+                                        <List.Item key={song?.id}>
                                             <List.Icon  name='group' size='large' color='green'/>
                                             <List.Content>{this.props.artist}</List.Content>
                                         </List.Item>  
                                     </List>                            
                                 } 
-                            </Table.Cell>
-                        
+                            </Table.Cell>                        
                             <Table.Cell>{song?.title}</Table.Cell> 
                             <Table.Cell>{song?.duration}</Table.Cell>
                             { Array.isArray(song?.artists) ?  song?.artists?.map((artiste,i) => (
                                 i<1 ? 
                                 <Table.Cell>
                                     <List>
-                                        <List.Item key={i}>
+                                        <List.Item key={artiste?.id}>
                                             <SongSelection song={song?.title} artistName={artiste?.name}/>                                           
                                         </List.Item>
                                     </List>
                                 </Table.Cell> : <p></p>
                                     )) :  
                                     <Table.Cell>
-                                        <List key={index+1}> 
-                                            <List.Item>
+                                        <List> 
+                                            <List.Item key={song?.id}>
                                             <List.Content>
                                                 <SongSelection song={song?.title} artistName={this.props.artist}/>                                                
                                             </List.Content>
