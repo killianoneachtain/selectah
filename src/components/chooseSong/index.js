@@ -6,9 +6,18 @@ class ChooseTrack extends Component{
     constructor(props) {
         super(props);       
         this.state = {            
-            songs : [this.props.songs]
+            songs : [this.props.songs],
+            track_id : ""           
         }
-    } 
+    }     
+   
+    handleClick = (e) => {    
+        //console.log("TrackID sent to Spotify for Audio Analyis:", this.state.track_id);       
+    
+        fetch(`/song/${this.state.track_id}`)
+            //.then(res => res.json()) 
+      }
+      
   
 render(){ 
   /*  var total = this.props.songs.total;
@@ -20,6 +29,7 @@ render(){
     var firstTrack=href.substr(first,8);
     console.log("firstTrack :", firstTrack);*/
    
+    console.log(this.props.songs);
     return ( 
         <Segment> 
             <Header></Header>              
@@ -64,12 +74,14 @@ render(){
                                             size='big'
                                             fluid
                                             content="Select dis?"
-                                            value={track?.id}
+                                            index={track?.id}
+                                            onClick={() => (this.setState({ track_id: track?.id }, this.handleClick))}
+                                            value={track.id}
                                             color='yellow'
                                             id={track?.id}
                                             labelPosition='left'
                                             icon='thumbs up'
-                                            />
+                                            />                                           
                                     </Table.Cell>
                                 </Table.Row>   
                             </Table.Body>
