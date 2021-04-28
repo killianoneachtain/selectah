@@ -29,6 +29,7 @@ constructor(props) {
                  
                  
             {this.props.tracklisting[0]?.tracklist?.map((song, index) => {
+                
                 return (                       
                     <Table.Body>     
                         <Table.Row key={index} textAlign='center'>                        
@@ -57,7 +58,7 @@ constructor(props) {
                                 <Table.Cell>
                                     <List>
                                         <List.Item key={artiste?.id}>
-                                            <SongSelection song={song?.title} artistName={artiste?.name}/>                                           
+                                            <SongSelection song={song?.title} artistName={artiste?.name} trackNumber={song?.position}/>                                           
                                         </List.Item>
                                     </List>
                                 </Table.Cell> : <p></p>
@@ -66,7 +67,7 @@ constructor(props) {
                                         <List> 
                                             <List.Item key={song?.id}>
                                             <List.Content>
-                                                <SongSelection song={song?.title} artistName={this.props.artist}/>                                                
+                                                <SongSelection song={song?.title} artistName={this.props.artist} trackNumber={song?.position}/>                                                
                                             </List.Content>
                                             </List.Item>  
                                         </List>    
@@ -74,7 +75,7 @@ constructor(props) {
                                 }                                 
                         </Table.Row>    
                     </Table.Body>            
-                )}
+                )}                
             )}      
         </Table>                    
         );

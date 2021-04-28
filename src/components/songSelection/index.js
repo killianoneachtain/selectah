@@ -21,7 +21,7 @@ class SongSelection extends Component{
         this.state = {            
             songs : [] ,   
             showModal: false,
-            isLoading:true
+            isLoading:true,
         }
     }   
     
@@ -63,12 +63,13 @@ render(){
     console.log("tracktotal", tracktotal);
     
     //var href=this.state.songs;
-    //console.log("href", href);
+    console.log("trackNumber", this.props.trackNumber);
     //var first = href.indexOf("offset=");
     //var firstTrack=href.substring(first,10);
     //console.log("firstTrack :", firstTrack);      
-
-    return (
+if(this.props.trackNumber !== "")
+{
+    return (      
       <Modal 
       closeIcon 
       onClose={this.closeModal} 
@@ -109,7 +110,14 @@ render(){
             />           
           </Modal.Actions>
         </Modal>
-      )}
+      )}   
+      else 
+      {
+        return null;
+
+      }}
+        
+              
 }
 
 export default SongSelection;

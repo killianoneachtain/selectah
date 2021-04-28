@@ -3,11 +3,13 @@ import Header from "../headerCollection";
 import CollectionList from "../collectionList";
 import FilterControls from "../filterControls";
 
-const CollectionPageTemplate = ({collection, title, action}) => {
+const CollectionPageTemplate = ({collection, title, pages, action}) => {
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
+
   //const genre = genreFilter
   //console.log("GenreFilter in TemplateCollection: ", genreFilter)
+  
   let displayedCollection = collection
     .filter(c => {      //var res=[];
 //search in both artist and artists in complitaiton and join 2 arrays and return that
@@ -30,7 +32,8 @@ const CollectionPageTemplate = ({collection, title, action}) => {
       <FilterControls onUserInput={handleChange} numCollection={displayedCollection.length}/>
       <CollectionList
         action={action}
-        collection={displayedCollection}
+        collection={displayedCollection}  
+        pages={pages}      
       ></CollectionList>
     </>
   );

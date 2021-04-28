@@ -10,3 +10,8 @@ export const getCollection = () => {
   return fetch('/user/collection')
     .then(res => res.json())
 };
+
+export const getPages = () => {
+  return fetch('/user/pages')
+    .then(res => res.json())
+};
