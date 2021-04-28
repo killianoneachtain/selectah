@@ -1,25 +1,45 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PageTemplate from '../components/templateCollectionPage'
 import {CollectionContext} from '../contexts/collectionContext'
-import { Header,Segment } from 'semantic-ui-react'
+import { Segment, Image } from 'semantic-ui-react'
 import Footer from '../components/footer'
-
-
-//import AddToFavoritesButton from '../components/buttons/addToFavorites'
+import selectahLogo from "../images//selFont2.jpg"
 
 const CollectionListPage = () => {
   const context = useContext(CollectionContext);
 
+  const [data,setPages]=useState([]);
+
+  const getData=()=>{
+    fetch('/user/pages',{      headers : { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+       }
+    })   
+    .then(function(response){
+      console.log(response)
+      return response.json();
+    })
+      .then(function(myJson) {
+        console.log(myJson);
+        setPages(myJson)
+      });
+  }
+  useEffect(()=>{
+    getData()
+  },[])  
+  
+  console.log("Data is ", data)
+
   return (
     <Segment>
-    <Header as='h1'>Selectah</Header>      
-       
-      <PageTemplate 
-        title='My Collection'
-        collection={context.collection}
-       // action={movie => <AddToFavoritesButton movie={movie} /> } // Render prop => Add To Favourites Button Displayed
-      /> 
-    <Footer/>    
+      <Image src={selectahLogo} size='big' centered style={{paddingBottom: '20px'}}/>         
+        <PageTemplate 
+          title='My Collection'
+          collection={context.collection}
+          pages={data} 
+        /> 
+        <Footer/>    
       </Segment> 
   );
 };

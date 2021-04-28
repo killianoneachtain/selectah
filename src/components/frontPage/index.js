@@ -60,7 +60,7 @@ class Welcome extends Component {
                 </Grid.Row>
                 </Grid.Column>
 
-                <Grid.Column columns={3} padded color='white'>    
+                <Grid.Column columns={3}  >    
                   <Grid.Row >  
                   <Image src={spotifyLogoGreen} size='small' centered style={{paddingBottom: '10px'}}/>  
                     <LoginButton /> 

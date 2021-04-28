@@ -12,7 +12,7 @@ const LoginButton = () => {
             content='Login' 
             icon='sign in'
             size='big'
-            color='white'        
+            color='grey'        
             fluid            
             style={{verticalAlign: 'middle'}}
             />);
