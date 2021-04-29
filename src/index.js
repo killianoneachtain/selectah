@@ -13,6 +13,7 @@ import PrivateRoute from '../src/routes/PrivateRoute'
 import PublicRoute from '../src/routes/PublicRoute'
 
 const App = () => {
+  
   return (  
     <BrowserRouter>
       <Auth0Provider

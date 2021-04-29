@@ -5,9 +5,7 @@ import PaginationCollection from '../pagination'
 import ListingAccordion from '../trackListing'
 import '../collectionList'
 
-const CollectionListPage = ({collection, pages,action}) => { 
-    console.log("Collection",collection)   
-    console.log("Pages in CollectionListPage",pages)   
+const CollectionListPage = ({collection, pages,action}) => {   
        
     return (
         <Segment style={{ backgroundImage: `url("${records}")`}} > 
@@ -15,8 +13,7 @@ const CollectionListPage = ({collection, pages,action}) => {
             <Header as='h1'>   
                     Total Amount in Collection : {pages.items}   
                 <Segment>
-                    <PaginationCollection
-                                               
+                    <PaginationCollection pageData={pages}                                               
                     />
                 </Segment>                        
             </Header>  
@@ -31,8 +28,7 @@ const CollectionListPage = ({collection, pages,action}) => {
                     <Table.HeaderCell>Number of Discs</Table.HeaderCell>
                     <Table.HeaderCell>Description</Table.HeaderCell>
                     <Table.HeaderCell>Genre</Table.HeaderCell>
-                    <Table.HeaderCell>Styles</Table.HeaderCell>
-                    <Table.HeaderCell>ID</Table.HeaderCell>                
+                    <Table.HeaderCell>Styles</Table.HeaderCell>                            
                 </Table.Row>
               </Table.Header> 
                 {collection.map((item, index) =>                   
@@ -53,11 +49,10 @@ const CollectionListPage = ({collection, pages,action}) => {
                         <Table.Cell>{item?.basic_information?.formats[0]?.qty}</Table.Cell> 
                         <Table.Cell>{item.basic_information?.formats[0]?.descriptions?.join(', ')}</Table.Cell> 
                         <Table.Cell>{item?.basic_information?.genres?.join(", ")}</Table.Cell>  
-                        <Table.Cell>{item?.basic_information?.styles?.join(", ")}</Table.Cell>                        
-                        <Table.Cell>{item?.id}</Table.Cell> 
+                        <Table.Cell>{item?.basic_information?.styles?.join(", ")}</Table.Cell> 
                     </Table.Row>                            
                     <Table.Row key={index+1} textAlign='center'>
-                        <Table.HeaderCell colSpan='9'>
+                        <Table.HeaderCell colSpan='8'>
                             <ListingAccordion release={item.id} artist={item?.basic_information?.artists[0]?.name}/>
                         </Table.HeaderCell>  
                     </Table.Row>        
@@ -67,7 +62,6 @@ const CollectionListPage = ({collection, pages,action}) => {
         </Segment>   
         );
         }
-
 
 export default CollectionListPage;
 

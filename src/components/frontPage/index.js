@@ -15,9 +15,7 @@ class Welcome extends Component {
   
     <Segment>
         <Image src={selectahLogo} size='big' centered style={{paddingBottom: '20px'}}/>                 
-             
-       
-                   
+                          
         <Grid columns={3} celled='internally'>
             <Grid.Row floated='left' color='yellow'>
               <Grid.Column floated='left' >               
@@ -77,30 +75,3 @@ class Welcome extends Component {
 }}
 
 export default Welcome
-
-/*
-<Form>
-          <Form.Input
-            icon='user'
-            iconPosition='left'
-            label='Username'
-            size='large'
-            placeholder='Username'
-          />
-          <Form.Input
-            icon='lock'
-            iconPosition='left'
-            size='large'
-            label='Password'
-            type='password'
-          />
-
-          <Button 
-          content='Login' 
-          icon='sign in'
-          size='large'
-          color='green'
-          on
-           />
-        </Form>   
-*/

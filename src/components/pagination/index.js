@@ -2,23 +2,35 @@ import React, { Component } from 'react'
 import { Grid, Input, Pagination, Segment } from 'semantic-ui-react'
 
 export default class PaginationCollection extends Component {
-  state = { activePage: 1 }
 
-  handleInputChange = (e, { value }) => this.setState({ activePage: value })
+    constructor(props) {
+        super(props);
+        this.state = {  
+            activePage: 1,
+            URL: [this.props.pageData.urls]
+        }
+    }   
 
-  handlePaginationChange = (e, { activePage }) => this.setState({ activePage })
+  handleInputChange = (e, { value }) => 
+    this.setState({ activePage: value },
+    console.log(`Here changing activePage : ${value}`))    
+
+  handlePaginationChange = (e, { activePage }) => this.setState({ activePage },
+    console.log(`Here changing ${activePage}`))  
 
   render() {
     const { activePage } = this.state
+    const maxPages = this.props.pageData.pages;   
 
+    
     return (
       <Grid columns={2} verticalAlign='middle'>
         <Grid.Column>
           <Segment secondary>
-            <div>activePage: {activePage}</div>
+            <div>Current Page: {activePage}</div>
             <Input
               min={1}
-              max={5}
+              max={maxPages}
               onChange={this.handleInputChange}
               type='range'
               value={activePage}
@@ -29,7 +41,7 @@ export default class PaginationCollection extends Component {
           <Pagination
             activePage={activePage}
             onPageChange={this.handlePaginationChange}
-            totalPages={5}
+            totalPages={maxPages}
           />
         </Grid.Column>
       </Grid>

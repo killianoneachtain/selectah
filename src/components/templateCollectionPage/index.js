@@ -6,7 +6,8 @@ import FilterControls from "../filterControls";
 const CollectionPageTemplate = ({collection, title, pages, action}) => {
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
-
+  
+  
   //const genre = genreFilter
   //console.log("GenreFilter in TemplateCollection: ", genreFilter)
   
@@ -33,7 +34,7 @@ const CollectionPageTemplate = ({collection, title, pages, action}) => {
       <CollectionList
         action={action}
         collection={displayedCollection}  
-        pages={pages}      
+        pages={pages}
       ></CollectionList>
     </>
   );

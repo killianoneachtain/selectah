@@ -1,4 +1,4 @@
-import React, { useEffect, createContext, useReducer } from "react";
+import React, { useEffect, createContext, useReducer, useState } from "react";
 import { getCollection } from "../api/Discogs_api";
 
 
@@ -8,6 +8,7 @@ const reducer = (state, action) => {
   switch (action.type) {   
 
     case "load-collection":  
+    console.log("LOADING COLLECTION")
       return { collection: [...action.payload.collection.releases] };    
            
     default:
@@ -17,19 +18,20 @@ const reducer = (state, action) => {
 
 const CollectionContextProvider = (props) => {
   const [state, dispatch] = useReducer(reducer, { collection: [] }); 
+  const [pageNumber, setPageNumber] = useState("10");
 
   useEffect(() => {
-    getCollection().then((collection) => {
+    getCollection(pageNumber).then((collection) => {
       dispatch({ type: "load-collection", payload: { collection } });
-    });   
-   
+    });       
+  });
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
   return (
     <CollectionContext.Provider
       value={{
-        collection: state.collection,        
+        collection: state.collection,   
+        setPageNumber,
+        pageNumber: pageNumber     
       }}
     >
       {props.children}

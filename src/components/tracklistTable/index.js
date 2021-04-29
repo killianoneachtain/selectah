@@ -12,9 +12,6 @@ constructor(props) {
     }      
 
     render() {
-        //console.log("record artist is:", this.props.artist);
-        //console.log("Tracklisting Prop artist is:", this.props.tracklisting);
-            
         return (        
         <Table celled color='yellow'>
             <Table.Header>
@@ -79,8 +76,6 @@ constructor(props) {
             )}      
         </Table>                    
         );
-    }}       
-       
-    
+    }}   
     
 export default TrackListTable;
