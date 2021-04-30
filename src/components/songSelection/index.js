@@ -27,12 +27,12 @@ class SongSelection extends Component{
     
     handleClick = (e) => {    
 
-      console.log("Song sent to Spotify to Search:", this.props.song);
-      console.log("Artist sent to Spotify to Search:", this.props.artistName);
+      //console.log("Song sent to Spotify to Search:", this.props.song);
+      //console.log("Artist sent to Spotify to Search:", this.props.artistName);
   
       trackPromise(fetch(`/song/${this.props.artistName}/${this.props.song}`)
           .then(res => res.json())   
-          .then(songs => this.setState({songs, isLoading:false}, () => console.log('Songs fetched ....', songs))))
+          .then(songs => this.setState({songs, isLoading:false})))
              
     }
     
@@ -40,33 +40,19 @@ class SongSelection extends Component{
       this.setState({ something: value });
     }
       
-    handleCreateButton(evt) {
-      console.log("I clicked Yes")
-      evt.preventDefault()
-      
+    handleCreateButton(evt) {     
+      evt.preventDefault()      
       this.closeModal();
     }
   
-    closeModal = () => {
-      console.log("I clicked Nope")
+    closeModal = () => {      
       this.setState({ showModal: false })
     }
   
   
-render(){      
-    //console.log("SongSelection Song:", this.props.song);
-    //console.log("SongSelection Artist : ", this.props.artistName);
-   
-    const{ showModal} = this.state
-
-    var tracktotal = this.state.songs.total;
-    console.log("tracktotal", tracktotal);
-    
-    //var href=this.state.songs;
-    console.log("trackNumber", this.props.trackNumber);
-    //var first = href.indexOf("offset=");
-    //var firstTrack=href.substring(first,10);
-    //console.log("firstTrack :", firstTrack);      
+render(){     
+    const{ showModal } = this.state   
+       
 if(this.props.trackNumber !== "")
 {
     return (      

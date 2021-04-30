@@ -9,7 +9,7 @@ const HeaderCollection = ({ title, numCollection }) => {
   const { user, isAuthenticated } = useAuth0();
   
   var {spotify_user_id}="";
-  console.log("User",user);
+  
   if(user!=null)
   {    
     var spotify_id =user.sub;

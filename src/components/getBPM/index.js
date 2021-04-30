@@ -16,12 +16,9 @@ constructor(props) {
         const { activeIndex } = this.state
         const newIndex = activeIndex === index ? -1 : index
 
-        //console.log("Song:", this.props.song);
-        //console.log("Artist : ", this.props.artistName);
-    
         fetch(`/song/${this.props.artistName}/${this.props.song}`)
             .then(res => res.json())   
-            .then(songs => this.setState({songs, isLoading:false}, () => console.log('BPM fetched ....', songs)))
+            .then(songs => this.setState({songs, isLoading:false}))
                            
         
         this.setState({ activeIndex: newIndex })

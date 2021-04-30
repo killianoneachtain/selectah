@@ -12,9 +12,6 @@ constructor(props) {
     }      
 
     render() {
-        //console.log("record artist is:", this.props.artist);
-        //console.log("Tracklisting Prop artist is:", this.props.tracklisting);
-            
         return (        
         <Table celled color='yellow'>
             <Table.Header>
@@ -28,11 +25,11 @@ constructor(props) {
             </Table.Header>     
                  
                  
-            {this.props.tracklisting[0]?.tracklist?.map((song, index) => {
+            {this.props.tracklisting[0]?.tracklist?.map((song) => {
                 
                 return (                       
                     <Table.Body>     
-                        <Table.Row key={index} textAlign='center'>                        
+                        <Table.Row key={song?.position} textAlign='center'>                        
                             <Table.Cell color='yellow'>{song?.position}</Table.Cell>                         
                             <Table.Cell>
                                 { Array.isArray(song?.artists) ?  song?.artists?.map((artiste,i) => (
@@ -79,8 +76,6 @@ constructor(props) {
             )}      
         </Table>                    
         );
-    }}       
-       
-    
+    }}   
     
 export default TrackListTable;

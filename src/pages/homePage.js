@@ -17,19 +17,16 @@ const CollectionListPage = () => {
        }
     })   
     .then(function(response){
-      console.log(response)
+      
       return response.json();
     })
-      .then(function(myJson) {
-        console.log(myJson);
+      .then(function(myJson) {       
         setPages(myJson)
       });
   }
   useEffect(()=>{
     getData()
   },[])  
-  
-  console.log("Data is ", data)
 
   return (
     <Segment>

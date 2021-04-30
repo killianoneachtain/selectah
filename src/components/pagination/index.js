@@ -1,38 +1,28 @@
-import React, { Component } from 'react'
-import { Grid, Input, Pagination, Segment } from 'semantic-ui-react'
+import React, { useContext, useState } from 'react'
+import {  Pagination } from 'semantic-ui-react'
+import { CollectionContext} from '../../contexts/collectionContext'
 
-export default class PaginationCollection extends Component {
-  state = { activePage: 1 }
+const PaginationCollection = ({pageData}) => {
+    
+    const collection = useContext(CollectionContext);
+     
+    const [activePage, setActivePage] = useState(collection.pageNumber);
+    
 
-  handleInputChange = (e, { value }) => this.setState({ activePage: value })
-
-  handlePaginationChange = (e, { activePage }) => this.setState({ activePage })
-
-  render() {
-    const { activePage } = this.state
-
+  const handlePaginationChange = (e, { activePage }) =>  {
+    console.log(`Change Page to :::: ${activePage}`)
+    setActivePage(activePage);
+    collection.setPageNumber(activePage)
+  }   
+      
     return (
-      <Grid columns={2} verticalAlign='middle'>
-        <Grid.Column>
-          <Segment secondary>
-            <div>activePage: {activePage}</div>
-            <Input
-              min={1}
-              max={5}
-              onChange={this.handleInputChange}
-              type='range'
-              value={activePage}
-            />
-          </Segment>
-        </Grid.Column>
-        <Grid.Column>
           <Pagination
             activePage={activePage}
-            onPageChange={this.handlePaginationChange}
-            totalPages={5}
-          />
-        </Grid.Column>
-      </Grid>
+            onPageChange={handlePaginationChange}
+            totalPages={String(pageData.pages)}                    
+          />  
     )
-  }
+  
 }
+
+export default PaginationCollection
