@@ -25,11 +25,11 @@ constructor(props) {
             </Table.Header>     
                  
                  
-            {this.props.tracklisting[0]?.tracklist?.map((song, index) => {
+            {this.props.tracklisting[0]?.tracklist?.map((song) => {
                 
                 return (                       
                     <Table.Body>     
-                        <Table.Row key={index} textAlign='center'>                        
+                        <Table.Row key={song?.position} textAlign='center'>                        
                             <Table.Cell color='yellow'>{song?.position}</Table.Cell>                         
                             <Table.Cell>
                                 { Array.isArray(song?.artists) ?  song?.artists?.map((artiste,i) => (

@@ -12,8 +12,7 @@ import { Auth0Provider } from "@auth0/auth0-react"
 import PrivateRoute from '../src/routes/PrivateRoute'
 import PublicRoute from '../src/routes/PublicRoute'
 
-const App = () => {
-  
+const App = () => {  
   return (  
     <BrowserRouter>
       <Auth0Provider

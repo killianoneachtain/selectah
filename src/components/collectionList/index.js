@@ -31,8 +31,8 @@ const CollectionListPage = ({collection, pages,action}) => {
                     <Table.HeaderCell>Styles</Table.HeaderCell>                            
                 </Table.Row>
               </Table.Header> 
-                {collection.map((item, index) =>                   
-                   <Table.Body key={index}>   
+                {collection.map((item) =>                   
+                   <Table.Body key={(item?.basic_information?.master_id - item?.id)}>   
                         <Table.Row textAlign='center' style={{background:'#F0EEEC'}}>                                             
                         <Table.Cell>
                             <Image alt="" src={item?.basic_information?.thumb} 
@@ -51,7 +51,7 @@ const CollectionListPage = ({collection, pages,action}) => {
                         <Table.Cell>{item?.basic_information?.genres?.join(", ")}</Table.Cell>  
                         <Table.Cell>{item?.basic_information?.styles?.join(", ")}</Table.Cell> 
                     </Table.Row>                            
-                    <Table.Row key={index+1} textAlign='center'>
+                    <Table.Row key={item?.id} textAlign='center'>
                         <Table.HeaderCell colSpan='8'>
                             <ListingAccordion release={item.id} artist={item?.basic_information?.artists[0]?.name}/>
                         </Table.HeaderCell>  

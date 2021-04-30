@@ -28,7 +28,7 @@ class Welcome extends Component {
                   </List>
               </Grid.Column>
            
-              <Grid.Column style={{    backgroundImage: `url("${records}")`}} >
+              <Grid.Column style={{ backgroundImage: `url("${records}")`}} >
                 <Grid.Row>
                 <Image src={spotifyLogoWhite} size='small' centered style={{paddingBottom: '10px'}}/>  
                   <Button 
