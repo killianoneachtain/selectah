@@ -1,6 +1,5 @@
 import React from 'react'
-import { Header,Segment } from 'semantic-ui-react'
-import "../headerCollection/headerCollection.css"
+import { Header,Segment,  } from 'semantic-ui-react'
 import discogsLogo from "../../../src/images/discogs_logo.png"
 import { useAuth0 } from '../../../node_modules/@auth0/auth0-react'
 import Logout from '../Logout'
@@ -8,8 +7,9 @@ import Logout from '../Logout'
 const HeaderCollection = ({ title, numCollection }) => {
   
   const { user, isAuthenticated } = useAuth0();
+  
   var {spotify_user_id}="";
-  console.log("User",user);
+  
   if(user!=null)
   {    
     var spotify_id =user.sub;
@@ -18,11 +18,8 @@ const HeaderCollection = ({ title, numCollection }) => {
       var res =spotify_id?.split(":")[2];
       spotify_user_id = res;
     }
-
-    fetch(`/adduser/${spotify_user_id}"`);
+    //fetch(`/adduser/${spotify_user_id}"`);
   }
-
-
 
   return (
     isAuthenticated &&
@@ -36,13 +33,11 @@ const HeaderCollection = ({ title, numCollection }) => {
         <Header as='h2' floated='right'>
         Your <img className='logo' src={discogsLogo} alt="Logo"/> Collection,  {`${user.name}  `}
         </Header> 
-        <Logout />  
-      
+        <Logout />        
      
       <Header as='h2' floated='right'>
       Your Spotify ID : {`${spotify_user_id}`}
-      </Header> 
-      
+      </Header>      
     </Segment>
   );
 };
