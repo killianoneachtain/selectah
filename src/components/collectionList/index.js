@@ -18,7 +18,8 @@ const CollectionListPage = ({collection, pages,action}) => {
                 </Segment>                        
             </Header>  
 
-            <Table stackable striped fixed size='large'>
+            <Table stackable striped fixed size='large' 
+                style={{paddingBottom:'100px'}}>
               <Table.Header >
                 <Table.Row textAlign='center'> 
                     <Table.HeaderCell></Table.HeaderCell>

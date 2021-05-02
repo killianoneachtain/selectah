@@ -11,6 +11,7 @@ import Welcome from './components/frontPage'
 import { Auth0Provider } from "@auth0/auth0-react"
 import PrivateRoute from '../src/routes/PrivateRoute'
 import PublicRoute from '../src/routes/PublicRoute'
+import Footer from '../src/components/footer'
 
 const App = () => {  
   return (  
@@ -31,12 +32,15 @@ const App = () => {
                 </GenresContextProvider> 
             </CollectionContextProvider>  
           </Segment>  
+          <Footer />
       </Auth0Provider>
     </BrowserRouter>
+    
   );
 };
 
 ReactDOM.render( 
   <App />
+  
 , document.getElementById("root"));
 
