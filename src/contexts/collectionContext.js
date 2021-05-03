@@ -59,6 +59,9 @@ const CollectionContextProvider = (props) => {
   
   const [state, dispatch] = useReducer(reducer, { collection: [] }); 
   const [ pageNumber, setPageNumber] = useState(1);  
+
+  const [userId, setUserId] = useState();
+
   const [pages, setPages] = useState([ {
     page: 1,
     pages: 1,
@@ -77,8 +80,6 @@ const CollectionContextProvider = (props) => {
   }, [pageNumber]);
 
   return (
-   
-   
     
     <CollectionContext.Provider
       value={{
@@ -86,7 +87,9 @@ const CollectionContextProvider = (props) => {
         setPageNumber,
         pageNumber,
         pages: pages,
-        setPages    
+        setPages,   
+        userId: userId,
+        setUserId 
       }}
     >
       {props.children}
