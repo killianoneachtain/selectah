@@ -5,7 +5,7 @@ import PaginationCollection from '../pagination'
 import ListingAccordion from '../trackListing'
 import '../collectionList'
 
-const CollectionListPage = ({collection, pages,action}) => {   
+const CollectionTable = ({collection, pages,action}) => {   
        
     return (
         <Segment style={{ backgroundImage: `url("${records}")`}} > 
@@ -64,5 +64,5 @@ const CollectionListPage = ({collection, pages,action}) => {
         );
         }
 
-export default CollectionListPage;
+export default CollectionTable;
 
