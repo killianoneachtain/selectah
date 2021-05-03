@@ -51,7 +51,7 @@ class SongSelection extends Component{
   
   
 render(){     
-    const{ showModal } = this.state   
+    const{ showModal } = this.state     
        
 if(this.props.trackNumber !== "")
 {

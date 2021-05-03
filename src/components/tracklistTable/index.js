@@ -50,7 +50,8 @@ constructor(props) {
                             </Table.Cell>                        
                             <Table.Cell>{song?.title}</Table.Cell> 
                             <Table.Cell>{song?.duration}</Table.Cell>
-                            { Array.isArray(song?.artists) ?  song?.artists?.map((artiste,i) => (
+                            { song?.BPM == null ? 
+                             [Array.isArray(song?.artists) ?  song?.artists?.map((artiste,i) => (
                                 i<1 ? 
                                 <Table.Cell>
                                     <List>
@@ -69,7 +70,16 @@ constructor(props) {
                                             </List.Item>  
                                         </List>    
                                     </Table.Cell>  
-                                }                                 
+                             ]:    
+                                 <Table.Cell>
+                                        <List> 
+                                            <List.Item key={song?.id}>
+                                            <List.Content>
+                                                {song?.BPM}                                            
+                                            </List.Content>
+                                            </List.Item>  
+                                        </List>    
+                                    </Table.Cell>   }                         
                         </Table.Row>    
                     </Table.Body>            
                 )}                

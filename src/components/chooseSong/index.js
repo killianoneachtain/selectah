@@ -57,7 +57,7 @@ render(){
                                             url={track?.preview_url}
                                         />
                                     </Table.Cell>
-                                    <Table.Cell>
+                                    <Table.Cell>                                        
                                         <Button
                                             size='big'
                                             fluid
