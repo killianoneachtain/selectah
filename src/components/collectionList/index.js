@@ -5,7 +5,7 @@ import PaginationCollection from '../pagination'
 import ListingAccordion from '../trackListing'
 import '../collectionList'
 
-const CollectionListPage = ({collection, pages,action}) => {   
+const CollectionTable = ({collection, pages,action}) => {   
        
     return (
         <Segment style={{ backgroundImage: `url("${records}")`}} > 
@@ -18,7 +18,8 @@ const CollectionListPage = ({collection, pages,action}) => {
                 </Segment>                        
             </Header>  
 
-            <Table stackable striped fixed size='large'>
+            <Table stackable striped fixed size='large' 
+                style={{paddingBottom:'100px'}}>
               <Table.Header >
                 <Table.Row textAlign='center'> 
                     <Table.HeaderCell></Table.HeaderCell>
@@ -63,5 +64,5 @@ const CollectionListPage = ({collection, pages,action}) => {
         );
         }
 
-export default CollectionListPage;
+export default CollectionTable;
 
