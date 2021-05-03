@@ -2,8 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import PageTemplate from '../components/templateCollectionPage'
 import {CollectionContext} from '../contexts/collectionContext'
 import { Segment, Image } from 'semantic-ui-react'
-import Footer from '../components/footer'
-import selectahLogo from "../images//selFont2.jpg"
+import selectahLogo from "../images/selLogo_trip_space.png"
 
 const CollectionListPage = () => {
   const context = useContext(CollectionContext);
@@ -30,13 +29,13 @@ const CollectionListPage = () => {
 
   return (
     <Segment>
-      <Image src={selectahLogo} size='big' centered style={{paddingBottom: '20px'}}/>         
+      <Image src={selectahLogo} fluid centered style={{paddingBottom: '20px'}}/>         
         <PageTemplate 
           title='My Collection'
           collection={context.collection}
           pages={data} 
         /> 
-        <Footer/>    
+        
       </Segment> 
   );
 };

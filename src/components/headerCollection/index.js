@@ -8,6 +8,8 @@ const HeaderCollection = ({ title, numCollection }) => {
   
   const { user, isAuthenticated } = useAuth0();
   
+  //console.log(user)
+
   var {spotify_user_id}="";
   
   if(user!=null)
