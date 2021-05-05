@@ -37,7 +37,6 @@ const reducer = (state, action) => {
   }
 };
 
-
 const CollectionContextProvider = (props) => {
   const LoadingTracklistingIndicator = props => {
     const { promiseInProgress } = usePromiseTracker();
@@ -59,6 +58,10 @@ const CollectionContextProvider = (props) => {
   
   const [state, dispatch] = useReducer(reducer, { collection: [] }); 
   const [ pageNumber, setPageNumber] = useState(1);  
+
+  const [userName, setUserName] = useState("");
+  const [userId, setUserId ] = useState(0);
+
   const [pages, setPages] = useState([ {
     page: 1,
     pages: 1,
@@ -71,14 +74,12 @@ const CollectionContextProvider = (props) => {
     }]);
 
   useEffect(() => {    
-    trackPromise(getCollection(pageNumber).then((collection) => {
+    trackPromise(getCollection(pageNumber, userName).then((collection) => {
       dispatch({ type: "load-collection", payload: { collection } });
     }));       
-  }, [pageNumber]);
+  }, [pageNumber, userName]);
 
   return (
-   
-   
     
     <CollectionContext.Provider
       value={{
@@ -86,7 +87,11 @@ const CollectionContextProvider = (props) => {
         setPageNumber,
         pageNumber,
         pages: pages,
-        setPages    
+        setPages,   
+        userName: userName,
+        setUserName,
+        userId: userId,
+        setUserId 
       }}
     >
       {props.children}
