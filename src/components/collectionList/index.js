@@ -1,12 +1,15 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import records from "../../../src/images/recordspines_copy.png"
 import {  Table, Segment, Image, Header, } from 'semantic-ui-react'
 import PaginationCollection from '../pagination'
 import ListingAccordion from '../trackListing'
+import { CollectionContext} from '../../contexts/collectionContext'
 import '../collectionList'
 
 const CollectionTable = ({collection, pages,action}) => {   
-       
+
+    const thisCollection = useContext(CollectionContext);    
+    
     return (
         <Segment style={{ backgroundImage: `url("${records}")`}} > 
         
@@ -54,7 +57,7 @@ const CollectionTable = ({collection, pages,action}) => {
                     </Table.Row>                            
                     <Table.Row key={item?.id} textAlign='center'>
                         <Table.HeaderCell colSpan='8'>
-                            <ListingAccordion release={item.id} artist={item?.basic_information?.artists[0]?.name}/>
+                            <ListingAccordion release={item.id} artist={item?.basic_information?.artists[0]?.name} user_id={thisCollection.userId}/>
                         </Table.HeaderCell>  
                     </Table.Row>        
                 </Table.Body>  

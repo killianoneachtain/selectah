@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Table, List } from 'semantic-ui-react'
-//import GetBPM from '../getBPM'
+import { Table, List, Header, Icon, Button, Popup } from 'semantic-ui-react'
 import SongSelection from '../songSelection'
 
 class TrackListTable extends Component {   
@@ -8,25 +7,43 @@ constructor(props) {
         super(props);
         this.state = {            
             tracklisting : [this.props.tracklisting]
+            
         }
     }      
 
-    render() {
+    render() {  
+        //console.log("tracklisting state is : ", this.props.tracklisting)
         return (        
         <Table celled color='yellow'>
             <Table.Header>
                 <Table.Row textAlign='center'>                                    
-                    <Table.HeaderCell>Side / Track Number </Table.HeaderCell>    
-                    <Table.HeaderCell>Artist</Table.HeaderCell>                  
-                    <Table.HeaderCell>Title</Table.HeaderCell>
-                    <Table.HeaderCell>Length</Table.HeaderCell>
-                    <Table.HeaderCell>BPM / Tempo</Table.HeaderCell>
+                    <Table.HeaderCell><Icon name='th list' size='large' />Side / Track Number </Table.HeaderCell>    
+                    <Table.HeaderCell><Icon name='users' size='large' />Artist</Table.HeaderCell>                  
+                    <Table.HeaderCell><Icon name='th list' size='large' />Title</Table.HeaderCell>
+                    <Table.HeaderCell><Icon name='time' size='large' />Length</Table.HeaderCell>
+                    <Table.HeaderCell>
+                        <Popup 
+                            content={<List>
+                                <List.Item>
+                                    <Icon name='music' size='large' color='yellow' />
+                                    <List.Content>User BPM</List.Content>
+                                </List.Item>
+                                <List.Item>
+                                    <Icon name='music' size='large' color='green' />
+                                    <List.Content>Universal BPM</List.Content>
+                                </List.Item>
+                                <List.Item>
+                                    <Icon name='music' size='large' color='red' />
+                                    <List.Content>No Data</List.Content>
+                                </List.Item>
+                                </List>} 
+                            trigger={<Button icon='music' size='large'  />} 
+                            /> BPM / Tempo
+                    </Table.HeaderCell>
                 </Table.Row>
-            </Table.Header>     
+            </Table.Header> 
                  
-                 
-            {this.props.tracklisting[0]?.tracklist?.map((song) => {
-                
+            {this.props.tracklisting[0]?.tracklist?.map((song) => {                
                 return (                       
                     <Table.Body>     
                         <Table.Row key={song?.position} textAlign='center'>                        
@@ -50,12 +67,13 @@ constructor(props) {
                             </Table.Cell>                        
                             <Table.Cell>{song?.title}</Table.Cell> 
                             <Table.Cell>{song?.duration}</Table.Cell>
-                            { Array.isArray(song?.artists) ?  song?.artists?.map((artiste,i) => (
+                            { !Array.isArray(song?.BPM) ? 
+                             [Array.isArray(song?.artists) ?  song?.artists?.map((artiste,i) => (
                                 i<1 ? 
                                 <Table.Cell>
                                     <List>
                                         <List.Item key={artiste?.id}>
-                                            <SongSelection song={song?.title} artistName={artiste?.name} trackNumber={song?.position}/>                                           
+                                            <SongSelection releaseTitle={this.props.tracklisting[0]?.title} song={song?.title} artistName={artiste?.name} trackNumber={song?.position}/>                                           
                                         </List.Item>
                                     </List>
                                 </Table.Cell> : <p></p>
@@ -64,12 +82,40 @@ constructor(props) {
                                         <List> 
                                             <List.Item key={song?.id}>
                                             <List.Content>
-                                                <SongSelection song={song?.title} artistName={this.props.artist} trackNumber={song?.position}/>                                                
+                                                <SongSelection releaseTitle={this.props.tracklisting[0]?.title}  song={song?.title} artistName={this.props.artist} trackNumber={song?.position}/>                                                
                                             </List.Content>
                                             </List.Item>  
                                         </List>    
                                     </Table.Cell>  
-                                }                                 
+                             ]:    
+                                 <Table.Cell>
+                                        <List> 
+                                            <List.Item key={song?.id}>
+                                              
+                                                {song?.BPM?.map((bpm,i) => (                                                    
+                                                     this.props.userID === bpm.user || bpm.user === '***ALL***' ?                                                     
+                                               [ bpm?.user === '***ALL***' ? 
+                                               <List.Content>
+                                                <List.Icon name='music' size='large' color='green' />
+                                                <Header as='h2' content={bpm?.BPM} />
+                                                </List.Content>
+                                                    :  
+                                                    <List.Content>
+                                                    <List.Icon name='music' size='large' color='yellow' /> 
+                                                    <Header as='h2' content={bpm?.BPM} />
+                                                    <Button 
+                                                        content='Edit BPM'
+                                                        color='yellow' />  
+                                                        </List.Content> ] :
+                                                <List.Content>
+                                                    <List.Icon name='music' size='large' color='RED' /> 
+                                                        <Header as='h2' content='No DATA'/>   
+                                                </List.Content>
+                                                ))}                                           
+                                                                               
+                                           </List.Item>
+                                        </List>    
+                                    </Table.Cell>   }                         
                         </Table.Row>    
                     </Table.Body>            
                 )}                
