@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import "./filterControls.css";
+
 import { Grid, Input, Segment, Dropdown } from 'semantic-ui-react'
 import { GenresContext } from '../../contexts/genresContext' 
 

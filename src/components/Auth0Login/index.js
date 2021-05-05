@@ -5,13 +5,17 @@ import {Button } from 'semantic-ui-react'
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
 
-  return <Button 
+  return (
+    
+  <Button 
             onClick={() => loginWithRedirect()}
             content='Login' 
             icon='sign in'
-            size='large'
-            color='green'
-            />;
+            size='big'
+            color='grey'        
+            fluid            
+            style={{verticalAlign: 'middle'}}
+            />);
 };
 
 export default LoginButton;

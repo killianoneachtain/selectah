@@ -12,6 +12,7 @@ const LogoutButton = () => {
             icon='sign out'
             size='large'
             color='red'
+            
             />
   );
   
