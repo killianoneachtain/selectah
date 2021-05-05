@@ -7,12 +7,12 @@ class ChooseTrack extends Component{
         super(props);       
         this.state = {            
             songs : [this.props.songs],
-            track_id : ""           
+            track : []           
         }
     }     
    
     handleClick = (e) => {      
-        fetch(`/song/${this.state.track_id}`)
+        fetch(`/song/${this.state.track.track_id}`)
             //.then(res => res.json()) 
       }
       
@@ -62,7 +62,7 @@ render(){
                                             size='big'
                                             fluid
                                             content="Select?"                                            
-                                            onClick={() => (this.setState({ track_id: track?.id }, this.handleClick))}                                            
+                                            onClick={() => (this.setState({ track: [{id: track?.id},{artist: track?.album?.artists[0]?.name},{album: track?.album?.name},{title: track?.name}, ] }, this.handleClick))}                                            
                                             color='yellow'                                            
                                             labelPosition='left'
                                             icon='thumbs up'

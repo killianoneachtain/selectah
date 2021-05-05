@@ -1,14 +1,10 @@
 import React from 'react'
-//import { CollectionContext } from '../../contexts/collectionContext'
 import discogsLogo from "../../../src/images/discogs_logo.png"
 import spotifyLogo from "../../../src/images/Spotify_Logo_CMYK_Green.png"
-//import records from "../../../src/images/recordspines_copy.png"
 import selectahLogo from '../../../src/images/sel2_logo_tp.png'
-//import PaginationCollection from '../pagination'
 import {  Menu, Image, Header } from 'semantic-ui-react'
 
-const Footer = () => {
-  //const collection = useContext(CollectionContext);
+const Footer = () => {  
 
 return (
             <Menu

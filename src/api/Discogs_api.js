@@ -6,8 +6,8 @@ export const getGenres = () => {
     .then(json => json.genres);
 };
 
-export const getCollection = (pgNumber) => {  
-  return fetch(`/user/collection/${pgNumber}`)  
+export const getCollection = (pgNumber, userName) => {  
+  return fetch(`/user/${userName}/collection/${pgNumber}`)  
     .then(res => res.json())
 };
 

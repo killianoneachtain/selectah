@@ -12,6 +12,7 @@ constructor(props) {
     }      
 
     render() {  
+        //console.log("tracklisting state is : ", this.props.tracklisting)
         return (        
         <Table celled color='yellow'>
             <Table.Header>
@@ -72,7 +73,7 @@ constructor(props) {
                                 <Table.Cell>
                                     <List>
                                         <List.Item key={artiste?.id}>
-                                            <SongSelection song={song?.title} artistName={artiste?.name} trackNumber={song?.position}/>                                           
+                                            <SongSelection releaseTitle={this.props.tracklisting[0]?.title} song={song?.title} artistName={artiste?.name} trackNumber={song?.position}/>                                           
                                         </List.Item>
                                     </List>
                                 </Table.Cell> : <p></p>
@@ -81,7 +82,7 @@ constructor(props) {
                                         <List> 
                                             <List.Item key={song?.id}>
                                             <List.Content>
-                                                <SongSelection song={song?.title} artistName={this.props.artist} trackNumber={song?.position}/>                                                
+                                                <SongSelection releaseTitle={this.props.tracklisting[0]?.title}  song={song?.title} artistName={this.props.artist} trackNumber={song?.position}/>                                                
                                             </List.Content>
                                             </List.Item>  
                                         </List>    
@@ -92,8 +93,7 @@ constructor(props) {
                                             <List.Item key={song?.id}>
                                               
                                                 {song?.BPM?.map((bpm,i) => (                                                    
-                                                     this.props.userID === bpm.user || bpm.user === '***ALL***' ?
-                                                     
+                                                     this.props.userID === bpm.user || bpm.user === '***ALL***' ?                                                     
                                                [ bpm?.user === '***ALL***' ? 
                                                <List.Content>
                                                 <List.Icon name='music' size='large' color='green' />

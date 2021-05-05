@@ -20,6 +20,8 @@ const App = () => {
           domain="selectah-app.eu.auth0.com"
           clientId="sxWhNmIpC0AyzdD4GzcBE7EiHwnFEcIu"
           redirectUri="http://localhost:3000/collection"
+          audience="https://selectah-app.eu.auth0.com/api/v2/"
+          scope="read:current_user update:current_user_metadata"
         >
           <Segment>   
             <CollectionContextProvider>

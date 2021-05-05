@@ -22,6 +22,7 @@ class SongSelection extends Component{
             songs : [] ,   
             showModal: false,
             isLoading:true,
+
         }
     }   
     
@@ -30,7 +31,7 @@ class SongSelection extends Component{
       //console.log("Song sent to Spotify to Search:", this.props.song);
       //console.log("Artist sent to Spotify to Search:", this.props.artistName);
   
-      trackPromise(fetch(`/song/${this.props.artistName}/${this.props.song}`)
+      trackPromise(fetch(`/song/${this.props.artistName}/${this.props.releaseTitle}/${this.props.song}`)
           .then(res => res.json())   
           .then(songs => this.setState({songs, isLoading:false})))
              
@@ -72,18 +73,14 @@ if(this.props.trackNumber !== "")
            />}
       >
         <LoadingSongSelectionIndicator />
-          <Modal.Header>Select the Spotify track to BPM </Modal.Header>
-          <Modal.Content image scrolling>
-            <Image size='small' src={SpotifyLogo} wrapped />
-            <Modal.Description>
-            
-              <Header as='h2' color='blue' align='center'>              
+          <Modal.Header>Select the Spotify track to BPM  <Header as='h2' color='blue' align='center'>              
                 Artist : {this.props.artistName}<br></br>
                 Title : {this.props.song}<br></br>                
-              </Header> 
-
+              </Header>  </Modal.Header>
+          <Modal.Content image scrolling>
+            <Image size='small' src={SpotifyLogo} wrapped />
+            <Modal.Description>  
               <ChooseTrack songs={this.state.songs}/>
-
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
