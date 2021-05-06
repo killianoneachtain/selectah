@@ -1,8 +1,6 @@
 export const getGenres = () => {
-  return fetch(
-    "/user/genres"
-  )
-    .then(res => res.json())
+  return fetch('/user/genres' )
+    .then(res => res.json())    
     .then(json => json.genres);
 };
 
@@ -15,4 +13,9 @@ export const getPages = () => {
   return fetch('/user/pages')
     .then(res => res.json())
 };
+
+export const checkName =(name) => {
+  return fetch(`/user/check/${name}`)
+  .then(res => res.json())
+}
 

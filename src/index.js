@@ -25,13 +25,13 @@ const App = () => {
         >
           <Segment>   
             <CollectionContextProvider>
-                <GenresContextProvider> 
+              <GenresContextProvider>
                   <Switch>
                       <PublicRoute restricted={false} path="/" component={Welcome} exact/>                     
                       <PrivateRoute path="/collection" component={CollectionListPage} exact/>
                       <Redirect from="*" to="/" />
                   </Switch>
-                </GenresContextProvider> 
+               </GenresContextProvider>
             </CollectionContextProvider>  
           </Segment>  
           <Footer />
