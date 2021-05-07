@@ -8,7 +8,7 @@ const CheckName = ({currentName}) => {
     const collection = useContext(CollectionContext);
      
    const [name, setName] = useState("");
-   const [submittedName, setSubmittedName] = useState("");
+   //const [submittedName, setSubmittedName] = useState("");
    const [ Exists, setExists ]  = useState(false);
 
   const handleSubmit = async (e, {name, value}) =>  {     
@@ -22,22 +22,24 @@ const CheckName = ({currentName}) => {
         console.log(`Exists :::: ${Exists}`)      
 
 
-       // console.log("Current Discogs Name : ", collection.userName)
+        console.log("Current Discogs Name : ", collection.userName)
         //collection.setPageNumber(activePage)
   }   
       
     return (
         <Form onSubmit={handleSubmit}>      
-        <Form.Input 
-          style={{paddingTop:'5px'}} 
-          fluid 
-          icon='users'
-          value={this.state.submittedName} 
-          size='large' 
-          iconPosition='huge' 
-          placeholder='Search users...' /> 
-          onChange={}
-          </Form>            
+            <Form.Input 
+                style={{paddingTop:'5px'}} 
+                fluid 
+                icon='users'         
+                size='large' 
+                iconPosition='huge' 
+                name='name'
+                value={name}
+                placeholder='Search Discogs Usernames...' /> 
+
+            <Form.Button content='Submit' />         
+        </Form>            
           
     )
   
