@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
-
-import { Grid, Input, Segment, Dropdown } from 'semantic-ui-react'
+import { Grid, Input, Dropdown } from 'semantic-ui-react'
 import { GenresContext } from '../../contexts/genresContext' 
 
 
@@ -32,7 +31,7 @@ const FilterControls = props => {
               })
 
   return (
-    <Segment>
+  
       <Grid columns={3}>
         <Grid.Column color='yellow'>          
             <Input size='big' fluid icon='users' iconPosition='left' placeholder='Search Artists...' onChange={handleTextChange} />
@@ -52,7 +51,7 @@ const FilterControls = props => {
             />         
         </Grid.Column>
       </Grid>
-    </Segment>
+    
   );
 };
 

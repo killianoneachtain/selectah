@@ -14,10 +14,9 @@ const CollectionTable = ({collection, pages,action}) => {
         <Segment style={{ backgroundImage: `url("${records}")`}} > 
         
             <Header as='h1'>   
-                    Total Amount in Collection : {pages.items}   
+                    Current Collection : {pages.items} Releases  
                 <Segment>
-                    <PaginationCollection pageData={pages}                                               
-                    />
+                    <PaginationCollection pageData={pages}  />
                 </Segment>                        
             </Header>  
 

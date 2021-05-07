@@ -11,8 +11,9 @@ class ChooseTrack extends Component{
         }
     }     
    
-    handleClick = (e) => {      
-        fetch(`/song/${this.state.track.track_id}`)
+    handleClick = (e) => {   
+        console.log("Track Chosen : ", this.state.track)   
+        fetch(`/song/${this.state.track[1].artist}/${this.state.track[2].album}/${this.state.track[3].title}/${this.state.track[0].id}`)
             //.then(res => res.json()) 
       }
       
