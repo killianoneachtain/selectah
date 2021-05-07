@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import records from "../../../src/images/recordspines_copy.png"
-import {  Table, Segment, Image, Header, } from 'semantic-ui-react'
+import {  Table, Segment, Image, Header, Icon } from 'semantic-ui-react'
 import PaginationCollection from '../pagination'
 import ListingAccordion from '../trackListing'
 import { CollectionContext} from '../../contexts/collectionContext'
@@ -8,6 +8,7 @@ import '../collectionList'
 
 const CollectionTable = ({collection, pages,action}) => {   
 
+    
     const thisCollection = useContext(CollectionContext);    
     
     return (
@@ -20,21 +21,29 @@ const CollectionTable = ({collection, pages,action}) => {
                 </Segment>                        
             </Header>  
 
-            <Table stackable striped fixed size='large' 
-                style={{paddingBottom:'100px'}}>
-              <Table.Header >
+            <Table 
+                stackable 
+                striped 
+                fixed 
+                size='large' 
+                style={{paddingBottom:'100px'}}
+                color='yellow'
+                key='yellow'>
+          
+              <Table.Header>
                 <Table.Row textAlign='center'> 
                     <Table.HeaderCell></Table.HeaderCell>
-                    <Table.HeaderCell>Artist</Table.HeaderCell>
-                    <Table.HeaderCell>Title</Table.HeaderCell>
-                    <Table.HeaderCell>Format</Table.HeaderCell>
-                    <Table.HeaderCell>Number of Discs</Table.HeaderCell>
-                    <Table.HeaderCell>Description</Table.HeaderCell>
-                    <Table.HeaderCell>Genre</Table.HeaderCell>
-                    <Table.HeaderCell>Styles</Table.HeaderCell>                            
+                    <Table.HeaderCell><Icon name='users' />Artist</Table.HeaderCell>
+                    <Table.HeaderCell><Icon name='th list' />Title</Table.HeaderCell>
+                    <Table.HeaderCell><Icon name='play circle' />Format</Table.HeaderCell>
+                    <Table.HeaderCell><Icon name='clone' />Number of Discs</Table.HeaderCell>
+                    <Table.HeaderCell><Icon name='unordered list' />Description</Table.HeaderCell>
+                    <Table.HeaderCell><Icon name='th large' />Genre</Table.HeaderCell>
+                    <Table.HeaderCell><Icon name='th' />Styles</Table.HeaderCell>                            
                 </Table.Row>
               </Table.Header> 
-                {collection.map((item) =>                   
+                    
+        {collection.map((item) =>                   
                    <Table.Body key={(item?.basic_information?.master_id - item?.id)}>   
                         <Table.Row textAlign='center' style={{background:'#F0EEEC'}}>                                             
                         <Table.Cell>

@@ -35,7 +35,7 @@ render(){
                                     <Table.HeaderCell>Track Number</Table.HeaderCell>
                                     <Table.HeaderCell>Track Name</Table.HeaderCell>
                                     <Table.HeaderCell>Listen on Spotify</Table.HeaderCell>
-                                    <Table.HeaderCell>Spotify Track ID</Table.HeaderCell>
+                                    <Table.HeaderCell></Table.HeaderCell>
                                 </Table.Row>
                             </Table.Header>               
         
