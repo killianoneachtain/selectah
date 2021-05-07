@@ -1,9 +1,9 @@
 import React, {useContext, useState, useEffect} from 'react'
-import { Header,Segment, Image } from 'semantic-ui-react'
-import discogsLogo from "../../../src/images/discogs_logo.png"
+//import { Header,Segment } from 'semantic-ui-react'
+//import discogsLogo from "../../../src/images/discogs_logo.png"
 import { useAuth0 } from '../../../node_modules/@auth0/auth0-react'
-import Logout from '../Logout'
 import { CollectionContext} from '../../contexts/collectionContext'
+import NavBar from '../navBar'
 
 const HeaderCollection = ({ title, numCollection }) => {  
   const { user, isAuthenticated, getAccessTokenSilently } =  useAuth0();  
@@ -43,17 +43,9 @@ const HeaderCollection = ({ title, numCollection }) => {
   collection.setUserId(String(user?.sub)?.split(':')[2]);
 
   return (
-    isAuthenticated && 
-      <Segment clearing>
-          <Header block>  
-            Filtered :  {`${numCollection}  `}
-          </Header>
-          <Header as='h2' floated='left'>
-            Welcome {user.name} to Selectah
-          </Header>       
-          <Image src={discogsLogo} size='small' /> Collection,  {`${userMetadata.discogs_username}  `}
-            <Logout />        
-      </Segment>
+    isAuthenticated &&       
+        <NavBar filtered={numCollection} userName={user.name} discogs_username={userMetadata.discogs_username} />
+         
   );
 };
 

@@ -59,7 +59,7 @@ const CollectionContextProvider = (props) => {
   const [state, dispatch] = useReducer(reducer, { collection: [] }); 
   const [ pageNumber, setPageNumber] = useState(1);  
 
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState("undefined");
   const [userId, setUserId ] = useState(0);
 
   const [pages, setPages] = useState([ {

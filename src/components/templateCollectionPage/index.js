@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import Header from "../headerCollection";
-import CollectionList from "../collectionList";
-import FilterControls from "../filterControls";
+import React, { useState } from "react"
+import Header from "../headerCollection"
+import CollectionList from "../collectionList"
+import FilterControls from "../filterControls"
 
 const CollectionPageTemplate = ({collection, title, pages, action}) => {
   const [nameFilter, setNameFilter] = useState("");
