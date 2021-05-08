@@ -19,3 +19,10 @@ export const checkName =(name) => {
   .then(res => res.json())
 }
 
+export const changeMetaDataName = (userID, newName) => 
+{
+  console.log(`Fetching : /auth0/change_metadata/${userID}/${newName}`)
+  return fetch(`/auth0/change_metadata/${userID}/${newName}`)
+  .then(res=> res.json())
+}
+

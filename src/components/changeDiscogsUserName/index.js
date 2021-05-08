@@ -12,22 +12,7 @@ class ChangeDiscogsUserName extends Component{
             isLoading:true,
             checkName: ""
         }
-    }   
-    
-    handleClick = (e) => {    
-
-      //console.log("Song sent to Spotify to Search:", this.props.song);
-      //console.log("Artist sent to Spotify to Search:", this.props.artistName);
-  
-      //trackPromise(fetch(`/user/${this.props.userId}/${this.props.discogs_username}`)
-      //    .then(res => res.json())   
-      //    .then(songs => this.setState({songs, isLoading:false})))
-             
-    }
-    
-    handleChangeForms = (e, { value }) => {
-      this.setState({ something: value });
-    }
+    }     
       
     handleCreateButton(evt) {     
       evt.preventDefault()      
@@ -73,12 +58,10 @@ if(this.props.trackNumber !== "")
                 <Image size='big' src={discogsLogo} wrapped />
               </Grid.Column>
               <Grid.Column width={10}>  
-                  <CheckName />
+                  <CheckName modalState={this.state.showModal}/>
              </Grid.Column>
-
             </Grid>
-          </Modal.Content>
-          
+          </Modal.Content>          
         </Modal>
       )}   
       else 
