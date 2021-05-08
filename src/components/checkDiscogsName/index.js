@@ -1,10 +1,10 @@
 import React,  { useContext, useState } from 'react'
 import { CollectionContext} from '../../contexts/collectionContext'
-import { Form } from 'semantic-ui-react'
+import { Form, Input } from 'semantic-ui-react'
 import { checkName, changeMetaDataName } from '../../api/Discogs_api'
 //import { useAuth0 } from '../../../node_modules/@auth0/auth0-react'
 
-const CheckName = ({modalState}) => {    
+const CheckName = () => {    
     //const { user, getAccessTokenSilently } =  useAuth0()
     const collection = useContext(CollectionContext);
      
@@ -21,38 +21,9 @@ const CheckName = ({modalState}) => {
 
       var response = await changeMetaDataName(userID, newName)
       console.log("Response from 9000 : ", response)
-      
 
-      
-      }
-        
-        /*
-        const domain = "selectah-app.eu.auth0.com";  
-        try {
-          //const accessToken = await collection.accessToken         
-  
-          console.log("User.sub : ", collection.UserSub)
-          console.log("accessToken", collection.AccessToken)
-
-          const userDetailsByIdUrl = `https://${domain}/api/v2/users/${collection.userSub}`;
-    
-          const metadataResponse = await fetch(userDetailsByIdUrl, {
-              method: 'PATCH',
-            headers: {
-              Authorization: `Bearer ${collection.accessToken}`,
-              "Content-Type": "application/json",
-            },
-            data: {
-                user_metadata: {
-                    discogs_username: {submittedName}
-                }
-            }  */            
-            
-            
-          //const { user_metadata } = await metadataResponse.json();  
-          //setUserMetadata(user_metadata);          
-       
-      
+      /*** CHECK IF THEY HAVE COLLECTION ALSO */
+      }      
 
     const handleSubmit = async () =>  {     
 
@@ -89,6 +60,12 @@ const CheckName = ({modalState}) => {
                 iconPosition='huge' 
                 name='name'
                 value={name}
+                control={Input}
+                label='name'                          
+                error={{
+                  content: 'Please enter a valid email address',
+                  pointing: 'below',
+                }}
                 placeholder='Search Discogs Usernames...'
                 onChange={handleChange} /> 
             <Form.Button content='Submit' />         

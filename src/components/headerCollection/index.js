@@ -40,10 +40,10 @@ const HeaderCollection = ({ title, numCollection }) => {
     
   }, [getAccessTokenSilently, user]);   
 
-  console.log("userMetadata : ", userMetadata)
+  //console.log("userMetadata : ", userMetadata)
   collection.setUserName(userMetadata.discogs_username);  
   collection.setUserId(String(user?.sub)?.split(':')[2]);
-  console.log("user iD : ", collection.userId)
+  //console.log("user iD : ", collection.userId)
   collection.setUserSub(user?.sub)
   collection.setAccessToken(access)
 
