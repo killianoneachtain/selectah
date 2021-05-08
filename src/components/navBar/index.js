@@ -38,7 +38,7 @@ import ChangeDiscogsUserName from '../changeDiscogsUserName'
                         <Header as='h3' content={`Current Discogs Collection :  ${this.props.discogs_username}`}/>
                     </Grid.Column>
                     <Grid.Column>
-                        <ChangeDiscogsUserName current={this.props.discogs_username}/>
+                        <ChangeDiscogsUserName current={this.props.discogs_username} />
                     </Grid.Column>                  
                 </Grid>
             </Menu.Item>    
