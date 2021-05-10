@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Table, Image, Embed, Header, Segment, Button } from 'semantic-ui-react'
+import { Table, Image, Embed, Header, Button, Icon, Segment, Popup, List } from 'semantic-ui-react'
 import SpotifyLogo from '../../images/Spotify_Icon_RGB_Green.png'
 
 class ChooseTrack extends Component{
@@ -9,8 +9,7 @@ class ChooseTrack extends Component{
             songs : [this.props.songs],
             track : []           
         }
-    }     
-   
+    }        
     handleClick = (e) => {   
         console.log("Track Chosen : ", this.state.track)   
         fetch(`/song/${this.state.track[1].artist}/${this.state.track[2].album}/${this.state.track[3].title}/${this.state.track[0].id}`)
@@ -21,26 +20,26 @@ class ChooseTrack extends Component{
 render(){     
     return ( 
         <Segment> 
-            <Header></Header>              
+                        
             {
                 ((this.props.songs?.total != null) && (this.props.songs.total>0))? 
                     this.props.songs.items.map((track) => 
-                        <Table fixed celled selectable stackable size='large'>
-                            <Table.Header>                           
-                                <Table.Row key={track.album.images[1].url}>    
+                        <Table fixed selectable stackable size='large'>
+                            <Table.Header >                           
+                                <Table.Row textAlign='center' key={track.album.id}>    
                                     <Table.HeaderCell />                    
-                                    <Table.HeaderCell content="Artist" />
-                                    <Table.HeaderCell>Album Title</Table.HeaderCell>                        
-                                    <Table.HeaderCell>Album Type</Table.HeaderCell>
-                                    <Table.HeaderCell>Track Number</Table.HeaderCell>
-                                    <Table.HeaderCell>Track Name</Table.HeaderCell>
-                                    <Table.HeaderCell>Listen on Spotify</Table.HeaderCell>
+                                    <Table.HeaderCell><Icon name='users' size='large' color='green'/> Artist</Table.HeaderCell>                                               
+                                    <Table.HeaderCell><Icon name='th list' size='large' color='green'/> Album Title</Table.HeaderCell>                        
+                                    <Table.HeaderCell><Icon name='tag' size='large' color='green' /> Type</Table.HeaderCell>
+                                    <Table.HeaderCell><Icon name='ordered list' size='large' color='green'/> Track </Table.HeaderCell>
+                                    <Table.HeaderCell><Icon name='unordered list' size='large' color='green' /> Track Name</Table.HeaderCell>
+                                    <Table.HeaderCell><Image src={SpotifyLogo} centered size='mini'/></Table.HeaderCell>
                                     <Table.HeaderCell></Table.HeaderCell>
                                 </Table.Row>
                             </Table.Header>               
         
                             <Table.Body>
-                                <Table.Row key={track.uri}>
+                                <Table.Row textAlign='center' key={track.uri}>
                                     <Table.Cell>
                                         <Image
                                             src={track.album.images[1].url}
@@ -54,28 +53,37 @@ render(){
                                     <Table.Cell content={track?.name} />
                                     <Table.Cell> 
                                         <Embed
-                                            placeholder={SpotifyLogo}                                                              
+                                            icon='play circle outline'
+                                            placeholder={SpotifyLogo}                                                                                                         
                                             url={track?.preview_url}
+                                            source='spotify'
                                         />
                                     </Table.Cell>
-                                    <Table.Cell>                                        
-                                        <Button
+                                    <Table.Cell> 
+                                    <Popup 
+                                        content={
+                                            <List>
+                                            <List.Item>
+                                                <Icon name='music' size='large' color='yellow' />
+                                                <List.Content>Assign the BPM of this track to
+                                               <Header as='h3'> {this.props.artistName}<br></br>
+                                                {this.props.song}</Header>
+                                                      </List.Content>
+                                            </List.Item>                                            
+                                            </List>} 
+                                        trigger={ <Button
                                             size='big'
-                                            fluid
-                                            content="Select?"                                            
+                                            fluid                                                                                      
                                             onClick={() => (this.setState({ track: [{id: track?.id},{artist: track?.album?.artists[0]?.name},{album: track?.album?.name},{title: track?.name}, ] }, this.handleClick))}                                            
-                                            color='yellow'                                            
-                                            labelPosition='left'
-                                            icon='thumbs up'
-                                            />                                           
+                                            color='yellow'
+                                            icon='thumbs up'  />     }                             
+                                        />                                           
                                     </Table.Cell>
                                 </Table.Row>   
                             </Table.Body>
                         </Table> )
-                        :    
-                       
+                        : 
                         <Header as='h1'
-
                                 colSpan='8' 
                                 size='large' 
                                 color='red'

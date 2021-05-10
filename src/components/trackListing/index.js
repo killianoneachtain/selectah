@@ -53,7 +53,7 @@ export default class ListingAccordion extends Component {
         </Accordion.Title>
         <Accordion.Content active={activeIndex === 1}>       
             <LoadingTracklistingIndicator />
-            <TracklistTable tracklisting = {[this.state.tracklisting]} artist={this.props.artist} userID={this.props.user_id}/>
+            <TracklistTable releaseID={this.props.release} tracklisting = {[this.state.tracklisting]} artist={this.props.artist} userID={this.props.user_id}/>
         </Accordion.Content>
       </Accordion>
     )

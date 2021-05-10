@@ -22,16 +22,17 @@ class SongSelection extends Component{
             songs : [] ,   
             showModal: false,
             isLoading:true,
-
         }
     }   
     
     handleClick = (e) => {    
 
       //console.log("Song sent to Spotify to Search:", this.props.song);
+      console.log(`/song/${this.props.releaseID}/${this.props.artistName}/${this.props.releaseTitle}/${this.props.song}`)
       //console.log("Artist sent to Spotify to Search:", this.props.artistName);
-  
-      trackPromise(fetch(`/song/${this.props.artistName}/${this.props.releaseTitle}/${this.props.song}`)
+
+
+      trackPromise(fetch(`/song/${this.props.releaseID}/${this.props.artistName}/${this.props.releaseTitle}/${this.props.song}`)
           .then(res => res.json())   
           .then(songs => this.setState({songs, isLoading:false})))
              
@@ -80,7 +81,7 @@ if(this.props.trackNumber !== "")
           <Modal.Content image scrolling>
             <Image size='small' src={SpotifyLogo} wrapped />
             <Modal.Description>  
-              <ChooseTrack songs={this.state.songs}/>
+              <ChooseTrack songs={this.state.songs} artistName={this.props.artistName} song={this.props.song}/>
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
