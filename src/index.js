@@ -19,19 +19,19 @@ const App = () => {
       <Auth0Provider
           domain="selectah-app.eu.auth0.com"
           clientId="sxWhNmIpC0AyzdD4GzcBE7EiHwnFEcIu"
-          redirectUri="http://localhost:3000/collection"
+          redirectUri="http://localhost:3000/collection"          
           audience="https://selectah-app.eu.auth0.com/api/v2/"
-          scope="read:current_user update:current_user_metadata"
+          scope="openid profile read:current_user update:current_user_metadata"
         >
           <Segment>   
             <CollectionContextProvider>
-                <GenresContextProvider> 
+              <GenresContextProvider>
                   <Switch>
                       <PublicRoute restricted={false} path="/" component={Welcome} exact/>                     
                       <PrivateRoute path="/collection" component={CollectionListPage} exact/>
                       <Redirect from="*" to="/" />
                   </Switch>
-                </GenresContextProvider> 
+               </GenresContextProvider>
             </CollectionContextProvider>  
           </Segment>  
           <Footer />
