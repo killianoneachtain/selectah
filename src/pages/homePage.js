@@ -7,10 +7,11 @@ import selectahLogo from "../images/selLogo_trip_space.png"
 const CollectionListPage = () => {
   const context = useContext(CollectionContext);
 
-  const [data,setPages]=useState([]);  
-  
-  const getData=()=>{
-    fetch(`/user/pages`,{      headers : { 
+  const [data,setPages]=useState([]);
+
+  console.log("about to get PageData for", context)
+  const getData= async(userName)=>{
+    await fetch(`/user/${userName}/pages`,{      headers : { 
         'Content-Type': 'application/json',
         'Accept': 'application/json'
        }
@@ -23,8 +24,8 @@ const CollectionListPage = () => {
       });
   }
   useEffect(()=>{
-    getData()
-  },[])  
+    getData(context.userName)
+  },[context.userName])  
 
   return (
     <Segment>

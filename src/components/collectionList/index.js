@@ -8,7 +8,9 @@ import '../collectionList'
 
 const CollectionTable = ({collection, pages,action}) => { 
     
-    const Collection = useContext(CollectionContext);    
+    const Collection = useContext(CollectionContext);   
+    
+    console.log("Collection in CollectionList:", Collection)
     
     return (
         <Segment style={{ backgroundImage: `url("${records}")`}} > 
