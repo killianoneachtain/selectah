@@ -6,10 +6,9 @@ import ListingAccordion from '../trackListing'
 import { CollectionContext} from '../../contexts/collectionContext'
 import '../collectionList'
 
-const CollectionTable = ({collection, pages,action}) => {   
-
+const CollectionTable = ({collection, pages,action}) => { 
     
-    const thisCollection = useContext(CollectionContext);    
+    const Collection = useContext(CollectionContext);    
     
     return (
         <Segment style={{ backgroundImage: `url("${records}")`}} > 
@@ -65,7 +64,7 @@ const CollectionTable = ({collection, pages,action}) => {
                     </Table.Row>                            
                     <Table.Row key={item?.id} textAlign='center'>
                         <Table.HeaderCell colSpan='8'>
-                            <ListingAccordion release={item.id} artist={item?.basic_information?.artists[0]?.name} user_id={thisCollection.userId}/>
+                            <ListingAccordion release={item.id} artist={item?.basic_information?.artists[0]?.name} user_id={Collection.userID}/>
                         </Table.HeaderCell>  
                     </Table.Row>        
                 </Table.Body>  

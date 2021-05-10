@@ -1,16 +1,22 @@
 import React,  { useContext, useState } from 'react'
 import { CollectionContext} from '../../contexts/collectionContext'
-import { Form, Input } from 'semantic-ui-react'
+import { Form, Modal, Button } from 'semantic-ui-react'
 import { checkName, changeMetaDataName } from '../../api/Discogs_api'
 //import { useAuth0 } from '../../../node_modules/@auth0/auth0-react'
 
-const CheckName = () => {    
+const CheckName = ({modalState}) => {    
     //const { user, getAccessTokenSilently } =  useAuth0()
-    const collection = useContext(CollectionContext);
+    console.log("Current Modal State : ", modalState)
+    const collection = useContext(CollectionContext)
      
-    const [name, setName] = useState("");
-    const [submittedName, setSubmittedName] = useState("");
-    const [ Exists, setExists ]  = useState(false);
+    const [name, setName] = useState("")
+    const [submittedName, setSubmittedName] = useState("")
+    
+    const [ Exists, setExists ]  = useState(false)
+    const [secondOpen, setSecondOpen] = useState(false)
+
+
+    //const [ collectionSize, setCollectionSize] = useState(0)
 
     const  handleChange = (e, { name, value }) => setName(value);
 
@@ -38,37 +44,62 @@ const CheckName = () => {
             await setExists(true)
             console.log(`Exists :::: ${Exists}`)
 
-            //Write the New submittedName to the metadata of the current user  
-            try{
-                editUserMetadata(collection)
-            }  catch(err){console.log(err)}        
+            if(Exists === true)
+            {
+                let collection = result?.num_collection;
+                
+                if(collection >= 0)
+                {
+                   //Write the New submittedName to the metadata of the current user  
+                    try{
+                        editUserMetadata(collection)
+                    }  catch(err){console.log(err)}        
 
-            await collection.setUserName(submittedName)
-            console.log("Current Discogs Name : ", collection.userName)
+                    await collection.setUserName(submittedName)
+                    console.log("Current Discogs Name : ", collection.userName) 
+                }
+                else
+                {
+                    <Modal
+          onClose={() => setSecondOpen(false)}
+          open={secondOpen}
+          size='small'
+        >
+          <Modal.Header>Modal #2</Modal.Header>
+          <Modal.Content>
+            <p>That's everything!</p>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button
+              icon='check'
+              content='All Done'
+              onClick={() => setSecondOpen(false)}
+            />
+          </Modal.Actions>
+        </Modal>      
+
+                }                        
+            }            
         }
         else { console.log(result.message)}
+
+        console.log("Current Discogs Name : ", collection.userName) 
         //collection.setPageNumber(activePage)
     }   
       
     return (
         <Form onSubmit={handleSubmit}>      
-            <Form.Input 
+            <Form.Input required
                 style={{paddingTop:'5px'}} 
-                fluid 
-                icon='users'         
-                size='large' 
-                iconPosition='huge' 
+                fluid                      
+                size='large'
                 name='name'
-                value={name}
-                control={Input}
-                label='name'                          
-                error={{
-                  content: 'Please enter a valid email address',
-                  pointing: 'below',
-                }}
+                action='Submit'
+                value={name}                
+                min={2}
+                max={30}
                 placeholder='Search Discogs Usernames...'
-                onChange={handleChange} /> 
-            <Form.Button content='Submit' />         
+                onChange={handleChange} />                  
         </Form>  
     )
   

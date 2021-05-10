@@ -7,16 +7,15 @@ import selectahLogo from "../images/selLogo_trip_space.png"
 const CollectionListPage = () => {
   const context = useContext(CollectionContext);
 
-  const [data,setPages]=useState([]);
-
+  const [data,setPages]=useState([]);  
+  
   const getData=()=>{
-    fetch('/user/pages',{      headers : { 
+    fetch(`/user/pages`,{      headers : { 
         'Content-Type': 'application/json',
         'Accept': 'application/json'
        }
     })   
-    .then(function(response){
-      
+    .then(function(response){      
       return response.json();
     })
       .then(function(myJson) {       
