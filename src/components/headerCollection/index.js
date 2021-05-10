@@ -42,8 +42,8 @@ const HeaderCollection = ({ title, numCollection }) => {
 
   //console.log("userMetadata : ", userMetadata)
   collection.setUserName(userMetadata.discogs_username);  
-  collection.setUserId(String(user?.sub)?.split(':')[2]);
-  //console.log("user iD : ", collection.userId)
+  collection.setuserID(String(user?.sub)?.split(':')[2]);
+  //console.log("user iD : ", collection.userID)
   collection.setUserSub(user?.sub)
   collection.setAccessToken(access)
 

@@ -58,7 +58,7 @@ if(this.props.trackNumber !== "")
                 <Image size='big' src={discogsLogo} wrapped />
               </Grid.Column>
               <Grid.Column width={10}>  
-                  <CheckName modalState={this.state.showModal}/>
+                  <CheckName modalState={this.state.showModal} />
              </Grid.Column>
             </Grid>
           </Modal.Content>          

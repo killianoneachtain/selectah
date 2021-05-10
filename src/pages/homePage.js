@@ -9,14 +9,14 @@ const CollectionListPage = () => {
 
   const [data,setPages]=useState([]);
 
-  const getData=()=>{
-    fetch('/user/pages',{      headers : { 
+  console.log("about to get PageData for", context)
+  const getData= async(userName)=>{
+    await fetch(`/user/${userName}/pages`,{      headers : { 
         'Content-Type': 'application/json',
         'Accept': 'application/json'
        }
     })   
-    .then(function(response){
-      
+    .then(function(response){      
       return response.json();
     })
       .then(function(myJson) {       
@@ -24,8 +24,8 @@ const CollectionListPage = () => {
       });
   }
   useEffect(()=>{
-    getData()
-  },[])  
+    getData(context.userName)
+  },[context.userName])  
 
   return (
     <Segment>

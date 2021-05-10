@@ -10,7 +10,7 @@ export const getCollection = (pgNumber, userName) => {
 };
 
 export const getPages = () => {
-  return fetch('/user/pages')
+  return fetch(`/user/pages`)
     .then(res => res.json())
 };
 

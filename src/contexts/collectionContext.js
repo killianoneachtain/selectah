@@ -63,7 +63,7 @@ const CollectionContextProvider = (props) => {
 
   const [userSub, setUserSub] = useState("");
   const [userName, setUserName] = useState("undefined");
-  const [userId, setUserId ] = useState(0);
+  const [userID, setuserID ] = useState(0);
 
   const [pages, setPages] = useState([ {
     page: 1,
@@ -93,8 +93,8 @@ const CollectionContextProvider = (props) => {
         setPages,   
         userName: userName,
         setUserName,
-        userId: userId,
-        setUserId,
+        userID: userID,
+        setuserID,
         userSub: userSub,
         setUserSub,
         accessToken: accessToken,
