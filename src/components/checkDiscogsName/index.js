@@ -1,6 +1,6 @@
 import React,  { useContext, useState } from 'react'
 import { CollectionContext} from '../../contexts/collectionContext'
-import { Form, Modal, Button } from 'semantic-ui-react'
+import { Form } from 'semantic-ui-react'
 import { checkName, changeMetaDataName } from '../../api/Discogs_api'
 //import { useAuth0 } from '../../../node_modules/@auth0/auth0-react'
 
@@ -13,7 +13,7 @@ const CheckName = ({modalState}) => {
     const [submittedName, setSubmittedName] = useState("")
     
     const [ Exists, setExists ]  = useState(false)
-    const [secondOpen, setSecondOpen] = useState(false)
+    //const [secondOpen, setSecondOpen] = useState(false)
 
 
     //const [ collectionSize, setCollectionSize] = useState(0)
@@ -41,45 +41,28 @@ const CheckName = ({modalState}) => {
 
         if(result.id !== null)
         {
-            await setExists(true)
+            await setExists(prevExists => !prevExists);
             console.log(`Exists :::: ${Exists}`)
 
-            if(Exists === true)
-            {
-                let collection = result?.num_collection;
+            
+                let collect = result?.num_collection;
                 
-                if(collection >= 0)
+                if(collect >= 0)
                 {
                    //Write the New submittedName to the metadata of the current user  
                     try{
                         editUserMetadata(collection)
                     }  catch(err){console.log(err)}        
 
-                    await collection.setUserName(submittedName)
+                    collection.setUserName(submittedName)
                     console.log("Current Discogs Name : ", collection.userName) 
                 }
                 else
                 {
-                    <Modal
-          onClose={() => setSecondOpen(false)}
-          open={secondOpen}
-          size='small'
-        >
-          <Modal.Header>Modal #2</Modal.Header>
-          <Modal.Content>
-            <p>That's everything!</p>
-          </Modal.Content>
-          <Modal.Actions>
-            <Button
-              icon='check'
-              content='All Done'
-              onClick={() => setSecondOpen(false)}
-            />
-          </Modal.Actions>
-        </Modal>      
+                    
 
                 }                        
-            }            
+                       
         }
         else { console.log(result.message)}
 
