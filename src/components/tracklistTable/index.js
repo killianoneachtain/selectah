@@ -6,8 +6,7 @@ class TrackListTable extends Component {
 constructor(props) {
         super(props);
         this.state = {            
-            tracklisting : [this.props.tracklisting]
-            
+            tracklisting : [this.props.tracklisting]            
         }
     }      
 
@@ -73,7 +72,7 @@ constructor(props) {
                                 <Table.Cell>
                                     <List>
                                         <List.Item key={artiste?.id}>
-                                            <SongSelection releaseTitle={this.props.tracklisting[0]?.title} song={song?.title} artistName={artiste?.name} trackNumber={song?.position}/>                                           
+                                            <SongSelection releaseID={this.props.releaseID} releaseTitle={this.props.tracklisting[0]?.title} song={song?.title} artistName={artiste?.name} trackNumber={song?.position} />                                           
                                         </List.Item>
                                     </List>
                                 </Table.Cell> : <p></p>
@@ -82,7 +81,7 @@ constructor(props) {
                                         <List> 
                                             <List.Item key={song?.id}>
                                             <List.Content>
-                                                <SongSelection releaseTitle={this.props.tracklisting[0]?.title}  song={song?.title} artistName={this.props.artist} trackNumber={song?.position}/>                                                
+                                                <SongSelection releaseID={this.props.releaseID} releaseTitle={this.props.tracklisting[0]?.title}  song={song?.title} artistName={this.props.artist} trackNumber={song?.position}/>                                                
                                             </List.Content>
                                             </List.Item>  
                                         </List>    
