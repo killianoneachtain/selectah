@@ -4,6 +4,7 @@ import ChooseTrack from '../chooseSong'
 import SpotifyLogo from '../../images/Spotify_Icon_RGB_Green.png'
 import { trackPromise, usePromiseTracker } from "react-promise-tracker";
 import Loader from 'react-loader-spinner';
+import { CollectionContext } from '../../contexts/collectionContext'
 
 const LoadingSongSelectionIndicator = props => {
   const { promiseInProgress } = usePromiseTracker();
@@ -21,19 +22,21 @@ class SongSelection extends Component{
         this.state = {            
             songs : [] ,   
             showModal: false,
-            isLoading:true,
+            isLoading: true,
+            userID: ""
+            
         }
-    }   
+    }
     
-    handleClick = (e) => {    
+    static contextType  = CollectionContext
 
-      //console.log("Song sent to Spotify to Search:", this.props.song);
-      console.log("ReleaseID : ", this.props.releaseID)
-      //getTracks/:releaseID/:song_artist/:album_title/:song_title
-      console.log(`/song/${this.props.artistName}/${this.props.releaseTitle}/${this.props.song}`)
-      //console.log("Artist sent to Spotify to Search:", this.props.artistName);
-
-      trackPromise(fetch(`/songSearch/${this.props.releaseID}/${this.props.artistName}/${this.props.releaseTitle}/${this.props.song}`)
+    componentDidMount() {
+      const collectn = this.context     
+      this.setState({userID: collectn.userID})
+    }
+    
+    handleClick = (e) => { 
+      trackPromise(fetch(`/songSearch/${this.state.userID}/${this.props.releaseID}/${this.props.artistName}/${this.props.releaseTitle}/${this.props.song}`)
           .then(res => res.json())   
           .then(songs => this.setState({songs, isLoading:false})))             
     }
@@ -48,20 +51,22 @@ class SongSelection extends Component{
     }
   
     closeModal = () => {      
+      fetch(`/songSearch/${this.state.userID}/deleteTracks`)
+      .then(res => res.json())
       this.setState({ showModal: false })
     }
-  
-  
-render(){     
+    
+  render(){     
     const{ showModal } = this.state     
        
-if(this.props.trackNumber !== "")
-{
+  if(this.props.trackNumber !== "")
+  {
     return (      
       <Modal 
-      closeIcon 
+       
       onClose={this.closeModal} 
       open={showModal} 
+      closeOnDimmerClick={false}
       centered
       style={{paddingLeft: '50px'}}
       size='fullscreen'
@@ -91,6 +96,7 @@ if(this.props.trackNumber !== "")
             content='Rewind'
             labelPosition='left'
             icon='x'
+            size='big'
             />           
           </Modal.Actions>
         </Modal>
