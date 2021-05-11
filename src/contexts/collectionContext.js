@@ -65,6 +65,7 @@ const CollectionContextProvider = (props) => {
   const [userName, setUserName] = useState("undefined");
   const [userID, setuserID ] = useState(0);
 
+
   const [pages, setPages] = useState([ {
     page: 1,
     pages: 1,
@@ -77,9 +78,11 @@ const CollectionContextProvider = (props) => {
     }]);
 
   useEffect(() => {    
-    trackPromise(getCollection(pageNumber, userName).then((collection) => {
-      dispatch({ type: "load-collection", payload: { collection } });
-    }));       
+    trackPromise(getCollection(pageNumber, userName)
+      .then((collection) => {
+        dispatch({ type: "load-collection", payload: { collection } });
+          }));
+    
   }, [pageNumber, userName]);
 
   return (

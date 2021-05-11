@@ -6,8 +6,7 @@ class TrackListTable extends Component {
 constructor(props) {
         super(props);
         this.state = {            
-            tracklisting : [this.props.tracklisting]
-            
+            tracklisting : [this.props.tracklisting]            
         }
     }      
 
