@@ -28,11 +28,12 @@ class SongSelection extends Component{
     handleClick = (e) => {    
 
       //console.log("Song sent to Spotify to Search:", this.props.song);
+      console.log("ReleaseID : ", this.props.releaseID)
       //getTracks/:releaseID/:song_artist/:album_title/:song_title
       console.log(`/song/${this.props.artistName}/${this.props.releaseTitle}/${this.props.song}`)
       //console.log("Artist sent to Spotify to Search:", this.props.artistName);
 
-      trackPromise(fetch(`/song/${this.props.artistName}/${this.props.releaseTitle}/${this.props.song}`)
+      trackPromise(fetch(`/songSearch/${this.props.releaseID}/${this.props.artistName}/${this.props.releaseTitle}/${this.props.song}`)
           .then(res => res.json())   
           .then(songs => this.setState({songs, isLoading:false})))             
     }
