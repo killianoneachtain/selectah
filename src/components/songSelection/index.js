@@ -73,7 +73,7 @@ class SongSelection extends Component{
       trigger={
         <Button 
           positive
-          onClick={() => (this.setState({ showModal: true }, this.handleClick))}
+          onClick={() => (this.setState({ showModal: true },this.handleClick))}
             icon='plus'
             content='Get BPM'
            />}
