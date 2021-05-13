@@ -23,7 +23,7 @@ const LoadingTracklistingIndicator = props => {
         }
 
 export default class ListingAccordion extends Component {
-  state = { activeIndex: 0, tracklisting: [], trackAnalytics: [],  isLoading:true  }   
+  state = { activeIndex: 0, tracklisting: [], trackAnalytics: [],  isLoading:true, getAnalysis:true  }   
   
 
   handleClick = (e, titleProps) => {
@@ -31,13 +31,14 @@ export default class ListingAccordion extends Component {
     const { activeIndex } = this.state
     const newIndex = activeIndex === index ? -1 : index
     
-    trackPromise(fetch(`/user/release/trackAnalysis/${this.props.release}`)
-        .then(res => res.json())   
-        .then(trackAnalytics => this.setState({trackAnalytics, isLoading:false}))) 
-
     trackPromise(fetch(`/user/release/${this.props.release}`)
         .then(res => res.json())   
-        .then(tracklisting => this.setState({tracklisting}))) 
+        .then(tracklisting => this.setState({tracklisting, isLoading:false}))) 
+    
+    
+     trackPromise(fetch(`/user/release/trackAnalysis/${this.props.release}`)
+        .then(res => res.json())   
+        .then(trackAnalytics => this.setState({trackAnalytics, getAnalysis:false})))     
     
     this.setState({ activeIndex: newIndex })
   }
