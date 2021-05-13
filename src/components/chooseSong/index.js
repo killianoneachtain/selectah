@@ -1,18 +1,28 @@
 import React, {Component} from 'react'
 import { Table, Image, Embed, Header, Button, Icon, Segment, Popup, List } from 'semantic-ui-react'
 import SpotifyLogo from '../../images/Spotify_Icon_RGB_Green.png'
+import { CollectionContext } from '../../contexts/collectionContext'
 
 class ChooseTrack extends Component{
     constructor(props) {
         super(props);       
         this.state = {            
             songs : [this.props.songs],
-            track : []           
+            track : [],
+            userID: ""           
         }
-    }        
+    }
+    
+    static contextType  = CollectionContext
+    componentDidMount() {
+      const collectn = this.context     
+      this.setState({userID: collectn.userID})
+    }
+
+    
     handleClick = (e) => {   
-        console.log("Track Chosen : ", this.state.track)   
-        fetch(`/song/${this.state.track[1].artist}/${this.state.track[2].album}/${this.state.track[3].title}/${this.state.track[0].id}`)
+        console.log("Track Chosen : ", this.state.track)        
+        fetch(`/song/${this.state.userID}/${this.state.track[1].artist}/${this.state.track[2].album}/${this.state.track[3].title}/${this.state.track[0].id}`)
             //.then(res => res.json()) 
       }
       

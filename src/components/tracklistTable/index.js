@@ -6,13 +6,16 @@ class TrackListTable extends Component {
 constructor(props) {
         super(props);
         this.state = {            
-            tracklisting : [this.props.tracklisting]            
+            tracklisting : [this.props.tracklisting],  
+            trackAnalytics: [this.props.trackAnalytics]          
         }
     }      
 
-    render() {  
-        //console.log("tracklisting state is : ", this.props.tracklisting)
-        return (        
+    render() {   
+        console.log("Track Analysis : ", this.props.trackAnalytics)
+        
+        return (   
+            
         <Table celled color='yellow'>
             <Table.Header>
                 <Table.Row textAlign='center'>                                    
@@ -40,9 +43,9 @@ constructor(props) {
                             /> BPM / Tempo
                     </Table.HeaderCell>
                 </Table.Row>
-            </Table.Header> 
+            </Table.Header>             
                  
-            {this.props.tracklisting[0]?.tracklist?.map((song) => {                
+            {this.props.tracklisting[0]?.tracklist?.map((song,index) =>  {                                
                 return (                       
                     <Table.Body>     
                         <Table.Row key={song?.position} textAlign='center'>                        
@@ -66,7 +69,85 @@ constructor(props) {
                             </Table.Cell>                        
                             <Table.Cell>{song?.title}</Table.Cell> 
                             <Table.Cell>{song?.duration}</Table.Cell>
-                            { !Array.isArray(song?.BPM) ? 
+
+                            { this.props.trackAnalytics[0][index].length > 0  ? 
+                             [Array.isArray(song?.artists) ?  song?.artists?.map((artiste,i) => (
+                                i<1 ? 
+                                <Table.Cell>
+                                    <List>
+                                        <List.Item key={artiste?.id}>
+                                            <SongSelection releaseID={this.props.releaseID} releaseTitle={this.props.tracklisting[0]?.title} song={song?.title} artistName={artiste?.name} trackNumber={song?.position} />                                           
+                                        </List.Item>
+                                    </List>
+                                </Table.Cell> : <p></p>
+                                    )) :  
+                                    <Table.Cell>
+                                        <List> 
+                                            <List.Item key={song?.id}>
+                                            <List.Content>
+                                                <SongSelection releaseID={this.props.releaseID} releaseTitle={this.props.tracklisting[0]?.title}  song={song?.title} artistName={this.props.artist} trackNumber={song?.position}/>                                                
+                                            </List.Content>
+                                            </List.Item>  
+                                        </List>    
+                                    </Table.Cell>  
+                             ]:    
+                                 <Table.Cell>
+                                        <List> 
+                                            <List.Item key={index}>                                              
+                                                {                                                   
+                                                  this.props.trackAnalytics[0][index]?.users?.includes(this.props.userID) || this.props.trackAnalytics[0][index]?.users[0] === '***ALL***' ?                                                     
+                                               [ 
+                                                   this.props.trackAnalytics[0][index]?.users[0] === '***ALL***' ? 
+                                                    <List.Content>
+                                                        <List.Icon name='music' size='large' color='green' />                                                
+                                                            <Header as='h2' content={this.props.trackAnalytics[0][index]?.BPM} />
+                                                        </List.Content>
+                                                            :  
+                                                        <List.Content>
+                                                        <List.Icon name='music' size='large' color='yellow' /> 
+                                                        <Header as='h2' content={this.props.trackAnalytics[0][index]?.BPM} />
+                                                        <Button 
+                                                            content='Edit BPM'
+                                                            color='yellow' />  
+                                                    </List.Content> 
+                                                ] :
+                                                [
+                                                    Array.isArray(song?.artists) ?  song?.artists?.map((artiste,i) => (
+                                                        i<1 ? 
+                                                    
+                                                        <List>
+                                                            <List.Item key={artiste?.id}>
+                                                                <SongSelection releaseID={this.props.releaseID} releaseTitle={this.props.tracklisting[0]?.title} song={song?.title} artistName={artiste?.name} trackNumber={song?.position} />                                           
+                                                            </List.Item>
+                                                        </List>
+                                                    : <p></p>
+                                                        )) :  
+                                                       
+                                                            <List> 
+                                                                <List.Item key={song?.id}>
+                                                                <List.Content>
+                                                                    <SongSelection releaseID={this.props.releaseID} releaseTitle={this.props.tracklisting[0]?.title}  song={song?.title} artistName={this.props.artist} trackNumber={song?.position}/>                                                
+                                                                </List.Content>
+                                                                </List.Item>  
+                                                            </List>
+                                                 ]
+                                                }                              
+                                           </List.Item>
+                                        </List>    
+                                    </Table.Cell>   
+                                } 
+                            </Table.Row>    
+                        </Table.Body>                                      
+                    )})  
+            }  
+        </Table>                    
+        );
+    }}   
+    
+export default TrackListTable;
+
+/*
+{ !Array.isArray(song?.BPM) ? 
                              [Array.isArray(song?.artists) ?  song?.artists?.map((artiste,i) => (
                                 i<1 ? 
                                 <Table.Cell>
@@ -114,13 +195,5 @@ constructor(props) {
                                                                                
                                            </List.Item>
                                         </List>    
-                                    </Table.Cell>   }                         
-                        </Table.Row>    
-                    </Table.Body>            
-                )}                
-            )}      
-        </Table>                    
-        );
-    }}   
-    
-export default TrackListTable;
+                                    </Table.Cell>   }   
+*/
