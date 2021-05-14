@@ -25,6 +25,16 @@ const LoadingTracklistingIndicator = props => {
 export default class ListingAccordion extends Component {
   state = { activeIndex: 0, tracklisting: [], trackAnalytics: [],  isLoading:true, getAnalysis:true  }   
   
+  constructor(props) {
+    super(props)
+
+    this.handler = this.handler.bind(this)
+  }
+
+  handler() {
+    this.setState({ trackAnalytics: [this.state.refreshAnalytics]})
+  }
+
 
   handleClick = (e, titleProps) => {
     const { index } = titleProps
@@ -59,7 +69,14 @@ export default class ListingAccordion extends Component {
         </Accordion.Title>
         <Accordion.Content active={activeIndex === 1}>       
             <LoadingTracklistingIndicator />
-            <TracklistTable releaseID={this.props.release} tracklisting = {[this.state.tracklisting]} trackAnalytics = {[this.state.trackAnalytics]} artist={this.props.artist} userID={this.props.user_id}/>
+            <TracklistTable 
+              releaseID={this.props.release} 
+              tracklisting = {[this.state.tracklisting]} 
+              trackAnalytics = {[this.state.trackAnalytics]} 
+              artist={this.props.artist} 
+              userID={this.props.user_id}
+              handler={this.handler}
+              />
         </Accordion.Content>
       </Accordion>
     )

@@ -108,7 +108,6 @@ constructor(props) {
 
                                                         <Header as='h2' content={this.props.trackAnalytics[0][index]?.BPM} />
 
-                                                        <Header as='h3' content={this.props.trackAnalytics[0][index]?._id} />
                                                         
                                                         {
                                                             Array.isArray(song?.artists) ? song?.artists?.map((artiste,i) => (
@@ -123,6 +122,7 @@ constructor(props) {
                                                                             color='yellow'
                                                                             content='Edit BPM' 
                                                                             icon='edit'
+                                                                            handler={this.props.handler} 
                                                                             />                                           
                                                                     </List.Item>                                                               
                                                             : <p></p>
@@ -137,6 +137,7 @@ constructor(props) {
                                                                             color='yellow'
                                                                             content='Edit BPM' 
                                                                             icon='edit'
+                                                                            handler={this.props.handler} 
                                                                             />     
                                                                     </List.Item>                                                                    
                                                         }
@@ -157,6 +158,7 @@ constructor(props) {
                                                                     color='green'
                                                                     content='Get BPM' 
                                                                     icon='plus'
+                                                                    handler={this.props.handler} 
                                                                     />                                           
                                                             </List.Item>
                                                         </List>
@@ -174,7 +176,8 @@ constructor(props) {
                                                                         trackNumber={song?.position}
                                                                         color='green'
                                                                         content='Get BPM'
-                                                                        icon='plus' 
+                                                                        icon='plus'
+                                                                        handler={this.props.handler}  
                                                                         />                                                
                                                                 </List.Content>
                                                                 </List.Item>  
