@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import { Button, Image, Header, Modal,Dimmer } from 'semantic-ui-react'
-import ChooseTrack from '../chooseSong'
+import ChooseTrack from '../chooseTrack'
 import SpotifyLogo from '../../images/Spotify_Icon_RGB_Green.png'
 import { trackPromise, usePromiseTracker } from "react-promise-tracker";
 import Loader from 'react-loader-spinner';
+import { CollectionContext } from '../../contexts/collectionContext'
 
 const LoadingSongSelectionIndicator = props => {
   const { promiseInProgress } = usePromiseTracker();
@@ -21,20 +22,28 @@ class SongSelection extends Component{
         this.state = {            
             songs : [] ,   
             showModal: false,
-            isLoading:true,
-
+            isLoading: true,
+            userID: "",
+            track_id: ""            
         }
-    }   
-    
-    handleClick = (e) => {    
+    }
 
-      //console.log("Song sent to Spotify to Search:", this.props.song);
-      //console.log("Artist sent to Spotify to Search:", this.props.artistName);
-  
-      trackPromise(fetch(`/song/${this.props.artistName}/${this.props.releaseTitle}/${this.props.song}`)
+    modalHandler() {
+      this.setState({ showModal: false })
+    }
+
+    
+    static contextType  = CollectionContext
+
+    componentDidMount() {
+      const collectn = this.context     
+      this.setState({userID: collectn.userID})
+    }
+    
+    handleClick = (e) => { 
+      trackPromise(fetch(`/songSearch/${this.state.userID}/${this.props.releaseID}/${this.props.artistName}/${this.props.releaseTitle}/${this.props.song}`)
           .then(res => res.json())   
-          .then(songs => this.setState({songs, isLoading:false})))
-             
+          .then(songs => this.setState({songs, isLoading:false})))             
     }
     
     handleChangeForms = (e, { value }) => {
@@ -46,30 +55,32 @@ class SongSelection extends Component{
       this.closeModal();
     }
   
-    closeModal = () => {      
+    closeModal = async () => {      
+      await fetch(`/songSearch/${this.state.userID}/deleteTracks`)
+      .then(res => res.json())
       this.setState({ showModal: false })
     }
-  
-  
-render(){     
+    
+  render(){     
     const{ showModal } = this.state     
        
-if(this.props.trackNumber !== "")
-{
+  if(this.props.trackNumber !== "")
+  {
     return (      
       <Modal 
-      closeIcon 
+       
       onClose={this.closeModal} 
       open={showModal} 
+      closeOnDimmerClick={false}
       centered
       style={{paddingLeft: '50px'}}
       size='fullscreen'
       trigger={
         <Button 
-          positive
-          onClick={() => (this.setState({ showModal: true }, this.handleClick))}
-            icon='plus'
-            content='Get BPM'
+          color={this.props.color}
+          onClick={() => (this.setState({ showModal: true },this.handleClick))}
+            icon={this.props.icon}
+            content={this.props.content}
            />}
       >
         <LoadingSongSelectionIndicator />
@@ -80,7 +91,17 @@ if(this.props.trackNumber !== "")
           <Modal.Content image scrolling>
             <Image size='small' src={SpotifyLogo} wrapped />
             <Modal.Description>  
-              <ChooseTrack songs={this.state.songs}/>
+
+              <ChooseTrack 
+                handler={this.props.handler} 
+                songs={this.state.songs} 
+                artistName={this.props.artistName} 
+                song={this.props.song} 
+                analysisID={this.props.analysisID}
+                releaseID={this.props.releaseID} 
+                closeModal={this.closeModal}
+                />
+
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
@@ -90,6 +111,7 @@ if(this.props.trackNumber !== "")
             content='Rewind'
             labelPosition='left'
             icon='x'
+            size='big'
             />           
           </Modal.Actions>
         </Modal>
@@ -97,9 +119,7 @@ if(this.props.trackNumber !== "")
       else 
       {
         return null;
-
-      }}
-        
+      }}       
               
 }
 

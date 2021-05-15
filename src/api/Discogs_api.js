@@ -9,9 +9,11 @@ export const getCollection = (pgNumber, userName) => {
     .then(res => res.json())
 };
 
-export const getPages = () => {
-  return fetch('/user/pages')
-    .then(res => res.json())
+export const getPages = (userName) => {
+  //console.log("getPages for :", userName);
+  return fetch(`/user/pagination/${userName}`)
+    .then(      
+      res => res.json())
 };
 
 export const checkName =(name) => {
@@ -19,3 +21,9 @@ export const checkName =(name) => {
   .then(res => res.json())
 }
 
+export const changeMetaDataName = (userID, newName) => 
+{
+  //console.log(`Fetching : /auth0/change_metadata/${userID}/${newName}`)
+  return fetch(`/auth0/change_metadata/${userID}/${newName}`)
+  .then(res=> res.json())
+}

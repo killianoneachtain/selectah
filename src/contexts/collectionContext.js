@@ -59,8 +59,12 @@ const CollectionContextProvider = (props) => {
   const [state, dispatch] = useReducer(reducer, { collection: [] }); 
   const [ pageNumber, setPageNumber] = useState(1);  
 
+  const [accessToken, setAccessToken] = useState("");
+
+  const [userSub, setUserSub] = useState("");
   const [userName, setUserName] = useState("undefined");
-  const [userId, setUserId ] = useState(0);
+  const [userID, setuserID ] = useState(0);
+
 
   const [pages, setPages] = useState([ {
     page: 1,
@@ -74,9 +78,11 @@ const CollectionContextProvider = (props) => {
     }]);
 
   useEffect(() => {    
-    trackPromise(getCollection(pageNumber, userName).then((collection) => {
-      dispatch({ type: "load-collection", payload: { collection } });
-    }));       
+    trackPromise(getCollection(pageNumber, userName)
+      .then((collection) => {
+        dispatch({ type: "load-collection", payload: { collection } });
+          }));
+    
   }, [pageNumber, userName]);
 
   return (
@@ -90,8 +96,12 @@ const CollectionContextProvider = (props) => {
         setPages,   
         userName: userName,
         setUserName,
-        userId: userId,
-        setUserId 
+        userID: userID,
+        setuserID,
+        userSub: userSub,
+        setUserSub,
+        accessToken: accessToken,
+        setAccessToken 
       }}
     >
       {props.children}

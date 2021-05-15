@@ -3,13 +3,12 @@ import records from "../../../src/images/recordspines_copy.png"
 import {  Table, Segment, Image, Header, Icon } from 'semantic-ui-react'
 import PaginationCollection from '../pagination'
 import ListingAccordion from '../trackListing'
-import { CollectionContext} from '../../contexts/collectionContext'
+import { CollectionContext } from '../../contexts/collectionContext'
 import '../collectionList'
 
-const CollectionTable = ({collection, pages,action}) => {   
-
+const CollectionTable = ({collection, pages,action}) => { 
     
-    const thisCollection = useContext(CollectionContext);    
+    const Collection = useContext(CollectionContext);  
     
     return (
         <Segment style={{ backgroundImage: `url("${records}")`}} > 
@@ -63,9 +62,9 @@ const CollectionTable = ({collection, pages,action}) => {
                         <Table.Cell>{item?.basic_information?.genres?.join(", ")}</Table.Cell>  
                         <Table.Cell>{item?.basic_information?.styles?.join(", ")}</Table.Cell> 
                     </Table.Row>                            
-                    <Table.Row key={item?.id} textAlign='center'>
+                    <Table.Row key={item.id} textAlign='center'>
                         <Table.HeaderCell colSpan='8'>
-                            <ListingAccordion release={item.id} artist={item?.basic_information?.artists[0]?.name} user_id={thisCollection.userId}/>
+                            <ListingAccordion release={item.id} artist={item?.basic_information?.artists[0]?.name} user_id={Collection.userID}/>
                         </Table.HeaderCell>  
                     </Table.Row>        
                 </Table.Body>  

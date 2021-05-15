@@ -1,46 +1,74 @@
-import React, { useContext, useState } from 'react'
+import React,  { useContext, useState } from 'react'
 import { CollectionContext} from '../../contexts/collectionContext'
 import { Form } from 'semantic-ui-react'
-import { checkName } from '../../api/Discogs_api'
+import { checkName, changeMetaDataName } from '../../api/Discogs_api'
+//import { useAuth0 } from '../../../node_modules/@auth0/auth0-react'
 
-const CheckName = ({currentName}) => {
-    
-    const collection = useContext(CollectionContext);
+const CheckName = ({modalState}) => {    
+   
+    const collection = useContext(CollectionContext)
      
-   const [name, setName] = useState("");
-   //const [submittedName, setSubmittedName] = useState("");
-   const [ Exists, setExists ]  = useState(false);
+    const [name, setName] = useState("")
+    const [submittedName, setSubmittedName] = useState("")
+    
+    const [ Exists, setExists ]  = useState(false)    
 
-  const handleSubmit = async (e, {name, value}) =>  {     
+    const  handleChange = (e, { name, value }) => setName(value);
 
-        console.log(`Check the Name :::: ${name}`)
-        setName(name);    
-        let result = await checkName(name);
-        if(result.message !== 'User does not exist or may have been deleted.')
-            setExists(true)
+    const editUserMetadata = async (collection) => { 
+      const userID = await collection.userSub      
+      const newName = submittedName
 
-        console.log(`Exists :::: ${Exists}`)      
+      var response = await changeMetaDataName(userID, newName)
+      console.log("Response from 9000 : ", response)
+      
+      }      
 
+    const handleSubmit = async () =>  {     
+        
+        setSubmittedName(name);    
+        let result = await checkName(submittedName);        
 
-        console.log("Current Discogs Name : ", collection.userName)
+        if(result.id !== null)
+        {
+            await setExists(prevExists => !prevExists);
+            console.log(`Exists :::: ${Exists}`)
+            
+                let collect = result?.num_collection;
+                
+                if(collect >= 0)
+                {
+                   //Write the New submittedName to the metadata of the current user  
+                    try{
+                        editUserMetadata(collection)
+                    }  catch(err){console.log(err)}        
+
+                    collection.setUserName(submittedName)
+                    //console.log("Current Discogs Name : ", collection.userName) 
+                }
+                else
+                {    }                        
+                       
+        }
+        else { console.log(result.message)}
+        //console.log("Current Discogs Name : ", collection.userName) 
         //collection.setPageNumber(activePage)
-  }   
+    }   
       
     return (
         <Form onSubmit={handleSubmit}>      
-            <Form.Input 
+            <Form.Input required
                 style={{paddingTop:'5px'}} 
-                fluid 
-                icon='users'         
-                size='large' 
-                iconPosition='huge' 
+                fluid                      
+                size='large'
                 name='name'
-                value={name}
-                placeholder='Search Discogs Usernames...' /> 
-
-            <Form.Button content='Submit' />         
-        </Form>            
-          
+                action='Submit'
+                value={name}                
+                min={2}
+                max={30}
+                placeholder='Search Discogs Usernames...'
+                onChange={handleChange} />                  
+        </Form>  
     )
   
 }

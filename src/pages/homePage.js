@@ -3,29 +3,20 @@ import PageTemplate from '../components/templateCollectionPage'
 import {CollectionContext} from '../contexts/collectionContext'
 import { Segment, Image } from 'semantic-ui-react'
 import selectahLogo from "../images/selLogo_trip_space.png"
+import { getPages} from '../api/Discogs_api'
 
 const CollectionListPage = () => {
   const context = useContext(CollectionContext);
 
-  const [data,setPages]=useState([]);
-
-  const getData=()=>{
-    fetch('/user/pages',{      headers : { 
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-       }
-    })   
-    .then(function(response){
-      
-      return response.json();
-    })
-      .then(function(myJson) {       
-        setPages(myJson)
-      });
+  const [data,setData]  = useState([])
+  const getData= async (userName)=>{
+   
+    const response = await getPages(userName)    
+    setData(response)    
   }
   useEffect(()=>{
-    getData()
-  },[])  
+    getData(context.userName)
+  },[context])  
 
   return (
     <Segment>
@@ -34,8 +25,7 @@ const CollectionListPage = () => {
           title='My Collection'
           collection={context.collection}
           pages={data} 
-        /> 
-        
+        />         
       </Segment> 
   );
 };
