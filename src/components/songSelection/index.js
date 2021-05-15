@@ -92,13 +92,13 @@ class SongSelection extends Component{
             <Image size='small' src={SpotifyLogo} wrapped />
             <Modal.Description>  
 
-              <ChooseTrack 
-                handler={this.props.handler} 
+              <ChooseTrack                 
                 songs={this.state.songs} 
                 artistName={this.props.artistName} 
                 song={this.props.song} 
                 analysisID={this.props.analysisID}
                 releaseID={this.props.releaseID} 
+                updateAnalytics={this.props.updateAnalytics} 
                 closeModal={this.closeModal}
                 />
 

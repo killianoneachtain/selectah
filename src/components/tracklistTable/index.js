@@ -12,7 +12,7 @@ constructor(props) {
     }      
 
     render() {   
-        //console.log("Track Analysis : ", this.props.trackAnalytics)
+        console.log("Track Analysis in tracklistTable : ", this.props.trackAnalytics)
         
         return (   
             
@@ -76,7 +76,11 @@ constructor(props) {
                                 <Table.Cell>
                                     <List>
                                         <List.Item key={artiste?.id}>
-                                            <SongSelection releaseID={this.props.releaseID} releaseTitle={this.props.tracklisting[0]?.title} song={song?.title} artistName={artiste?.name} trackNumber={song?.position} />                                           
+                                            <SongSelection 
+                                                releaseID={this.props.releaseID} 
+                                                releaseTitle={this.props.tracklisting[0]?.title} 
+                                                song={song?.title} artistName={artiste?.name} 
+                                                trackNumber={song?.position} />                                           
                                         </List.Item>
                                     </List>
                                 </Table.Cell> : <p></p>
@@ -85,7 +89,12 @@ constructor(props) {
                                         <List> 
                                             <List.Item key={song?.id}>
                                             <List.Content>
-                                                <SongSelection releaseID={this.props.releaseID} releaseTitle={this.props.tracklisting[0]?.title}  song={song?.title} artistName={this.props.artist} trackNumber={song?.position}/>                                                
+                                                <SongSelection 
+                                                    releaseID={this.props.releaseID} 
+                                                    releaseTitle={this.props.tracklisting[0]?.title}  
+                                                    song={song?.title} 
+                                                    artistName={this.props.artist} 
+                                                    trackNumber={song?.position}/>                                                
                                             </List.Content>
                                             </List.Item>  
                                         </List>    
@@ -122,7 +131,7 @@ constructor(props) {
                                                                             color='yellow'
                                                                             content='Edit BPM' 
                                                                             icon='edit'
-                                                                            handler={this.props.handler} 
+                                                                            updateAnalytics={this.props.updateAnalytics} 
                                                                             />                                           
                                                                     </List.Item>                                                               
                                                             : <p></p>
@@ -137,7 +146,7 @@ constructor(props) {
                                                                             color='yellow'
                                                                             content='Edit BPM' 
                                                                             icon='edit'
-                                                                            handler={this.props.handler} 
+                                                                            updateAnalytics={this.props.updateAnalytics} 
                                                                             />     
                                                                     </List.Item>                                                                    
                                                         }
@@ -158,7 +167,7 @@ constructor(props) {
                                                                     color='green'
                                                                     content='Get BPM' 
                                                                     icon='plus'
-                                                                    handler={this.props.handler} 
+                                                                    updateAnalytics={this.props.updateAnalytics} 
                                                                     />                                           
                                                             </List.Item>
                                                         </List>
@@ -177,7 +186,7 @@ constructor(props) {
                                                                         color='green'
                                                                         content='Get BPM'
                                                                         icon='plus'
-                                                                        handler={this.props.handler}  
+                                                                        updateAnalytics={this.props.updateAnalytics}  
                                                                         />                                                
                                                                 </List.Content>
                                                                 </List.Item>  
