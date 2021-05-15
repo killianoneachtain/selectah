@@ -36,7 +36,7 @@ class ChooseTrack extends Component{
             .then(res => res.json())   
             .then(refreshAnalytics => this.setState({refreshAnalytics}))           
             .then(this.props.handler)
-            .then(this.props.modalHandler)
+            .then(this.props.closeModal)
         }   
 
       }

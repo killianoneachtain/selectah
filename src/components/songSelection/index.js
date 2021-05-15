@@ -99,7 +99,7 @@ class SongSelection extends Component{
                 song={this.props.song} 
                 analysisID={this.props.analysisID}
                 releaseID={this.props.releaseID} 
-                modalHanlder={this.modalHandler}
+                closeModal={this.closeModal}
                 />
 
             </Modal.Description>
