@@ -9,7 +9,9 @@ class ChooseTrack extends Component{
         this.state = {            
             songs : [this.props.songs],
             track : [],
-            userID: ""           
+            userID: "",
+            success: [{ Success: false }] ,   
+            refreshAnalytics: []        
         }
     }
     
@@ -18,16 +20,31 @@ class ChooseTrack extends Component{
       const collectn = this.context     
       this.setState({userID: collectn.userID})
     }
-
     
-    handleClick = (e) => {   
-        console.log("Track Chosen : ", this.state.track)        
-        fetch(`/song/${this.state.userID}/${this.state.track[1].artist}/${this.state.track[2].album}/${this.state.track[3].title}/${this.state.track[0].id}`)
-            //.then(res => res.json()) 
+    handleClick = async (e) => {   
+        //console.log("Track Chosen : ", this.state.track)        
+        await fetch(`/song/${this.state.userID}/${this.state.track[1].artist}/${this.state.track[2].album}/${this.state.track[3].title}/${this.state.track[0].id}/${this.props.analysisID}`)
+            .then(res => res.json()) 
+            .then(success => this.setState({success}))
+            console.log("here trying to refresh analysis : ", this.state.success)
+            console.log("here trying to refresh analysis : ", this.state.success.Success)
+            
+        if(this.state.success.Success === true)
+        { 
+            console.log("here trying to refresh analysis : ", this.state.success)
+            await fetch(`/user/release/trackAnalysis/${this.props.releaseID}`)
+            .then(res => res.json())   
+            .then(refreshAnalytics => this.setState({refreshAnalytics}))           
+            .then(this.props.handler)
+            .then(this.props.closeModal)
+        }   
+
       }
       
   
-render(){     
+render(){
+    console.log("Success is :", this.state.success)     
+    console.log("trackAnalyses is :", this.state.refreshAnalytics)  
     return ( 
         <Segment> 
                         

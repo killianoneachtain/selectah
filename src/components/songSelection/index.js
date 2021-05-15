@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { Button, Image, Header, Modal,Dimmer } from 'semantic-ui-react'
-import ChooseTrack from '../chooseSong'
+import ChooseTrack from '../chooseTrack'
 import SpotifyLogo from '../../images/Spotify_Icon_RGB_Green.png'
 import { trackPromise, usePromiseTracker } from "react-promise-tracker";
 import Loader from 'react-loader-spinner';
@@ -27,6 +27,11 @@ class SongSelection extends Component{
             track_id: ""            
         }
     }
+
+    modalHandler() {
+      this.setState({ showModal: false })
+    }
+
     
     static contextType  = CollectionContext
 
@@ -50,8 +55,8 @@ class SongSelection extends Component{
       this.closeModal();
     }
   
-    closeModal = () => {      
-      fetch(`/songSearch/${this.state.userID}/deleteTracks`)
+    closeModal = async () => {      
+      await fetch(`/songSearch/${this.state.userID}/deleteTracks`)
       .then(res => res.json())
       this.setState({ showModal: false })
     }
@@ -72,10 +77,10 @@ class SongSelection extends Component{
       size='fullscreen'
       trigger={
         <Button 
-          positive
+          color={this.props.color}
           onClick={() => (this.setState({ showModal: true },this.handleClick))}
-            icon='plus'
-            content='Get BPM'
+            icon={this.props.icon}
+            content={this.props.content}
            />}
       >
         <LoadingSongSelectionIndicator />
@@ -86,7 +91,17 @@ class SongSelection extends Component{
           <Modal.Content image scrolling>
             <Image size='small' src={SpotifyLogo} wrapped />
             <Modal.Description>  
-              <ChooseTrack songs={this.state.songs} artistName={this.props.artistName} song={this.props.song}/>
+
+              <ChooseTrack 
+                handler={this.props.handler} 
+                songs={this.state.songs} 
+                artistName={this.props.artistName} 
+                song={this.props.song} 
+                analysisID={this.props.analysisID}
+                releaseID={this.props.releaseID} 
+                closeModal={this.closeModal}
+                />
+
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>

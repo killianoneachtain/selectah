@@ -12,7 +12,7 @@ constructor(props) {
     }      
 
     render() {   
-        console.log("Track Analysis : ", this.props.trackAnalytics)
+        //console.log("Track Analysis : ", this.props.trackAnalytics)
         
         return (   
             
@@ -70,7 +70,7 @@ constructor(props) {
                             <Table.Cell>{song?.title}</Table.Cell> 
                             <Table.Cell>{song?.duration}</Table.Cell>
 
-                            { this.props.trackAnalytics[0][index].length > 0  ? 
+                            { Array.isArray(this.props.trackAnalytics[0][index])  ? 
                              [Array.isArray(song?.artists) ?  song?.artists?.map((artiste,i) => (
                                 i<1 ? 
                                 <Table.Cell>
@@ -100,33 +100,85 @@ constructor(props) {
                                                    this.props.trackAnalytics[0][index]?.users[0] === '***ALL***' ? 
                                                     <List.Content>
                                                         <List.Icon name='music' size='large' color='green' />                                                
-                                                            <Header as='h2' content={this.props.trackAnalytics[0][index]?.BPM} />
+                                                            <Header as='h2' content={this.props.trackAnalytics[0][index]?.BPM} />                                                            
                                                         </List.Content>
                                                             :  
                                                         <List.Content>
                                                         <List.Icon name='music' size='large' color='yellow' /> 
+
                                                         <Header as='h2' content={this.props.trackAnalytics[0][index]?.BPM} />
-                                                        <Button 
-                                                            content='Edit BPM'
-                                                            color='yellow' />  
+
+                                                        
+                                                        {
+                                                            Array.isArray(song?.artists) ? song?.artists?.map((artiste,i) => (
+                                                                i<1 ? 
+                                                                    <List.Item key={artiste?.id}>                                                           
+                                                                        <SongSelection 
+                                                                            analysisID={this.props.trackAnalytics[0][index]?._id} 
+                                                                            releaseID={this.props.releaseID} 
+                                                                            releaseTitle={this.props.tracklisting[0]?.title} 
+                                                                            song={song?.title} artistName={artiste?.name} 
+                                                                            trackNumber={song?.position}
+                                                                            color='yellow'
+                                                                            content='Edit BPM' 
+                                                                            icon='edit'
+                                                                            handler={this.props.handler} 
+                                                                            />                                           
+                                                                    </List.Item>                                                               
+                                                            : <p></p>
+                                                                )) :
+                                                                    <List.Item key={song?.id}>
+                                                                        <SongSelection 
+                                                                            analysisID={this.props.trackAnalytics[0][index]?._id}
+                                                                            releaseID={this.props.releaseID} 
+                                                                            releaseTitle={this.props.tracklisting[0]?.title}  
+                                                                            song={song?.title} artistName={this.props.artist} 
+                                                                            trackNumber={song?.position}
+                                                                            color='yellow'
+                                                                            content='Edit BPM' 
+                                                                            icon='edit'
+                                                                            handler={this.props.handler} 
+                                                                            />     
+                                                                    </List.Item>                                                                    
+                                                        }
                                                     </List.Content> 
                                                 ] :
                                                 [
-                                                    Array.isArray(song?.artists) ?  song?.artists?.map((artiste,i) => (
+                                                    Array.isArray(song?.artists) ? song?.artists?.map((artiste,i) => (
                                                         i<1 ? 
                                                     
                                                         <List>
-                                                            <List.Item key={artiste?.id}>
-                                                                <SongSelection releaseID={this.props.releaseID} releaseTitle={this.props.tracklisting[0]?.title} song={song?.title} artistName={artiste?.name} trackNumber={song?.position} />                                           
+                                                            <List.Item key={artiste?.id}>                                                           
+                                                                <SongSelection 
+                                                                    analysisID={this.props.trackAnalytics[0][index]?._id} 
+                                                                    releaseID={this.props.releaseID} 
+                                                                    releaseTitle={this.props.tracklisting[0]?.title} 
+                                                                    song={song?.title} artistName={artiste?.name} 
+                                                                    trackNumber={song?.position} 
+                                                                    color='green'
+                                                                    content='Get BPM' 
+                                                                    icon='plus'
+                                                                    handler={this.props.handler} 
+                                                                    />                                           
                                                             </List.Item>
                                                         </List>
                                                     : <p></p>
-                                                        )) :  
-                                                       
+                                                        )) :                                                         
                                                             <List> 
                                                                 <List.Item key={song?.id}>
                                                                 <List.Content>
-                                                                    <SongSelection releaseID={this.props.releaseID} releaseTitle={this.props.tracklisting[0]?.title}  song={song?.title} artistName={this.props.artist} trackNumber={song?.position}/>                                                
+                                                                
+                                                                    <SongSelection 
+                                                                        analysisID={this.props.trackAnalytics[0][index]?._id}
+                                                                        releaseID={this.props.releaseID} 
+                                                                        releaseTitle={this.props.tracklisting[0]?.title}  
+                                                                        song={song?.title} artistName={this.props.artist} 
+                                                                        trackNumber={song?.position}
+                                                                        color='green'
+                                                                        content='Get BPM'
+                                                                        icon='plus'
+                                                                        handler={this.props.handler}  
+                                                                        />                                                
                                                                 </List.Content>
                                                                 </List.Item>  
                                                             </List>

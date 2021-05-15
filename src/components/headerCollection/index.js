@@ -3,12 +3,13 @@ import { useAuth0 } from '../../../node_modules/@auth0/auth0-react'
 import { CollectionContext} from '../../contexts/collectionContext'
 import NavBar from '../navBar'
 
-const HeaderCollection = ({ title, numCollection }) => {  
+const HeaderCollection = ({  numCollection }) => {  
+  const collection = useContext(CollectionContext);   
   const { user, isAuthenticated, getAccessTokenSilently } =  useAuth0()
   const [userMetadata, setUserMetadata] = useState([]) 
   const [access, setAccess] =useState("")
 
-  const collection = useContext(CollectionContext);   
+  
 
   useEffect(() => {
     const getUserMetadata = async () => {
