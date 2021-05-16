@@ -14,13 +14,12 @@ const Footer = () => {
   const context = useContext(CollectionContext)
 
   const [data,setData]  = useState([])
-  const getData= async (userName)=>{
-   
-    const response = await getPages(userName)    
+  const getData= async (userName, perPage, orderBy)=>{   
+    const response = await getPages(userName,perPage,orderBy)    
     setData(response)    
   }
   useEffect(()=>{
-    getData(context.userName)
+    getData(context.userName, context.perPage, context.orderBy)
   },[context])  
 
 return (

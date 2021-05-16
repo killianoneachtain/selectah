@@ -11,10 +11,8 @@ constructor(props) {
         }
     }      
 
-    render() {   
-        console.log("Track Analysis in tracklistTable : ", this.props.trackAnalytics)
-        
-        return (   
+    render() { 
+        return (  
             
         <Table celled color='yellow'>
             <Table.Header>

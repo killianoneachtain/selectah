@@ -4,9 +4,9 @@ import { Pagination } from 'semantic-ui-react'
 
 const PaginationCollection = ({pageData, use}) => {
     
-    const collection = useContext(CollectionContext);
+  const collection = useContext(CollectionContext);
      
-    const [activePage, setActivePage] = useState(collection.pageNumber);    
+  const [activePage, setActivePage] = useState(collection.pageNumber);    
 
   const handlePaginationChange = (e, { activePage }) =>  {
     //console.log(`Change Page to :::: ${activePage}`)

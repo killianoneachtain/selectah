@@ -4,6 +4,8 @@ import {  Table, Segment, Image, Icon, Grid } from 'semantic-ui-react'
 import PaginationCollection from '../pagination'
 import ListingAccordion from '../trackListing'
 import { CollectionContext } from '../../contexts/collectionContext'
+import  PerPage from '../perPage'
+import OrderBy from '../orderBy'
 import '../collectionList'
 
 const CollectionTable = ({collection, pages,action}) => { 
@@ -30,10 +32,10 @@ const CollectionTable = ({collection, pages,action}) => {
                             <PaginationCollection pageData={pages} use='top' />
                      </Grid.Column>
                      <Grid.Column width='3'>
-                        PerPage
+                        PerPage <PerPage />
                      </Grid.Column>
                      <Grid.Column width='3'>
-                        Order By
+                        Order By <OrderBy />
                      </Grid.Column>
                 </Grid.Row>    
                 </Grid>              
@@ -96,6 +98,3 @@ const CollectionTable = ({collection, pages,action}) => {
 
 export default CollectionTable;
 
-
-//GET /A%20Tribe%20Called%20Quest/The%20Anthology/I%20Left%20My%20Wallet%20In%20El%20Segundo 200 297.570 ms - 19065
-//GET /A%20Tribe%20Called%20Quest/I%20Left%20My%20Wallet%20In%20El%20Segundo%20/%20Pubic%20Enemy/I%20Left%20My%20Wallet%20In%20El%20Segundo%20(Feature%20Length)

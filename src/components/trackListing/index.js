@@ -38,8 +38,7 @@ export default class ListingAccordion extends Component {
 
 
   updateAnalytics = (NewAnalysis) => {
-    console.log("New Analyis is : ", NewAnalysis)
-    
+   // console.log("New Analyis is : ", NewAnalysis)    
     this.setState({ trackAnalytics: NewAnalysis})
   }
 
@@ -60,10 +59,8 @@ export default class ListingAccordion extends Component {
   }
 
   render() {
-    const { activeIndex } = this.state   
+    const { activeIndex } = this.state       
     
-    console.log("Track analysis at beginning  : ", this.state.trackAnalytics)
-
     return (
       <Accordion fluid styled>       
         <Accordion.Title

@@ -31,7 +31,6 @@ class SongSelection extends Component{
     modalHandler() {
       this.setState({ showModal: false })
     }
-
     
     static contextType  = CollectionContext
 
@@ -41,7 +40,7 @@ class SongSelection extends Component{
     }
     
     handleClick = (e) => { 
-      trackPromise(fetch(`/songSearch/${this.state.userID}/${this.props.releaseID}/${this.props.artistName.replace("/","%2F")}/${this.props.releaseTitle.replace("/","%2F")}/${this.props.song.replace("/","%2F")}`) 
+      trackPromise(fetch(`/songSearch/${this.state.userID}/${this.props.releaseID}/${this.props.artistName.replace("/","%2F")}/${this.props.releaseTitle.replace("/","%2F")}/${this.props.song.replace("/","%2F").replace("'","‘")}`) 
           .then(res => res.json())   
           .then(songs => this.setState({songs, isLoading:false})))             
     }

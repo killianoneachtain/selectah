@@ -44,7 +44,7 @@ class ChooseTrack extends Component{
   
 render(){
        
-    console.log("trackAnalyses after match is :", this.state.trackAnalytics)  
+   // console.log("trackAnalyses after match is :", this.state.trackAnalytics)  
     return ( 
         <Segment> 
                         
