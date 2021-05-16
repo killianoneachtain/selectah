@@ -41,7 +41,7 @@ class SongSelection extends Component{
     }
     
     handleClick = (e) => { 
-      trackPromise(fetch(`/songSearch/${this.state.userID}/${this.props.releaseID}/${this.props.artistName}/${this.props.releaseTitle}/${this.props.song}`)
+      trackPromise(fetch(`/songSearch/${this.state.userID}/${this.props.releaseID}/${this.props.artistName.replace("/","%2F")}/${this.props.releaseTitle.replace("/","%2F")}/${this.props.song.replace("/","%2F")}`) 
           .then(res => res.json())   
           .then(songs => this.setState({songs, isLoading:false})))             
     }

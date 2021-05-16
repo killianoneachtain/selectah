@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import records from "../../../src/images/recordspines_copy.png"
-import {  Table, Segment, Image, Header, Icon } from 'semantic-ui-react'
+import {  Table, Segment, Image, Icon, Grid } from 'semantic-ui-react'
 import PaginationCollection from '../pagination'
 import ListingAccordion from '../trackListing'
 import { CollectionContext } from '../../contexts/collectionContext'
@@ -12,13 +12,33 @@ const CollectionTable = ({collection, pages,action}) => {
     
     return (
         <Segment style={{ backgroundImage: `url("${records}")`}} > 
-        
-            <Header as='h1'>   
-                    Current Collection : {pages.items} Releases  
-                <Segment>
-                    <PaginationCollection pageData={pages} use='top' />
-                </Segment>                        
-            </Header>  
+            <Grid columns={16} divided>
+                <Grid.Row>
+                    <Grid.Column width={3}>    
+                                  
+                            {Collection.userName} :  
+                            {pages.items} Releases 
+                          
+                    </Grid.Column>
+                    <Grid.Column 
+                        width={6}
+                        stackable
+                        inverted   
+                        style={{ backgroundImage: `url("${records}")`, opacity: 1.2}}         
+                        color="grey"
+                        borderless >                  
+                            <PaginationCollection pageData={pages} use='top' />
+                     </Grid.Column>
+                     <Grid.Column width='3'>
+                        PerPage
+                     </Grid.Column>
+                     <Grid.Column width='3'>
+                        Order By
+                     </Grid.Column>
+                </Grid.Row>    
+                </Grid>              
+       
+          
 
             <Table 
                 stackable 
@@ -76,3 +96,6 @@ const CollectionTable = ({collection, pages,action}) => {
 
 export default CollectionTable;
 
+
+//GET /A%20Tribe%20Called%20Quest/The%20Anthology/I%20Left%20My%20Wallet%20In%20El%20Segundo 200 297.570 ms - 19065
+//GET /A%20Tribe%20Called%20Quest/I%20Left%20My%20Wallet%20In%20El%20Segundo%20/%20Pubic%20Enemy/I%20Left%20My%20Wallet%20In%20El%20Segundo%20(Feature%20Length)

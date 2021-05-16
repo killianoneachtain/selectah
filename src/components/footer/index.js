@@ -5,7 +5,7 @@ import selectahLogo from '../../images/sel2_logo_tp.png'
 import { getPages} from '../../api/Discogs_api'
 import discogsLogo from "../../../src/images/discogs_logo.png"
 import spotifyLogo from "../../../src/images/Spotify_Logo_CMYK_Green.png"
-import {  Menu, Image, Header } from 'semantic-ui-react'
+import {  Menu, Image } from 'semantic-ui-react'
 import PaginationCollection from '../pagination'
 
 

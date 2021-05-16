@@ -23,7 +23,7 @@ class ChooseTrack extends Component{
     
     handleClick = async (e) => {   
        
-        await fetch(`/song/${this.state.userID}/${this.state.track[1].artist}/${this.state.track[2].album}/${this.state.track[3].title}/${this.state.track[0].id}/${this.props.analysisID}`)
+        await fetch(`/song/${this.state.userID}/${this.state.track[1].artist.replace("/","%2F")}/${this.state.track[2].album.replace("/","%2F")}/${this.state.track[3].title.replace("/","%2F")}/${this.state.track[0].id}/${this.props.analysisID}`)
             .then(res => res.json()) 
             .then(success => this.setState({success}))           
             
