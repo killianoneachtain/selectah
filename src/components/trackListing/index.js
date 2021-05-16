@@ -23,16 +23,23 @@ const LoadingTracklistingIndicator = props => {
         }
 
 export default class ListingAccordion extends Component {
-  state = { activeIndex: 0, tracklisting: [], trackAnalytics: [],  isLoading:true, getAnalysis:true  }   
-  
+
   constructor(props) {
     super(props)
-
-    this.handler = this.handler.bind(this)
+    this.state = { 
+    activeIndex: 0, 
+    tracklisting: [], 
+    trackAnalytics: [],  
+    isLoading:true, 
+    getAnalysis:true
+   } 
+    this.updateAnalytics = this.updateAnalytics.bind(this)
   }
 
-  handler() {
-    this.setState({ trackAnalytics: [this.state.refreshAnalytics]})
+
+  updateAnalytics = (NewAnalysis) => {
+   // console.log("New Analyis is : ", NewAnalysis)    
+    this.setState({ trackAnalytics: NewAnalysis})
   }
 
 
@@ -44,9 +51,7 @@ export default class ListingAccordion extends Component {
     trackPromise(fetch(`/user/release/${this.props.release}`)
         .then(res => res.json())   
         .then(tracklisting => this.setState({tracklisting, isLoading:false}))) 
-    
-    
-     trackPromise(fetch(`/user/release/trackAnalysis/${this.props.release}`)
+        .then(trackPromise(fetch(`/user/release/trackAnalysis/${this.props.release}`))
         .then(res => res.json())   
         .then(trackAnalytics => this.setState({trackAnalytics, getAnalysis:false})))     
     
@@ -54,8 +59,8 @@ export default class ListingAccordion extends Component {
   }
 
   render() {
-    const { activeIndex } = this.state    
-
+    const { activeIndex } = this.state       
+    
     return (
       <Accordion fluid styled>       
         <Accordion.Title
@@ -75,7 +80,7 @@ export default class ListingAccordion extends Component {
               trackAnalytics = {[this.state.trackAnalytics]} 
               artist={this.props.artist} 
               userID={this.props.user_id}
-              handler={this.handler}
+              updateAnalytics={this.updateAnalytics}
               />
         </Accordion.Content>
       </Accordion>

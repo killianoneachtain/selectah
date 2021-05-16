@@ -16,8 +16,7 @@ import ChangeDiscogsUserName from '../changeDiscogsUserName'
     
     toggleVisibility = () => this.setState({ visible: !this.state.visible });
   
-    handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-    
+    handleItemClick = (e, { name }) => this.setState({ activeItem: name });    
     
     
     render() {      

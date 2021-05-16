@@ -1,9 +1,11 @@
 import React, {useContext} from 'react'
 import records from "../../../src/images/recordspines_copy.png"
-import {  Table, Segment, Image, Header, Icon } from 'semantic-ui-react'
+import {  Table, Segment, Image, Icon, Grid } from 'semantic-ui-react'
 import PaginationCollection from '../pagination'
 import ListingAccordion from '../trackListing'
 import { CollectionContext } from '../../contexts/collectionContext'
+import  PerPage from '../perPage'
+import OrderBy from '../orderBy'
 import '../collectionList'
 
 const CollectionTable = ({collection, pages,action}) => { 
@@ -12,13 +14,33 @@ const CollectionTable = ({collection, pages,action}) => {
     
     return (
         <Segment style={{ backgroundImage: `url("${records}")`}} > 
-        
-            <Header as='h1'>   
-                    Current Collection : {pages.items} Releases  
-                <Segment>
-                    <PaginationCollection pageData={pages}  />
-                </Segment>                        
-            </Header>  
+            <Grid columns={16} divided>
+                <Grid.Row>
+                    <Grid.Column width={3}>    
+                                  
+                            {Collection.userName} :  
+                            {pages.items} Releases 
+                          
+                    </Grid.Column>
+                    <Grid.Column 
+                        width={6}
+                        stackable
+                        inverted   
+                        style={{ backgroundImage: `url("${records}")`, opacity: 1.2}}         
+                        color="grey"
+                        borderless >                  
+                            <PaginationCollection pageData={pages} use='top' />
+                     </Grid.Column>
+                     <Grid.Column width='3'>
+                        PerPage <PerPage />
+                     </Grid.Column>
+                     <Grid.Column width='3'>
+                        Order By <OrderBy />
+                     </Grid.Column>
+                </Grid.Row>    
+                </Grid>              
+       
+          
 
             <Table 
                 stackable 

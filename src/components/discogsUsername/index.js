@@ -3,7 +3,7 @@ import {  Segment, Input,Header } from 'semantic-ui-react'
 
 const DiscogsUsername = (user) => {  
 
-    console.log("the user in the search box is :  ", user);
+    //console.log("the user in the search box is :  ", user);
 
 
     return (

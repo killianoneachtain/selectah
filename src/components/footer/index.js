@@ -1,13 +1,30 @@
-import React from 'react'
+
+import React, { useContext, useEffect, useState } from "react"
+import {CollectionContext} from '../../contexts/collectionContext'
+import selectahLogo from '../../images/sel2_logo_tp.png'
+import { getPages} from '../../api/Discogs_api'
 import discogsLogo from "../../../src/images/discogs_logo.png"
 import spotifyLogo from "../../../src/images/Spotify_Logo_CMYK_Green.png"
-import selectahLogo from '../../../src/images/sel2_logo_tp.png'
-import {  Menu, Image, Header } from 'semantic-ui-react'
+import {  Menu, Image } from 'semantic-ui-react'
+import PaginationCollection from '../pagination'
+
 
 const Footer = () => {  
 
+  const context = useContext(CollectionContext)
+
+  const [data,setData]  = useState([])
+  const getData= async (userName, perPage, orderBy)=>{   
+    const response = await getPages(userName,perPage,orderBy)    
+    setData(response)    
+  }
+  useEffect(()=>{
+    getData(context.userName, context.perPage, context.orderBy)
+  },[context])  
+
 return (
             <Menu
+            stackable
             inverted            
             color="yellow"
             borderless
@@ -20,8 +37,8 @@ return (
             left: 0,
             width: '100%'         
             }}>
-               <Menu.Menu position='left'>
-                <Menu.Item >        
+               
+                <Menu.Item fluid stackable>        
                  <Image 
                     size='medium' 
                     src={selectahLogo} 
@@ -33,15 +50,14 @@ return (
                     style={{paddingBottom: '15px'}}                                              
                     />  
                     </Menu.Item>  
-                    <Menu.Item>                    
-                    
+                    <Menu.Item fluid>                    
+                     <PaginationCollection pageData={data} use="bottom" />
                     </Menu.Item>
                     
-                    </Menu.Menu> 
-                    <Menu.Menu position='right'>
-                      <Menu.Item>
-                      <Header as='h3' content='Powered by :' /></Menu.Item>
-                    <Menu.Item >                       
+                   
+                   
+                    
+                    <Menu.Item fluid>                       
                     <Image 
                     size='medium' 
                     src={discogsLogo} 
@@ -64,7 +80,7 @@ return (
                     position='right'                                             
                     />
                     </Menu.Item>
-                    </Menu.Menu>
+                   
                 
             </Menu>
 )

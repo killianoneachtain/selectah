@@ -32,9 +32,10 @@ const App = () => {
                       <Redirect from="*" to="/" />
                   </Switch>
                </GenresContextProvider>
+               <Footer />
             </CollectionContextProvider>  
           </Segment>  
-          <Footer />
+         
       </Auth0Provider>
     </BrowserRouter>
     
