@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { CollectionContext} from '../../contexts/collectionContext'
 import { Pagination } from 'semantic-ui-react'
 
-const PaginationCollection = ({pageData}) => {
+const PaginationCollection = ({pageData, use}) => {
     
     const collection = useContext(CollectionContext);
      
@@ -13,13 +13,24 @@ const PaginationCollection = ({pageData}) => {
     setActivePage(activePage);    
     collection.setPageNumber(activePage)
   }   
-      
+     
     return (
+      use='top' ? 
           <Pagination
             activePage={activePage}
             onPageChange={handlePaginationChange}
-            totalPages={String(pageData.pages)}                    
-          />  
+            totalPages={String(pageData.pages)}  
+            pointing
+            secondary                  
+          />  : 
+          <Pagination
+          activePage={activePage}
+          onPageChange={handlePaginationChange}
+          totalPages={String(pageData.pages)}  
+          pointing
+          secondary  
+
+        />
           
     )
   

@@ -16,7 +16,7 @@ const CollectionTable = ({collection, pages,action}) => {
             <Header as='h1'>   
                     Current Collection : {pages.items} Releases  
                 <Segment>
-                    <PaginationCollection pageData={pages}  />
+                    <PaginationCollection pageData={pages} use='top' />
                 </Segment>                        
             </Header>  
 

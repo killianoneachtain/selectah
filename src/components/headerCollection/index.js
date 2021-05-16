@@ -7,9 +7,7 @@ const HeaderCollection = ({  numCollection }) => {
   const collection = useContext(CollectionContext);   
   const { user, isAuthenticated, getAccessTokenSilently } =  useAuth0()
   const [userMetadata, setUserMetadata] = useState([]) 
-  const [access, setAccess] =useState("")
-
-  
+  const [access, setAccess] =useState("")  
 
   useEffect(() => {
     const getUserMetadata = async () => {
