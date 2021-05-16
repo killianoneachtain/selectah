@@ -4,14 +4,14 @@ export const getGenres = () => {
     .then(json => json.genres);
 };
 
-export const getCollection = (pgNumber, userName) => {  
-  return fetch(`/user/${userName}/collection/${pgNumber}`)  
+export const getCollection = (pgNumber, userName, orderBy, perPage) => {  
+  return fetch(`/user/${userName}/collection/${orderBy}/${perPage}/${pgNumber}`)  
     .then(res => res.json())
 };
 
-export const getPages = (userName) => {
+export const getPages = (userName,perPage,orderBy) => {
   //console.log("getPages for :", userName);
-  return fetch(`/user/pagination/${userName}`)
+  return fetch(`/user/pagination/${userName}/${perPage}/${orderBy}`)
     .then(      
       res => res.json())
 };

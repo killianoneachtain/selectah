@@ -41,18 +41,10 @@ const CollectionContextProvider = (props) => {
   const LoadingTracklistingIndicator = props => {
     const { promiseInProgress } = usePromiseTracker();
             return (
-                promiseInProgress && 
-            <Segment>
-              <Table.Body>      
-                <Table.Row textAlign='center'>                      
-                        <Table.Cell colSpan='1'>
+                promiseInProgress &&            
                         <Dimmer active>
                                 <Loader type="ThreeDots" color="#F5DF2E" height="150" width="150" />
-                            </Dimmer>
-                        </Table.Cell>                 
-                </Table.Row>  
-              </Table.Body> 
-            </Segment>
+                            </Dimmer>                       
            );  
           }
   
@@ -60,6 +52,9 @@ const CollectionContextProvider = (props) => {
   const [ pageNumber, setPageNumber] = useState(1);  
 
   const [accessToken, setAccessToken] = useState("");
+
+  const [orderBy, setOrderBy] = useState("year");
+  const [perPage, setPerPage] = useState("100");
 
   const [userSub, setUserSub] = useState("");
   const [userName, setUserName] = useState("undefined");
@@ -78,12 +73,12 @@ const CollectionContextProvider = (props) => {
     }]);
 
   useEffect(() => {    
-    trackPromise(getCollection(pageNumber, userName)
+    trackPromise(getCollection(pageNumber, userName, orderBy,perPage)
       .then((collection) => {
         dispatch({ type: "load-collection", payload: { collection } });
           }));
     
-  }, [pageNumber, userName]);
+  }, [pageNumber, userName, orderBy, perPage]);
 
   return (
     
@@ -101,7 +96,11 @@ const CollectionContextProvider = (props) => {
         userSub: userSub,
         setUserSub,
         accessToken: accessToken,
-        setAccessToken 
+        setAccessToken, 
+        orderBy: orderBy,
+        setOrderBy,
+        perPage: perPage,
+        setPerPage
       }}
     >
       {props.children}
