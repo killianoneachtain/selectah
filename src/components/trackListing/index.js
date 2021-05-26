@@ -43,19 +43,18 @@ export default class ListingAccordion extends Component {
 
  
 
-  handleClick = (e,titleProps) => {
+  handleClick = async (e,titleProps) => {
     const { index } = titleProps
     const { activeIndex } = this.state
     const newIndex = activeIndex === index ? -1 : index   
     
    
-    trackPromise(fetch(`/user/release/${this.props.release}`)      
+    trackPromise(await fetch(`/user/release/${this.props.release}`)      
         .then(response => response.json())           
         .then(tracklisting => this.setState({tracklisting, isLoading:false}))) 
-        .then(trackPromise(fetch(`/user/trackAnalysis/${this.props.release}`)
-        .then(res => res.json())        
-        .then(trackAnalytics => this.setState({trackAnalytics, getAnalysis:false}))))
-  
+        .then(trackPromise(await fetch(`/user/trackAnalysis/${this.props.release}`)
+                          .then(res => res.json())        
+                          .then(trackAnalytics => this.setState({trackAnalytics, getAnalysis:false}))))  
     
       this.setState({ activeIndex: newIndex })
 
