@@ -19,7 +19,7 @@ const App = () => {
       <Auth0Provider
           domain="selectah-app.eu.auth0.com"
           clientId="sxWhNmIpC0AyzdD4GzcBE7EiHwnFEcIu"
-          redirectUri="http://localhost:3000/collection"          
+          redirectUri="https://selectah.vercel.app/collection"          
           audience="https://selectah-app.eu.auth0.com/api/v2/"
           scope="openid profile read:current_user update:current_user_metadata"
         >
