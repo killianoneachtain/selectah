@@ -53,7 +53,7 @@ const CollectionContextProvider = (props) => {
 
   const [accessToken, setAccessToken] = useState("");
 
-  const [orderBy, setOrderBy] = useState("year");
+  const [orderBy, setOrderBy] = useState("artist");
   const [perPage, setPerPage] = useState("100");
 
   const [userSub, setUserSub] = useState("");

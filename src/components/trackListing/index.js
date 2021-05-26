@@ -27,47 +27,52 @@ export default class ListingAccordion extends Component {
   constructor(props) {
     super(props)
     this.state = { 
-    activeIndex: 0, 
-    tracklisting: [], 
-    trackAnalytics: [],  
-    isLoading:true, 
-    getAnalysis:true
+      activeIndex: 0, 
+      tracklisting: [], 
+      trackAnalytics: [],  
+      isLoading:true, 
+      getAnalysis:true
    } 
     this.updateAnalytics = this.updateAnalytics.bind(this)
   }
 
-
   updateAnalytics = (NewAnalysis) => {
-   // console.log("New Analyis is : ", NewAnalysis)    
+   // console.log("New Analysis is : ", NewAnalysis)    
     this.setState({ trackAnalytics: NewAnalysis})
   }
 
+ 
 
-  handleClick = (e, titleProps) => {
+  handleClick = (e,titleProps) => {
     const { index } = titleProps
     const { activeIndex } = this.state
-    const newIndex = activeIndex === index ? -1 : index
+    const newIndex = activeIndex === index ? -1 : index   
     
-    trackPromise(fetch(`/user/release/${this.props.release}`)
-        .then(res => res.json())   
+   
+    trackPromise(fetch(`/user/release/${this.props.release}`)      
+        .then(response => response.json())           
         .then(tracklisting => this.setState({tracklisting, isLoading:false}))) 
-        .then(trackPromise(fetch(`/user/release/trackAnalysis/${this.props.release}`))
-        .then(res => res.json())   
-        .then(trackAnalytics => this.setState({trackAnalytics, getAnalysis:false})))     
+        .then(trackPromise(fetch(`/user/trackAnalysis/${this.props.release}`)
+        .then(res => res.json())        
+        .then(trackAnalytics => this.setState({trackAnalytics, getAnalysis:false}))))
+  
     
-    this.setState({ activeIndex: newIndex })
-  }
+      this.setState({ activeIndex: newIndex })
 
+  }
+  
   render() {
-    const { activeIndex } = this.state       
+    const { activeIndex } = this.state
+           
+    //console.log("trackAnalytics in trackListing : ", this.state.trackAnalytics)
+    //console.log("tracklisting in trackListing : ", this.state.tracklisting)
     
     return (
-      <Accordion fluid styled>       
+      <Accordion>       
         <Accordion.Title
           active={activeIndex === 1}
           index={1}
-          onClick={this.handleClick}         
-        >
+          onClick={this.handleClick} >
           <Icon name='dropdown'/>
           Track-Listing
           
@@ -87,3 +92,33 @@ export default class ListingAccordion extends Component {
     )
   }
 }
+
+/*
+ componentDidMount(){
+    trackPromise(Promise.all([
+    fetch(`/user/release/${this.props.release}`),
+    fetch(`/user/trackAnalysis/${this.props.release}`)
+  ])
+  .then(res => console.log(res))
+  .then(res => Promise.all(res.map(r => r.json())))
+  .then(data => this.setState({
+    tracklisting: data[0],
+    trackAnalytics: data[1]
+  })))}
+  /*.then(function (responses) {
+    // Get a JSON object from each of the responses
+    return Promise.all(responses.map(function (response) {
+      return response.json();
+    }));
+  }).then(function (data) {
+    // Log the data to the console
+    // You would do something with both sets of data here
+    console.log(data)  
+    //this.setState({tracklisting : data[0], isLoading:false})      
+    
+
+  }).catch(function (error) {
+    // if there's an error, log it
+    console.log(error);
+  })))}*/
+     
