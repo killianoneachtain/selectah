@@ -39,11 +39,11 @@ const FilterControls = props => {
        
        <Grid.Column color='yellow'></Grid.Column>
         
-        <Grid.Column color='grey' inverted='true'>   
+        <Grid.Column>   
           <Dropdown     
               id='genre'  
               placeholder="Select a Genre"    
-              fluid={true}               
+              fluid              
               clearable             
               selection                          
               options={genreOptions}

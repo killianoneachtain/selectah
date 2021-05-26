@@ -12,6 +12,8 @@ constructor(props) {
     }      
 
     render() { 
+        //console.log("trackAnalytics State : ", this.state.trackAnalytics)
+        //console.log("trackAnalytics Props : ", this.props.trackAnalytics)
         return (  
             
         <Table celled color='yellow'>
@@ -155,7 +157,8 @@ constructor(props) {
                                                         i<1 ? 
                                                     
                                                         <List>
-                                                            <List.Item key={artiste?.id}>                                                           
+                                                            <List.Item key={artiste?.id}>   
+                                                                                                                 
                                                                 <SongSelection 
                                                                     analysisID={this.props.trackAnalytics[0][index]?._id} 
                                                                     releaseID={this.props.releaseID} 
@@ -174,9 +177,9 @@ constructor(props) {
                                                             <List> 
                                                                 <List.Item key={song?.id}>
                                                                 <List.Content>
-                                                                
+                                                                    
                                                                     <SongSelection 
-                                                                        analysisID={this.props.trackAnalytics[0][index]?._id}
+                                                                        analysisID={this.props.trackAnalytics[0][index]._id}
                                                                         releaseID={this.props.releaseID} 
                                                                         releaseTitle={this.props.tracklisting[0]?.title}  
                                                                         song={song?.title} artistName={this.props.artist} 

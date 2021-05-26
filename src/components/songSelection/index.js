@@ -24,7 +24,7 @@ class SongSelection extends Component{
             showModal: false,
             isLoading: true,
             userID: "",
-            track_id: ""            
+            trackID: ""            
         }
     }
 
@@ -65,6 +65,7 @@ class SongSelection extends Component{
        
   if(this.props.trackNumber !== "")
   {
+    console.log("Analysis ID", this.props.analysisID)
     return (      
       <Modal 
        
@@ -83,10 +84,13 @@ class SongSelection extends Component{
            />}
       >
         <LoadingSongSelectionIndicator />
-          <Modal.Header>Select the Spotify track to BPM  <Header as='h2' color='blue' align='center'>              
-                Artist : {this.props.artistName}<br></br>
-                Title : {this.props.song}<br></br>                
-              </Header>  </Modal.Header>
+          <Modal.Header>Select the Spotify track to BPM  
+              <Header as='h2' color='blue' align='center'>              
+                  Artist : {this.props.artistName}<br></br>
+                  Title : {this.props.song}<br></br>  
+                  Analysis ID: {this.props.analysisID}<br></br>              
+                </Header>  
+              </Modal.Header>
           <Modal.Content image scrolling>
             <Image size='small' src={SpotifyLogo} wrapped />
             <Modal.Description>  
