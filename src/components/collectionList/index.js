@@ -13,6 +13,7 @@ const CollectionTable = ({collection, pages,action}) => {
     const Collection = useContext(CollectionContext);  
     
     return (
+       
         <Segment style={{ backgroundImage: `url("${records}")`}} > 
             <Grid columns={16} divided>
                 <Grid.Row>
@@ -38,9 +39,7 @@ const CollectionTable = ({collection, pages,action}) => {
                         Order By <OrderBy />
                      </Grid.Column>
                 </Grid.Row>    
-                </Grid>              
-       
-          
+                </Grid>   
 
             <Table 
                 stackable 
@@ -87,6 +86,7 @@ const CollectionTable = ({collection, pages,action}) => {
                     <Table.Row key={item.id} textAlign='center'>
                         <Table.HeaderCell colSpan='8'>
                             <ListingAccordion release={item.id} artist={item?.basic_information?.artists[0]?.name} user_id={Collection.userID}/>
+                           
                         </Table.HeaderCell>  
                     </Table.Row>        
                 </Table.Body>  

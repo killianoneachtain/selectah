@@ -23,21 +23,20 @@ class ChooseTrack extends Component{
     
     handleClick = async (e) => {   
        
-        await fetch(`/song/${this.state.userID}/${this.state.track[1].artist.replace("/","%2F")}/${this.state.track[2].album.replace("/","%2F")}/${this.state.track[3].title.replace("/","%2F")}/${this.state.track[0].id}/${this.props.analysisID}`)
+        await fetch(`/song/match/${this.state.userID}/${this.state.track[1].artist.replace("/","%2F")}/${this.state.track[2].album.replace("/","%2F")}/${this.state.track[3].title.replace("/","%2F")}/${this.state.track[0].id}/${this.props.analysisID}`)
             .then(res => res.json()) 
             .then(success => this.setState({success}))           
             
         if(this.state.success.Success === true)
         {             
-            await fetch(`/user/release/trackAnalysis/${this.props.releaseID}`)
+            await fetch(`/user/trackAnalysis/${this.props.releaseID}`)
             .then(res => res.json())   
             .then(trackAnalytics => this.setState({trackAnalytics}))                   
             //.then(this.props.updateAnalytics([this.state.trackAnalytics]))
             .then(this.props.closeModal)   
             
             this.props.updateAnalytics(this.state.trackAnalytics)
-            //updateAnalytics={this.props.updateAnalytics} 
-            
+            //updateAnalytics={this.props.updateAnalytics}             
         }  
       }
       
@@ -94,14 +93,14 @@ render(){
                                                 <Icon name='music' size='large' color='yellow' />
                                                 <List.Content>Assign the BPM of this track to
                                                <Header as='h3'> {this.props.artistName}<br></br>
-                                                {this.props.song}</Header>
+                                                {this.props.song}<br></br>{this.props.analysisID}</Header>
                                                       </List.Content>
                                             </List.Item>                                            
                                             </List>} 
                                         trigger={ <Button
                                             size='big'
                                             fluid                                                                                      
-                                            onClick={() => (this.setState({ track: [{id: track?.id},{artist: track?.album?.artists[0]?.name},{album: track?.album?.name},{title: track?.name}, ] }, this.handleClick))}                                            
+                                            onClick={() => (this.setState({ track: [{id: track?.id},{artist: track?.album?.artists[0]?.name},{album: track?.album?.name},{title: track?.name},{analysisID: this.props.analysisID} ] }, this.handleClick))}                                            
                                             color='yellow'
                                             icon='thumbs up'  />     }                             
                                         />                                           

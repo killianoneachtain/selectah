@@ -25,7 +25,7 @@ const Footer = () => {
     getData(context.userName, context.perPage, context.orderBy)
   },[context])  
 
-  console.log(("authenticated ?", isAuthenticated))
+  
 
 return (
   isAuthenticated ?
