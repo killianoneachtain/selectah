@@ -7,11 +7,14 @@ import discogsLogo from "../../../src/images/discogs_logo.png"
 import spotifyLogo from "../../../src/images/Spotify_Logo_CMYK_Green.png"
 import {  Menu, Image } from 'semantic-ui-react'
 import PaginationCollection from '../pagination'
+import { useAuth0 } from '../../../node_modules/@auth0/auth0-react'
 
 
 const Footer = () => {  
 
   const context = useContext(CollectionContext)
+
+  const { isAuthenticated } =  useAuth0()
 
   const [data,setData]  = useState([])
   const getData= async (userName, perPage, orderBy)=>{   
@@ -22,7 +25,10 @@ const Footer = () => {
     getData(context.userName, context.perPage, context.orderBy)
   },[context])  
 
+  console.log(("authenticated ?", isAuthenticated))
+
 return (
+  isAuthenticated ?
             <Menu
             stackable
             inverted            
@@ -51,7 +57,7 @@ return (
                     />  
                     </Menu.Item>  
                     <Menu.Item fluid>                    
-                     <PaginationCollection pageData={data} use="bottom" />
+                     <PaginationCollection pageData={data} use="bottom" /> 
                     </Menu.Item>
                     
                    
@@ -82,7 +88,7 @@ return (
                     </Menu.Item>
                    
                 
-            </Menu>
+            </Menu> : <Menu></Menu>
 )
 }
  export default Footer
