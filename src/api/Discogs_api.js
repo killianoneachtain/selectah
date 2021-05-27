@@ -9,9 +9,9 @@ export const getCollection = (pgNumber, userName, orderBy, perPage) => {
     .then(res => res.json())
 };
 
-export const getPages = (userName,perPage,orderBy) => {
+export const getPages = async (userName,perPage,orderBy) => {
   //console.log("getPages for :", userName);
-  return fetch(`/user/pagination/${userName}/${perPage}/${orderBy}`)
+  return await fetch(`/user/pagination/${userName}/${perPage}/${orderBy}`)
     .then(      
       res => res.json())
 };
