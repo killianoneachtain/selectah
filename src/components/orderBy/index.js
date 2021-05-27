@@ -26,7 +26,7 @@ export default class OrderBy extends Component {
     handleChange = (e, { value }) => 
     {
       this.setState({ value }) 
-      this.context.setOrderBy(value.value)
+      this.context.setOrderBy(value)
     }
 
   render() {
