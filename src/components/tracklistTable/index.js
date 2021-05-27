@@ -92,9 +92,9 @@ constructor(props) {
                                                 <SongSelection 
                                                     releaseID={this.props.releaseID} 
                                                     releaseTitle={this.props.tracklisting[0]?.title}  
-                                                    song={song?.title} 
+                                                    song={song.title} 
                                                     artistName={this.props.artist} 
-                                                    trackNumber={song?.position}/>                                                
+                                                    trackNumber={song.position}/>                                                
                                             </List.Content>
                                             </List.Item>  
                                         </List>    
@@ -102,7 +102,7 @@ constructor(props) {
                              ]:    
                                  <Table.Cell>
                                         <List> 
-                                            <List.Item key={index}>                                              
+                                            <List.Item key={song.position}>                                              
                                                 {                                                   
                                                   this.props.trackAnalytics[0][index]?.users?.includes(this.props.userID) || this.props.trackAnalytics[0][index]?.users[0] === '***ALL***' ?                                                     
                                                [ 
