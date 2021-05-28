@@ -40,7 +40,7 @@ class SongSelection extends Component{
     }
     
     handleClick = (e) => { 
-      trackPromise(fetch(`/songSearch/${this.state.userID}/${this.props.releaseID}/${this.props.artistName.replace("/","%2F")}/${this.props.releaseTitle.replace("/","%2F")}/${this.props.song.replace("/","%2F").replace("'","‘")}`) 
+      trackPromise(fetch(`/songSearch/${this.state.userID}/${this.props.releaseID}/${encodeURI(this.props.artistName)}/${encodeURI(this.props.releaseTitle)}/${encodeURI(this.props.song).replace("'","‘")}`) 
           .then(res => res.json())   
           .then(songs => this.setState({songs, isLoading:false})))             
     }
@@ -87,8 +87,7 @@ class SongSelection extends Component{
           <Modal.Header>Select the Spotify track to BPM  
               <Header as='h2' color='blue' align='center'>              
                   Artist : {this.props.artistName}<br></br>
-                  Title : {this.props.song}<br></br>  
-                  Analysis ID: {this.props.analysisID}<br></br>              
+                  Title : {this.props.song}<br></br>                            
                 </Header>  
               </Modal.Header>
           <Modal.Content image scrolling>

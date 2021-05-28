@@ -41,26 +41,6 @@ export default class ListingAccordion extends Component {
     this.setState({ trackAnalytics: NewAnalysis})
   } 
 
-  
- 
-  /*.then(function (responses) {
-    // Get a JSON object from each of the responses
-    return Promise.all(responses.map(function (response) {
-      return response.json();
-    }));
-  }).then(function (data) {
-    // Log the data to the console
-    // You would do something with both sets of data here
-    console.log(data)  
-    //this.setState({tracklisting : data[0], isLoading:false})      
-    
-
-  }).catch(function (error) {
-    // if there's an error, log it
-    console.log(error);
-  })))}*/
-     
-
   handleClick = async (e,titleProps) => {
     const { index } = titleProps
     const { activeIndex } = this.state
@@ -89,31 +69,13 @@ export default class ListingAccordion extends Component {
       console.log(err);
     })  )
 
-   // .then(data => this.setState({
-  //    trackListing: data[0], isLoading:false,
-  //    trackAnalytics: data[1], getAnalysis: false
-  //  })
-    
-
-    
-
-    /*trackPromise(fetch(`/user/release/${releaseID}`)      
-        .then(response => response.json())           
-        .then(tracklisting => this.setState({tracklisting, isLoading:false}) 
-        .then(fetch(`/user/trackAnalysis/${releaseID}`)
-                .then(response => response.json())        
-                .then(trackAnalytics => this.setState({trackAnalytics, getAnalysis:false}))))) 
-    */
-      this.setState({ activeIndex: newIndex })
+    this.setState({ activeIndex: newIndex })
 
   }
   
   render() {
     const { activeIndex } = this.state
-           
-    //console.log("trackAnalytics in trackListing : ", this.state.trackAnalytics)
-    //console.log("tracklisting in trackListing : ", this.state.tracklisting)
-    
+   
     return (
       <Accordion>       
         <Accordion.Title
@@ -139,33 +101,3 @@ export default class ListingAccordion extends Component {
     )
   }
 }
-
-/*
- componentDidMount(){
-    trackPromise(Promise.all([
-    fetch(`/user/release/${this.props.release}`),
-    fetch(`/user/trackAnalysis/${this.props.release}`)
-  ])
-  .then(res => console.log(res))
-  .then(res => Promise.all(res.map(r => r.json())))
-  .then(data => this.setState({
-    tracklisting: data[0],
-    trackAnalytics: data[1]
-  })))}
-  /*.then(function (responses) {
-    // Get a JSON object from each of the responses
-    return Promise.all(responses.map(function (response) {
-      return response.json();
-    }));
-  }).then(function (data) {
-    // Log the data to the console
-    // You would do something with both sets of data here
-    console.log(data)  
-    //this.setState({tracklisting : data[0], isLoading:false})      
-    
-
-  }).catch(function (error) {
-    // if there's an error, log it
-    console.log(error);
-  })))}*/
-     

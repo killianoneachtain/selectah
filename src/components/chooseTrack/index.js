@@ -23,7 +23,7 @@ class ChooseTrack extends Component{
     
     handleClick = async (e) => {   
        
-        await fetch(`/song/match/${this.state.userID}/${this.state.track[1].artist.replace("/","%2F")}/${this.state.track[2].album.replace("/","%2F")}/${this.state.track[3].title.replace("/","%2F")}/${this.state.track[0].id}/${this.props.analysisID}`)
+        await fetch(`/song/match/${this.state.userID}/${encodeURI(this.state.track[1].artist)}/${encodeURI(this.state.track[2].album)}/${encodeURI(this.state.track[3].title)}/${this.state.track[0].id}/${this.props.analysisID}`)
             .then(res => res.json()) 
             .then(success => this.setState({success}))           
             
@@ -48,7 +48,7 @@ render(){
         <Segment> 
                         
             {
-                ((this.props.songs?.total != null) && (this.props.songs.total>0))? 
+                ((this.props.songs?.total != null) && (this.props.songs.total>0)) ? 
                     this.props.songs.items.map((track) => 
                         <Table fixed selectable stackable size='large'>
                             <Table.Header >                           
@@ -93,7 +93,7 @@ render(){
                                                 <Icon name='music' size='large' color='yellow' />
                                                 <List.Content>Assign the BPM of this track to
                                                <Header as='h3'> {this.props.artistName}<br></br>
-                                                {this.props.song}<br></br>{this.props.analysisID}</Header>
+                                                {this.props.song}<br></br></Header>
                                                       </List.Content>
                                             </List.Item>                                            
                                             </List>} 
