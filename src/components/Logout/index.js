@@ -7,7 +7,7 @@ const LogoutButton = () => {
 
   return (
     <Button 
-            onClick={() => logout({ returnTo: 'http://localhost:3000' })}
+            onClick={() => logout({ returnTo: 'https://selectah.vercel.app/' })}
             content='Log Out' 
             icon='sign out'
             size='large'
