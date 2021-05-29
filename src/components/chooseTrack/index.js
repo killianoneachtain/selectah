@@ -23,13 +23,13 @@ class ChooseTrack extends Component{
     
     handleClick = async (e) => {   
        
-        await fetch(`/song/match/${this.state.userID}/${encodeURI(this.state.track[1].artist)}/${encodeURI(this.state.track[2].album)}/${encodeURI(this.state.track[3].title)}/${this.state.track[0].id}/${this.props.analysisID}`)
+        await fetch(`https://tranquil-tundra-23022.herokuapp.com/song/match/${this.state.userID}/${encodeURI(this.state.track[1].artist)}/${encodeURI(this.state.track[2].album)}/${encodeURI(this.state.track[3].title)}/${this.state.track[0].id}/${this.props.analysisID}`)
             .then(res => res.json()) 
             .then(success => this.setState({success}))           
             
         if(this.state.success.Success === true)
         {             
-            await fetch(`/user/trackAnalysis/${this.props.releaseID}`)
+            await fetch(`https://tranquil-tundra-23022.herokuapp.com/user/trackAnalysis/${this.props.releaseID}`)
             .then(res => res.json())   
             .then(trackAnalytics => this.setState({trackAnalytics}))                   
             //.then(this.props.updateAnalytics([this.state.trackAnalytics]))

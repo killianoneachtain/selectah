@@ -53,8 +53,8 @@ export default class ListingAccordion extends Component {
     
       trackPromise(
         Promise.all([
-      await fetch(`/user/release/${releaseID}`),
-      await fetch(`/user/trackAnalysis/${releaseID}`)
+      await fetch(`https://tranquil-tundra-23022.herokuapp.com/user/release/${releaseID}`),
+      await fetch(`https://tranquil-tundra-23022.herokuapp.com/user/trackAnalysis/${releaseID}`)
     ])
     .then(async([aa, bb]) => {
       const a = await aa.json()
