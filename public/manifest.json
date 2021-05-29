@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Selectah App",
+  "name": "Selectah React App",
   "icons": [
     {
       "src": "favicon.ico",
@@ -17,8 +17,7 @@
       "type": "image/png",
       "sizes": "512x512"
     }
-  ],
-  "start_url": ".",
+  ], 
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
