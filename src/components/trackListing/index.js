@@ -53,8 +53,8 @@ export default class ListingAccordion extends Component {
     
       trackPromise(
         Promise.all([
-      fetch(`/user/release/${releaseID}`),
-      fetch(`/user/trackAnalysis/${releaseID}`)
+      await fetch(`/user/release/${releaseID}`),
+      await fetch(`/user/trackAnalysis/${releaseID}`)
     ])
     .then(async([aa, bb]) => {
       const a = await aa.json()
