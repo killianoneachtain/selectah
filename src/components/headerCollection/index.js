@@ -10,7 +10,8 @@ const HeaderCollection = ({  numCollection }) => {
   const [access, setAccess] =useState("")  
 
   useEffect(() => {
-    const getUserMetadata = async () => {      
+    const getUserMetadata = async () => { 
+      console.log("collection username : ", collection.username)     
 
       if(collection.username !== "undefined"){
 
