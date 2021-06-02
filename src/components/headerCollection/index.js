@@ -10,10 +10,9 @@ const HeaderCollection = ({  numCollection }) => {
   const [access, setAccess] =useState("")  
 
   useEffect(() => {
-    const getUserMetadata = async () => {
-      console.log("user.sub: ", user.sub)
+    const getUserMetadata = async () => {      
 
-      if(user.sub !== "undefined"){
+      if(collection.username !== "undefined"){
 
       const domain = "selectah-app.eu.auth0.com";  
       try {
@@ -43,7 +42,7 @@ const HeaderCollection = ({  numCollection }) => {
     
     getUserMetadata();    
     
-  }, [getAccessTokenSilently, user]);   
+  }, [getAccessTokenSilently, user, collection]);   
 
   //console.log("userMetadata : ", userMetadata)
   collection.setUserName(userMetadata.discogs_username);  
