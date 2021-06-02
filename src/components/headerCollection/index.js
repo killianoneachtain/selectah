@@ -39,7 +39,7 @@ const HeaderCollection = ({  numCollection }) => {
     
     getUserMetadata();    
     
-  }, [getAccessTokenSilently, user, collection]);   
+  }, [getAccessTokenSilently, user]);   
 
   //console.log("userMetadata : ", userMetadata)
   collection.setUserName(userMetadata.discogs_username);  
