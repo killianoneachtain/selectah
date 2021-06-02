@@ -28,6 +28,7 @@ const HeaderCollection = ({  numCollection }) => {
           },
         });  
         const { user_metadata } = await metadataResponse.json();  
+        console.log("User_metadata : ", user_metadata);
        
         await setUserMetadata(user_metadata);
       } 
