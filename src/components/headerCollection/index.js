@@ -11,6 +11,9 @@ const HeaderCollection = ({  numCollection }) => {
 
   useEffect(() => {
     const getUserMetadata = async () => {
+
+      if(user.sub != "undefined"){
+
       const domain = "selectah-app.eu.auth0.com";  
       try {
         const accessToken = await getAccessTokenSilently({
@@ -34,7 +37,7 @@ const HeaderCollection = ({  numCollection }) => {
       } 
       catch (e) {
         console.log(e.message);
-      }
+      }}
     };  
     
     getUserMetadata();    
