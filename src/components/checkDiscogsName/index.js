@@ -2,7 +2,6 @@ import React,  { useContext, useState } from 'react'
 import { CollectionContext} from '../../contexts/collectionContext'
 import { Form } from 'semantic-ui-react'
 import { checkName, changeMetaDataName } from '../../api/Discogs_api'
-//import { useAuth0 } from '../../../node_modules/@auth0/auth0-react'
 
 const CheckName = ({modalState}) => {    
    

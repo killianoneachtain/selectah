@@ -21,8 +21,7 @@ const CollectionListPage = () => {
   return (
     <Segment>
       <Image src={selectahLogo} fluid centered style={{paddingBottom: '20px'}}/>         
-        <PageTemplate 
-          title='My Collection'
+        <PageTemplate           
           collection={context.collection}
           pages={data} 
         />         

@@ -40,7 +40,7 @@ class SongSelection extends Component{
     }
     
     handleClick = (e) => { 
-      trackPromise(fetch(`/songSearch/${this.state.userID}/${this.props.releaseID}/${encodeURI(this.props.artistName)}/${encodeURI(this.props.releaseTitle)}/${encodeURI(this.props.song).replace("'","‘")}`) 
+      trackPromise(fetch(`https://tranquil-tundra-23022.herokuapp.com/songSearch/${this.state.userID}/${this.props.releaseID}/${encodeURI(this.props.artistName)}/${encodeURI(this.props.releaseTitle)}/${encodeURI(this.props.song).replace("'","‘")}`) 
           .then(res => res.json())   
           .then(songs => this.setState({songs, isLoading:false})))             
     }
@@ -55,7 +55,7 @@ class SongSelection extends Component{
     }
   
     closeModal = async () => {      
-      await fetch(`/songSearch/${this.state.userID}/deleteTracks`)
+      await fetch(`https://tranquil-tundra-23022.herokuapp.com/songSearch/${this.state.userID}/deleteTracks`)
       .then(res => res.json())
       this.setState({ showModal: false })
     }

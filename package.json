@@ -31,8 +31,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build"
-  },
-  "proxy": "https://tranquil-tundra-23022.herokuapp.com",
+  },  
   "eslintConfig": {
     "extends": [
       "react-app",
