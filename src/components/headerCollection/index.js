@@ -11,6 +11,7 @@ const HeaderCollection = ({  numCollection }) => {
 
   useEffect(() => {
     const getUserMetadata = async () => {
+      console.log("user.sub: ", user.sub)
 
       if(user.sub !== "undefined"){
 
