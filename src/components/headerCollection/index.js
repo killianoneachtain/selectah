@@ -10,10 +10,7 @@ const HeaderCollection = ({  numCollection }) => {
   const [access, setAccess] =useState("")  
 
   useEffect(() => {
-    const getUserMetadata = async () => { 
-      console.log("collection username : ", collection.username)     
-
-      if(collection.username !== "undefined"){
+    const getUserMetadata = async () => {      
 
       const domain = "selectah-app.eu.auth0.com";  
       try {
@@ -31,14 +28,13 @@ const HeaderCollection = ({  numCollection }) => {
             Authorization: `Bearer ${accessToken}`,
           },
         });  
-        const { user_metadata } = await metadataResponse.json();  
-        console.log("User_metadata : ", user_metadata);
+        const { user_metadata } = await metadataResponse.json();         
        
         await setUserMetadata(user_metadata);
       } 
       catch (e) {
         console.log(e.message);
-      }}
+      }
     };  
     
     getUserMetadata();    
