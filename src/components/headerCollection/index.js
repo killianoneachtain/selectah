@@ -12,7 +12,7 @@ const HeaderCollection = ({  numCollection }) => {
   useEffect(() => {
     const getUserMetadata = async () => {
 
-      if(user.sub != "undefined"){
+      if(user.sub !== "undefined"){
 
       const domain = "selectah-app.eu.auth0.com";  
       try {
